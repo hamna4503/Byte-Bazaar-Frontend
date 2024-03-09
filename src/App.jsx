@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-// import ItemCard from "./components/itemCard/ItemCard";
-// import xboxController from "./assets/images/items/controllers/xboxController.png";
+import ItemCard from "./components/itemCard/ItemCard";
+import xboxController from "./assets/images/items/controllers/xboxController.png";
 import Navbar from "./components/Navbar/Navbar";
 
 export default function App() {
@@ -12,13 +12,13 @@ export default function App() {
         </Routes>
       </BrowserRouter>
 
-      {/* <ItemCard
+      <ItemCard
         itemImg={xboxController}
         itemName="XBOX 360 Controller"
         itemCategory="Gaming Controller"
         itemPrice="4500"
         alt="XBOX-Controller"
-      /> */}
+      />
     </>
   );
 }
