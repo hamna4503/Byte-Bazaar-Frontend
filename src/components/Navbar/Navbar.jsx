@@ -40,9 +40,9 @@ export default function Navbar() {
 
   return (
     <main>
-      <nav className="flex justify-between px-8 items-center py-6   ">
-        <div className="flex items-center gap-8">
-          <section className="flex items-center gap-4">
+      <nav className="flex justify-between px-10 items-center py-4">
+        <div className="flex items-center gap-6">
+          <section className="flex items-center gap-6">
             {/* menu */}
             <FiMenu
               onClick={() => setMenu(true)}
@@ -53,7 +53,7 @@ export default function Navbar() {
               <img
                 width={40}
                 height={40}
-                className="h-8 w-8 rounded-full mr-2 lg:block"
+                className="rounded-full mr-2 lg:block hidden"
                 src={Logo}
                 alt="avatar-img"
               />
@@ -67,7 +67,7 @@ export default function Navbar() {
               {d.label === "Categories" ? (
                 <Link
                   to={d.link}
-                  className="hidden lg:block text-gray-400 hover:text-black"
+                  className="hidden lg:block text-gray-600 hover:text-black"
                   onClick={() => setCategoriesOpen(!isCategoriesOpen)}
                 >
                   {d.label}
@@ -75,7 +75,7 @@ export default function Navbar() {
               ) : (
                 <Link
                   to={d.link}
-                  className="hidden lg:block text-gray-400 hover:text-black"
+                  className="hidden lg:block text-gray-600 hover:text-black"
                 >
                   {d.label}
                 </Link>
@@ -106,11 +106,13 @@ export default function Navbar() {
             isSideMenuOpen && "translate-x-0"
           )}
         >
-          <section className="text-black bg-white flex-col absolute left-0 top-0 h-screen p-8 gap-8 z-50 w-56 flex  ">
+          <section className="text-black bg-white flex-col absolute left-0 top-0 h-screen p-8 gap-8 z-50 w-56 flex ">
             <IoCloseOutline
               onClick={() => setMenu(false)}
-              className="mt-0 mb-8 text-3xl cursor-pointer"
+              className="mt-0 mb-2 text-3xl cursor-pointer"
             />
+
+            <span className="text-xl font-bold lg:block">ByteBazaar</span>
 
             {navlinks.map((d, i) => (
               <div key={i} className="relative">
@@ -146,17 +148,17 @@ export default function Navbar() {
             ))}
 
             {/* Search bar in the sidebar */}
-              <input
-                type="text"
-                placeholder="Search..."
-                className="px-1 py-1 border border-gray-300 rounded-lg focus:outline-none"
-                style={{ width: "90%" }}
-              />
+            <input
+              type="text"
+              placeholder="Search..."
+              className="px-1 py-1 border border-gray-300 rounded-lg focus:outline-none"
+              style={{ width: "90%" }}
+            />
           </section>
         </div>
 
         {/* Right Navbar Section */}
-        <section className="flex items-center gap-4">
+        <section className="flex items-center gap-6">
           {/* Search bar */}
           <input
             type="text"
@@ -174,7 +176,3 @@ export default function Navbar() {
     </main>
   );
 }
-
-
-
-
