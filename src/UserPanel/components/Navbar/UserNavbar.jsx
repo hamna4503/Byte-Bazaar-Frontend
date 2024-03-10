@@ -27,7 +27,7 @@ export default function UserNavbar() {
       link: "/",
     },
     {
-      label: "Categories",
+      label: "Products",
       link: "#",
       dropdownOptions: [
         "Computer Gadgets",

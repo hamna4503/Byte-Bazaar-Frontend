@@ -9,13 +9,13 @@ export default function NavLinkSection({
 }){
     return (
       <div
-        className={`flex flex-col lg:flex-row gap-6 ${
+        className={`flex flex-col lg:flex-row gap-6 no-scrollbar ${
           isMobile ? "lg:hidden" : "hidden lg:flex"
         }`}
       >
         {navlinks.map((d, i) => (
           <div key={i} className="relative">
-            {(d.label === "Categories" || d.label === "Inventory Management") ? (
+            {d.label === "Products" || d.label === "Inventory Management" ? (
               <Link
                 to={d.link}
                 className={`text-gray-600 hover:text-black ${
@@ -31,7 +31,7 @@ export default function NavLinkSection({
               </Link>
             )}
             {d.dropdownOptions &&
-              (d.label === "Categories" ||d.label === "Inventory Management") &&
+              (d.label === "Products" || d.label === "Inventory Management") &&
               isCategoriesOpen && (
                 <div className="w-40 absolute top-full left-0 mt-2 bg-white rounded-md shadow-lg z-10">
                   {d.dropdownOptions.map((option, index) => (
