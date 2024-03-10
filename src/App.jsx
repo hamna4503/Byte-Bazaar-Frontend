@@ -3,7 +3,8 @@ import ItemCard from "./UserPanel/components/itemCard/ItemCard";
 import xboxController from "./UserPanel/assets/images/items/controllers/xboxController.png";
 import UserNavbar from "./UserPanel/components/Navbar/UserNavbar";
 import AdminNavbar from "./AdminPanel/components/Navbar/AdminNavbar";
-import SignUp from "./UserPanel/pages/SignUp/SignUp";
+import SignUp from "./UserPanel/pages/AuthorizationForms/SignUp";
+import Login from "./UserPanel/pages/AuthorizationForms/Login";
 
 export default function App() {
   return (
@@ -13,7 +14,7 @@ export default function App() {
           <Route path="/bytebazaar/admin" element={<AdminNavbar />} />
           <Route path="/" element={<UserNavbar />} />
           <Route path="/bytebazaar/signup" element={<SignUp />} />
-          {/* <Route path="/bytebazaar/login" element={<SignUp />} /> */}
+          <Route path="/bytebazaar/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
 
