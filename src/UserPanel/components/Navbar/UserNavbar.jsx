@@ -65,12 +65,13 @@ export default function UserNavbar() {
           setMenu={setMenu}
           navlinks={navlinks}
           isMobile={isMobile}
+          isAdmin={false}
           isCategoriesOpen={isCategoriesOpen}
           setCategoriesOpen={setCategoriesOpen}
         />
 
         {/* Right Navbar Section */}
-        <RightNavbarSection />
+        <RightNavbarSection isAdmin={false} />
       </nav>
     </main>
   );
