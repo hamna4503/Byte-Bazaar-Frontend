@@ -1,14 +1,14 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import ItemCard from "./components/itemCard/ItemCard";
-import xboxController from "./assets/images/items/controllers/xboxController.png";
-import Navbar from "./components/Navbar/Navbar";
+import ItemCard from "./UserPanel/components/itemCard/ItemCard";
+import xboxController from "./UserPanel/assets/images/items/controllers/xboxController.png";
+import UserNavbar from "./UserPanel/components/Navbar/UserNavbar";
 
 export default function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Navbar />} />
+          <Route path="/" element={<UserNavbar />} />
         </Routes>
       </BrowserRouter>
 
