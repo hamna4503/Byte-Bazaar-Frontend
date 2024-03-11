@@ -18,7 +18,6 @@ export const WEBSTORE = [
   export const SUPPORT = [
     { name: "Documentation", link: "#" },
     { name: "Tutorials & guides", link: "#" },
-    { name: "Webinars", link: "#" },
     { name: "Open-source", link: "#" },
   ];
   
