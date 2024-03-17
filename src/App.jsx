@@ -5,6 +5,7 @@ import UserNavbar from "./UserPanel/components/Navbar/UserNavbar";
 import AdminNavbar from "./AdminPanel/components/Navbar/AdminNavbar";
 import SignUp from "./UserPanel/pages/AuthorizationForms/SignUp";
 import Login from "./UserPanel/pages/AuthorizationForms/Login";
+import Footer from "./UserPanel/components/Footer/Footer";
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
           <Route path="/" element={<UserNavbar />} />
           <Route path="/bytebazaar/signup" element={<SignUp />} />
           <Route path="/bytebazaar/login" element={<Login />} />
+          {/* <Route path="/bytebazaar/foot" element={<Footer />} /> */}
         </Routes>
       </BrowserRouter>
 

@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 export default function AuthFooterLinks({isLoginForm}){
   return (
     <>
-      <hr className="mb-6 border-t" />
       <div className="text-center">
         <a
           className="inline-block text-sm align-baseline hover:text-blue-800 text-Purple"
