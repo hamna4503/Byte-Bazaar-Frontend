@@ -68,6 +68,10 @@ export default function AuthFormFields({ isLoginForm }) {
     }
   };
 
+  const loginWithGoogle = () => {
+    window.open("http://localhost:6005/auth/google/callback", "_self");
+  };
+
   return (
     <>
       <form
@@ -183,12 +187,15 @@ export default function AuthFormFields({ isLoginForm }) {
             className="w-70 text-sm px-12 py-1.5 font text-white shadow-sm rounded-lg focus:outline-none focus:shadow-outline bg-Purple"
             type="submit"
           >
-            {!isLoginForm ? "Register" : "Login"}
+            {!isLoginForm ? "Sign Up" : "Login"}
           </button>
 
           <span className="font-bold text-black">OR</span>
 
-          <button className="w-70 max-w-xs text-sm font text-white shadow-sm rounded-lg px-3 py-1.5 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline bg-Purple">
+          <button
+            className="w-70 max-w-xs text-sm font text-white shadow-sm rounded-lg px-3 py-1.5 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline bg-Purple"
+            onClick={loginWithGoogle}
+          >
             <svg className="w-4" viewBox="0 0 533.5 544.3">
               <path
                 d="M533.5 278.4c0-18.5-1.5-37.1-4.7-55.3H272.1v104.8h147c-6.1 33.8-25.7 63.7-54.4 82.7v68h87.7c51.5-47.4 81.1-117.4 81.1-200.2z"

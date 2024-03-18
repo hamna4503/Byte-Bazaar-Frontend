@@ -11,10 +11,10 @@ export default function SignUp(){
             <div className="flex justify-center px-6 py-12">
               <div className="w-full xl:w-3/4 lg:w-11/12 flex">
                 <AuthFormImage />
-                <div className="w-full lg:w-7/12 p-8 rounded-lg lg:rounded-l-none bg-white">
+                <div className="w-full lg:w-7/12 p-8 bg-white shadow-lg">
                   <AuthHeader />
-                  <AuthFormFields/>
-                  <AuthFooterLinks /> 
+                  <AuthFormFields />
+                  <AuthFooterLinks />
                 </div>
               </div>
             </div>
