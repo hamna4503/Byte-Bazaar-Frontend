@@ -1,8 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import products from './Products';
-import img1 from '../../assets/download.jpeg';
-import bgimg from '../../assets/bg.jpg';
+import img1 from '../../assets/images/Shop/download.png';
+import bgimg from '../../assets/images/Shop/bg.jpg';
 import StarRating from './Rating';
 
 const SingleProductPage = () => {

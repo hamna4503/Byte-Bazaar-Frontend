@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import img1 from '../../assets/download.jpeg';
+import img1 from '../../assets/images/Shop/download.png';
 
 const ShopHeader = () => {
   const [activeIndex, setActiveIndex] = useState(0);

@@ -1,5 +1,5 @@
 // products.js
-import img1 from '../../assets/download.jpeg';
+import img1 from '../../assets/images/Shop/download.png';
 const products = [
     {
       id: 1,
