@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import ItemCard from "./UserPanel/components/ItemCard/ItemCard";
 import xboxController from "./UserPanel/assets/images/items/controllers/xboxController.png";
 import UserNavbar from "./UserPanel/components/Navbar/UserNavbar";
@@ -18,11 +19,22 @@ export default function App() {
           <Route path="/" element={<UserNavbar />} />
           <Route path="/bytebazaar/signup" element={<SignUp />} />
           <Route path="/bytebazaar/login" element={<Login />} />
-          <Route path="/bytebazaar/forget-password" element={<ForgetPassword />} />
-          <Route path="/bytebazaar/reset-password" element={<ResetPassword />} />
+          <Route
+            path="/bytebazaar/forget-password"
+            element={<ForgetPassword />}
+          />
+          <Route
+            path="/bytebazaar/reset-password/"
+            element={<ResetPassword />}
+          />
+
           {/* <Route path="/bytebazaar/foot" element={<Footer />} /> */}
         </Routes>
+
+        <ToastContainer />
+
       </BrowserRouter>
+
 
       {/* THIS IS JUST FOR CHECKING*/}
       <h1 className="text-center font-semibold text-4xl pb-10">PRODUCTS</h1>
@@ -73,4 +85,3 @@ export default function App() {
     </>
   );
 }
-

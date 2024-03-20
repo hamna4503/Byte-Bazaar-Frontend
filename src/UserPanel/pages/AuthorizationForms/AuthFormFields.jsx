@@ -31,7 +31,7 @@ export default function AuthFormFields({ isLoginForm }) {
     e.preventDefault();
     console.log(signupData);
     try {
-      const url = "http://localhost:8080/api/signup";
+      const url = "http://localhost:6005/api/signup";
       const { data: res } = await axios.post(url, signupData);
       navigate("/bytebazaar/login");
       console.log(res.message);
@@ -50,7 +50,7 @@ export default function AuthFormFields({ isLoginForm }) {
     e.preventDefault();
     console.log(loginData);
     try {
-      const url = "http://localhost:8080/api/login";
+      const url = "http://localhost:6005/api/login";
       const { data: res } = await axios.post(url, loginData);
       const token = res.data;
       document.cookie = `authToken=${token}; Secure; HttpOnly; SameSite=Strict`;
