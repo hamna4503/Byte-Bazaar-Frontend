@@ -9,6 +9,9 @@ import Login from "./UserPanel/pages/AuthorizationForms/Login";
 import Footer from "./UserPanel/components/Footer/Footer";
 import ForgetPassword from "./UserPanel/pages/Passwords/ForgetPassword";
 import ResetPassword from "./UserPanel/pages/Passwords/ResetPassword";
+import Shopmain from "./UserPanel/components/Shop/Shopmain";
+import SingleProductPage from "./UserPanel/components/Shop/SingleCard";
+import Footer from "./UserPanel/components/Footer/Footer";
 
 export default function App() {
   return (
@@ -29,6 +32,16 @@ export default function App() {
           />
 
           {/* <Route path="/bytebazaar/foot" element={<Footer />} /> */}
+
+
+    {/*<BrowserRouter>
+    this would work like this but it has to be checked by maham
+      <Routes>
+      <Route path="/" exact component={ShopMain} />
+      <Route path="/product/:id" component={SingleProductPage} />
+      </Routes>
+
+      </BrowserRouter>*/}
         </Routes>
 
         <ToastContainer />
@@ -85,3 +98,4 @@ export default function App() {
     </>
   );
 }
+
