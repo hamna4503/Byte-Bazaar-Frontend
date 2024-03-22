@@ -7,11 +7,12 @@ import AdminNavbar from "./AdminPanel/components/Navbar/AdminNavbar";
 import SignUp from "./UserPanel/pages/AuthorizationForms/SignUp";
 import Login from "./UserPanel/pages/AuthorizationForms/Login";
 import Footer from "./UserPanel/components/Footer/Footer";
-import ForgetPassword from "./UserPanel/pages/Passwords/ForgetPassword";
+import ForgotPassword from "./UserPanel/pages/Passwords/ForgotPassword";
 import ResetPassword from "./UserPanel/pages/Passwords/ResetPassword";
 import Shopmain from "./UserPanel/components/Shop/Shopmain";
 import SingleProductPage from "./UserPanel/components/Shop/SingleCard";
-import Footer from "./UserPanel/components/Footer/Footer";
+import OTPVerification from "./UserPanel/pages/Passwords/OTPVerification";
+;
 
 export default function App() {
   return (
@@ -23,12 +24,16 @@ export default function App() {
           <Route path="/bytebazaar/signup" element={<SignUp />} />
           <Route path="/bytebazaar/login" element={<Login />} />
           <Route
-            path="/bytebazaar/forget-password"
-            element={<ForgetPassword />}
+            path="/bytebazaar/forgot-password"
+            element={<ForgotPassword />}
           />
           <Route
             path="/bytebazaar/reset-password/"
             element={<ResetPassword />}
+          />
+          <Route
+            path="/bytebazaar/otp-verification/"
+            element={<OTPVerification />}
           />
 
           {/* <Route path="/bytebazaar/foot" element={<Footer />} /> */}
@@ -50,7 +55,7 @@ export default function App() {
 
 
       {/* THIS IS JUST FOR CHECKING*/}
-      <h1 className="text-center font-semibold text-4xl pb-10">PRODUCTS</h1>
+      {/* <h1 className="text-center font-semibold text-4xl pb-10">PRODUCTS</h1>
       <div className="flex flex-wrap justify-center overflow-hidden">
         <ItemCard
           itemImg={xboxController}
@@ -94,7 +99,7 @@ export default function App() {
           itemPrice="4500"
           alt="XBOX-Controller"
         />
-      </div>
+      </div> */}
     </>
   );
 }

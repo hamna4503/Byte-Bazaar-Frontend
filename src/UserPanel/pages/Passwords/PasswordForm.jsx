@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 export default function PasswordForm({ isForgetPswd }) {
   const [forgetPswd, setForgetPswd] = useState({
     email: "",
@@ -32,11 +31,23 @@ export default function PasswordForm({ isForgetPswd }) {
   const handleForgetPswdSubmit = async (e) => {
     e.preventDefault();
     console.log(forgetPswd);
+
     try {
       const url = "http://localhost:6005/api/forgotPassword";
       const { data: res } = await axios.post(url, forgetPswd);
-    //   navigate("/bytebazaar/login");
-      console.log(res.message);
+      console.log(res);
+      if (res.status === "Email sent for OTP verification") {
+        // Accessing the email from the response
+        // console.log("Forgot Frontend Email:", res.email);
+        toast.success("Email for OTP verification sent successfully!", {
+          onClose: () => {
+            window.location.href =
+              window.location.href = `http://localhost:5173/bytebazaar/otp-verification?email=${res.email}`;
+          },
+        });
+
+        //  window.location.href = `http://localhost:5173/bytebazaar/otp-verification?email=${res.email}`;
+      }
     } catch (err) {
       if (
         err.response &&
@@ -74,8 +85,6 @@ export default function PasswordForm({ isForgetPswd }) {
  };
 
    
-
-
 
   return (
     <>
