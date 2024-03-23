@@ -8,6 +8,7 @@ import Login from "./UserPanel/pages/AuthorizationForms/Login";
 import Footer from "./UserPanel/components/Footer/Footer";
 import ForgetPassword from "./UserPanel/pages/Passwords/ForgetPassword";
 import ResetPassword from "./UserPanel/pages/Passwords/ResetPassword";
+import ShopMain from "./UserPanel/components/Shop/Shopmain";
 
 export default function App() {
   return (
@@ -18,8 +19,15 @@ export default function App() {
           <Route path="/" element={<UserNavbar />} />
           <Route path="/bytebazaar/signup" element={<SignUp />} />
           <Route path="/bytebazaar/login" element={<Login />} />
-          <Route path="/bytebazaar/forget-password" element={<ForgetPassword />} />
-          <Route path="/bytebazaar/reset-password" element={<ResetPassword />} />
+          <Route
+            path="/bytebazaar/forget-password"
+            element={<ForgetPassword />}
+          />
+          <Route
+            path="/bytebazaar/reset-password"
+            element={<ResetPassword />}
+          />
+          <Route path="/bytebazaar/shop" element={<ShopMain />} />
           {/* <Route path="/bytebazaar/foot" element={<Footer />} /> */}
         </Routes>
       </BrowserRouter>
@@ -73,4 +81,3 @@ export default function App() {
     </>
   );
 }
-
