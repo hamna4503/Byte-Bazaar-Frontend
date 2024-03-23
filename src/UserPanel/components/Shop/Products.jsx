@@ -1,5 +1,6 @@
 // products.js
-import img1 from '../../assets/images/Shop/download.png';
+import img1 from '../../assets/download.jpeg';
+import img2 from '../../assets/download.png';
 const products = [
     {
       id: 1,
@@ -8,8 +9,14 @@ const products = [
       image: img1,
       category:'CPU Equipment',
       brand:'HP',
-      description: 'HP Laser Gaming Headsets',
-      thumbnails: [{img1}, "path_to_thumbnail_2", "path_to_thumbnail_3", "path_to_thumbnail_4"]
+      rating:3,
+      description: 'Laser Mouse for Faster ExperienceThe next generation has arrived. Whether you’re lining up a headshot or dodging heavy fire, Hyperion Fury offers the blazing-fast tracking and pinpoint accuracy you need.* Inches-per-second, or IPS speed, is based on internal testing as of June 2014. Fusion Engine high-speed tracking Sophisticated sensor technology for ultra-fast gaming Hyperion Fury combines an optical sensor featuring Logitech Delta Zero™ technology with our exclusive Fusion Engine™ hybrid sensor to enable tracking speeds in excess of 500 IPS.',
+      thumbnails: [
+        { image: img2 },
+        { image: "path_to_thumbnail_2" },
+        { image: "path_to_thumbnail_3" },
+        { image: "path_to_thumbnail_4" }
+      ]
     },
     {
         id: 2,
@@ -18,8 +25,14 @@ const products = [
         image: img1,
         category:'CPU Equipment',
         brand:'HP',
-        description: 'Laser Mouse for Faster Experience',
-        thumbnails: [{img1}, "path_to_thumbnail_2", "path_to_thumbnail_3", "path_to_thumbnail_4"]
+        rating:5,
+        description: "Laser Mouse for Faster ExperienceThe next generation has arrived. Whether you’re lining up a headshot or dodging heavy fire, Hyperion Fury offers the blazing-fast tracking and pinpoint accuracy you need.* Inches-per-second, or IPS speed, is based on internal testing as of June 2014. Fusion Engine high-speed tracking Sophisticated sensor technology for ultra-fast gaming Hyperion Fury combines an optical sensor featuring Logitech Delta Zero™ technology with our exclusive Fusion Engine™ hybrid sensor to enable tracking speeds in excess of 500 IPS.",
+        thumbnails: [
+          { image: img1 },
+          { image: "path_to_thumbnail_2" },
+          { image: "path_to_thumbnail_3" },
+          { image: "path_to_thumbnail_4" }
+        ]
       },
       {
         id: 3,
@@ -28,8 +41,14 @@ const products = [
         image: img1,
         category:'CPU Equipment',
         brand:'Dell',
-        description: 'Description of Product 1',
-        thumbnails: [{img1}, "path_to_thumbnail_2", "path_to_thumbnail_3", "path_to_thumbnail_4"]
+        rating:3,
+        description: 'Laser Mouse for Faster ExperienceThe next generation has arrived. Whether you’re lining up a headshot or dodging heavy fire, Hyperion Fury offers the blazing-fast tracking and pinpoint accuracy you need.* Inches-per-second, or IPS speed, is based on internal testing as of June 2014. Fusion Engine high-speed tracking Sophisticated sensor technology for ultra-fast gaming Hyperion Fury combines an optical sensor featuring Logitech Delta Zero™ technology with our exclusive Fusion Engine™ hybrid sensor to enable tracking speeds in excess of 500 IPS.',
+        thumbnails: [
+          { image: img1 },
+          { image: "path_to_thumbnail_2" },
+          { image: "path_to_thumbnail_3" },
+          { image: "path_to_thumbnail_4" }
+        ]
       },
       {
         id: 4,
@@ -38,8 +57,14 @@ const products = [
         image: img1,
         category:'Gaming',
         brand:'Dell',
-        description: 'Description of Product 1',
-        thumbnails: [{img1}, "path_to_thumbnail_2", "path_to_thumbnail_3", "path_to_thumbnail_4"]
+        rating:3,
+        description: 'Laser Mouse for Faster ExperienceThe next generation has arrived. Whether you’re lining up a headshot or dodging heavy fire, Hyperion Fury offers the blazing-fast tracking and pinpoint accuracy you need.* Inches-per-second, or IPS speed, is based on internal testing as of June 2014. Fusion Engine high-speed tracking Sophisticated sensor technology for ultra-fast gaming Hyperion Fury combines an optical sensor featuring Logitech Delta Zero™ technology with our exclusive Fusion Engine™ hybrid sensor to enable tracking speeds in excess of 500 IPS.',
+        thumbnails: [
+          { image: img1 },
+          { image: "path_to_thumbnail_2" },
+          { image: "path_to_thumbnail_3" },
+          { image: "path_to_thumbnail_4" }
+        ]
       },
       {
         id: 5,
@@ -48,8 +73,14 @@ const products = [
         image: img1,
         category:'Gaming',
         brand:'Dell',
-        description: 'Description of Product 1',
-        thumbnails: [{img1}, "path_to_thumbnail_2", "path_to_thumbnail_3", "path_to_thumbnail_4"]
+        rating:3,
+        description: 'Laser Mouse for Faster ExperienceThe next generation has arrived. Whether you’re lining up a headshot or dodging heavy fire, Hyperion Fury offers the blazing-fast tracking and pinpoint accuracy you need.* Inches-per-second, or IPS speed, is based on internal testing as of June 2014. Fusion Engine high-speed tracking Sophisticated sensor technology for ultra-fast gaming Hyperion Fury combines an optical sensor featuring Logitech Delta Zero™ technology with our exclusive Fusion Engine™ hybrid sensor to enable tracking speeds in excess of 500 IPS.',
+        thumbnails: [
+          { image: img1 },
+          { image: "path_to_thumbnail_2" },
+          { image: "path_to_thumbnail_3" },
+          { image: "path_to_thumbnail_4" }
+        ]
       },
       {
         id: 6,
@@ -58,8 +89,14 @@ const products = [
         image: img1,
         category:'Gaming',
         brand:'Dell',
-        description: 'Description of Product 1',
-        thumbnails: [{img1}, "path_to_thumbnail_2", "path_to_thumbnail_3", "path_to_thumbnail_4"]
+        rating:3,
+        description: 'Laser Mouse for Faster ExperienceThe next generation has arrived. Whether you’re lining up a headshot or dodging heavy fire, Hyperion Fury offers the blazing-fast tracking and pinpoint accuracy you need.* Inches-per-second, or IPS speed, is based on internal testing as of June 2014. Fusion Engine high-speed tracking Sophisticated sensor technology for ultra-fast gaming Hyperion Fury combines an optical sensor featuring Logitech Delta Zero™ technology with our exclusive Fusion Engine™ hybrid sensor to enable tracking speeds in excess of 500 IPS.',
+        thumbnails: [
+          { image: img1 },
+          { image: "path_to_thumbnail_2" },
+          { image: "path_to_thumbnail_3" },
+          { image: "path_to_thumbnail_4" }
+        ]
       },
       {
         id: 7,
@@ -68,8 +105,14 @@ const products = [
         image: img1,
         category:'Gaming',
         brand:'Dell',
-        description: 'Description of Product 1',
-        thumbnails: [{img1}, "path_to_thumbnail_2", "path_to_thumbnail_3", "path_to_thumbnail_4"]
+        rating:3,
+        description: 'Laser Mouse for Faster ExperienceThe next generation has arrived. Whether you’re lining up a headshot or dodging heavy fire, Hyperion Fury offers the blazing-fast tracking and pinpoint accuracy you need.* Inches-per-second, or IPS speed, is based on internal testing as of June 2014. Fusion Engine high-speed tracking Sophisticated sensor technology for ultra-fast gaming Hyperion Fury combines an optical sensor featuring Logitech Delta Zero™ technology with our exclusive Fusion Engine™ hybrid sensor to enable tracking speeds in excess of 500 IPS.',
+        thumbnails: [
+          { image: img1 },
+          { image: "path_to_thumbnail_2" },
+          { image: "path_to_thumbnail_3" },
+          { image: "path_to_thumbnail_4" }
+        ]
       },
       {
         id: 8,
@@ -78,8 +121,14 @@ const products = [
         image: img1,
         category:'Mouse and Keyboard',
         brand:'Dell',
+        rating:3,
         description: 'Description of Product 1',
-        thumbnails: [{img1}, "path_to_thumbnail_2", "path_to_thumbnail_3", "path_to_thumbnail_4"]
+        thumbnails: [
+          { image: img1 },
+          { image: "path_to_thumbnail_2" },
+          { image: "path_to_thumbnail_3" },
+          { image: "path_to_thumbnail_4" }
+        ]
       },
     
   ];
