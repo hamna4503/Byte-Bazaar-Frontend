@@ -29,7 +29,9 @@ const ShopMain = () => {
         product.brand.toLowerCase().includes(brand.toLowerCase());
       return categoryMatch && priceMatch && brandMatch;
     });
+
     setFilteredProducts(filteredProducts);
+    console.log(filteredProducts);
   };
 
   /*Search ki logic*/
@@ -69,8 +71,8 @@ const ShopMain = () => {
   };
 
   return (
-    <div className="bg-gray-900 w-full sm">
-      <div className="flex justify-center items-center  sm:px-12 px-4 bg-[#ffffff19] py-7 mx-0">
+    <div className="bg-gray-900 w-full sm overflow-x-hidden">
+      <div className="flex justify-center items-center flex-wrap sm:px-12 px-4 bg-[#ffffff19] py-7 mx-0">
         <SearchSort
           onSearch={handleSearch}
           isLoading={isLoading}
@@ -87,6 +89,7 @@ const ShopMain = () => {
             {filteredProducts.map((product) => (
               <ItemCard
                 key={product.id}
+                id={product.id}
                 itemImg={product.image}
                 itemName={product.name}
                 itemDescription={product.description}

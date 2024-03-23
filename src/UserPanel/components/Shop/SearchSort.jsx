@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { debounce } from 'lodash';
+import React, { useState } from "react";
+import { debounce } from "lodash";
 
 const SearchSort = ({ onSearch, isLoading, products, onSort }) => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [sortOption, setSortOption] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
+  const [sortOption, setSortOption] = useState("");
 
   const debouncedSearch = debounce((query) => {
     onSearch(query);
@@ -16,8 +16,8 @@ const SearchSort = ({ onSearch, isLoading, products, onSort }) => {
   };
 
   const handleClear = () => {
-    setSearchQuery('');
-    onSearch('');
+    setSearchQuery("");
+    onSearch("");
   };
 
   const handleSortChange = (e) => {

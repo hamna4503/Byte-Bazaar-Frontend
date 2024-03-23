@@ -3,6 +3,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import BLogo from "../../assets/images/navbar/bytelogo.png";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function PasswordForm({ isForgetPswd }) {
   const [forgetPswd, setForgetPswd] = useState({
@@ -12,6 +14,7 @@ export default function PasswordForm({ isForgetPswd }) {
   const [resetPswd, setResetPswd] = useState({
     email: "",
     password: "",
+    confirmPassword: "",
   });
 
   const handleChange = ({ currentTarget: input }) => {
@@ -22,50 +25,106 @@ export default function PasswordForm({ isForgetPswd }) {
     }
   };
 
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
+  // const [error, setError] = useState("");
+  // const navigate = useNavigate();
 
   const handleForgetPswdSubmit = async (e) => {
     e.preventDefault();
     console.log(forgetPswd);
+
     try {
-      const url = "http://localhost:8080/api/forgetPassword";
+      const url = "http://localhost:6005/api/forgotPassword";
       const { data: res } = await axios.post(url, forgetPswd);
-    //   navigate("/bytebazaar/login");
-      console.log(res.message);
+      console.log(res);
+      if (res.status==="Email sent for OTP verification") {
+        toast.success(`OTP verification code have been sent on your registered email`, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          draggable: false,
+          closeOnClick: false,
+          theme: "colored",
+          transition: toast.flip,
+            onClose: () => {
+              window.location.href = `http://localhost:5173/bytebazaar/otp-verification?email=${forgetPswd.email}`;
+        }});
+      }
     } catch (err) {
       if (
         err.response &&
         err.response.status >= 400 &&
         err.response.status <= 500
       ) {
-        setError(err.response.data.message);
+        toast.error(`Error in sending Email`, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          draggable: false,
+          closeOnClick: false,
+          theme: "colored",
+          transition: toast.flip,
+        });
       }
     }
   };
 
   const handleResetPswdSubmit = async (e) => {
     e.preventDefault();
-    console.log(resetPswd);
     try {
-      const url = "http://localhost:8080/api/resetPassword";
+      console.log("Building connection...");
+      const url = "http://localhost:6005/api/resetPassword";
       const { data: res } = await axios.post(url, resetPswd);
-    //   const token = res.data;
-    //   document.cookie = `authToken=${token}; Secure; HttpOnly; SameSite=Strict`;
-    //   navigate("/");
-      // window.location.href = "/";
       console.log(res.message);
+      // toast.success("Password reset successfully");
+      // navigate("/bytebazaar/login");
+      toast.success(
+        `Password have been changed successfully` || `${res.message}`,
+        {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          draggable: false,
+          closeOnClick: false,
+          theme: "colored",
+          transition: toast.flip,
+          onClose: () => {
+            window.location.href = "http://localhost:5173/bytebazaar/login";
+          },
+        }
+      );
+
     } catch (err) {
+      console.error("Error resetting password:", err);
+      // toast.error("ERROR");
       if (
         err.response &&
         err.response.status >= 400 &&
         err.response.status <= 500
       ) {
-        setError(err.response.data.message);
+        toast.error(`${err.response.status}: ${err.response.data.message}`, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          draggable: false,
+          closeOnClick: false,
+          theme: "colored",
+          transition: toast.flip,
+        });
+        // toast.error(`${err.response.status}: ${err.response.data.message}`);
+      } else {
+        toast.error(`Failed to reset the password`, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          draggable: false,
+          closeOnClick: false,
+          theme: "colored",
+          transition: toast.flip,
+        });
+        // toast.error("Failed to reset password");
       }
     }
   };
-
 
   return (
     <>
@@ -86,9 +145,13 @@ export default function PasswordForm({ isForgetPswd }) {
           </span>
         </div>
 
-        <h3 className="pb-9 text-2xl text-center text-black">
-          {isForgetPswd ? <h3 className="pt-10"> Forgot Password? </h3>: "Reset Password!"}
-        </h3>
+        <div className="pb-9 text-2xl text-center text-black">
+          {isForgetPswd ? (
+            <h3 className="pt-16"> Forgot Password? </h3>
+          ) : (
+            <h3>Reset Password!</h3>
+          )}
+        </div>
 
         {isForgetPswd && (
           <div className="mb-4">
@@ -100,7 +163,7 @@ export default function PasswordForm({ isForgetPswd }) {
               autoComplete="off"
               required
               onChange={handleChange}
-              value={resetPswd.email}
+              value={forgetPswd.email}
             />
           </div>
         )}
@@ -152,26 +215,13 @@ export default function PasswordForm({ isForgetPswd }) {
           </button>
         </div>
 
-        <div className="text-center">
-          <div className="mt-6 mb-3">
-            <Link
-              className="inline-block text-sm text-Purple align-baseline hover:text-blue-800"
-              to="/bytebazaar/signup"
-            >
-              Don't have an account? Signup!
-            </Link>
-          </div>
-
-          {isForgetPswd && (
-            <div>
-              <Link
-                className="inline-block text-sm text-Purple align-baseline hover:text-blue-800"
-                to="/bytebazaar/reset-password"
-              >
-                Wants to change password? Reset!
-              </Link>
-            </div>
-          )}
+        <div className="mt-6 mb-3 text-center">
+          <Link
+            className="inline-block text-sm text-Purple align-baseline hover:text-blue-800"
+            to="/bytebazaar/signup"
+          >
+            Don't have an account? Signup!
+          </Link>
         </div>
       </form>
     </>

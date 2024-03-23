@@ -6,9 +6,10 @@ import AdminNavbar from "./AdminPanel/components/Navbar/AdminNavbar";
 import SignUp from "./UserPanel/pages/AuthorizationForms/SignUp";
 import Login from "./UserPanel/pages/AuthorizationForms/Login";
 import Footer from "./UserPanel/components/Footer/Footer";
-import ForgetPassword from "./UserPanel/pages/Passwords/ForgetPassword";
+import ForgetPassword from "./UserPanel/pages/Passwords/ForgotPassword";
 import ResetPassword from "./UserPanel/pages/Passwords/ResetPassword";
-import ShopMain from "./UserPanel/components/Shop/Shopmain";
+import Shopmain from "./UserPanel/components/Shop/Shopmain";
+import SingleProductPage from "./UserPanel/components/Shop/SingleCard";
 
 export default function App() {
   return (
@@ -27,8 +28,16 @@ export default function App() {
             path="/bytebazaar/reset-password"
             element={<ResetPassword />}
           />
-          <Route path="/bytebazaar/shop" element={<ShopMain />} />
-          {/* <Route path="/bytebazaar/foot" element={<Footer />} /> */}
+          <Route path="/bytebazaar/foot" element={<Footer />} />
+
+          {/*<BrowserRouter>
+    this would work like this but it has to be checked by maham
+      <Routes>
+      <Route path="/"  component={<ShopMain/>} />
+      <Route path="/product/:id" component={<SingleProductPage/>} />
+      </Routes>
+
+      </BrowserRouter>*/}
         </Routes>
       </BrowserRouter>
 

@@ -7,7 +7,7 @@ export default function AuthFooterLinks({isLoginForm}){
       <div className="text-center">
         <a
           className="inline-block text-sm align-baseline hover:text-blue-800 text-Purple"
-          href="/bytebazaar/forget-password"
+          href="/bytebazaar/forgot-password"
         >
           Forgot Password?
         </a>
