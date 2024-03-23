@@ -2,7 +2,7 @@ import React from "react";
 import BLogo from "../../assets/images/navbar/bytelogo.png";
 import AuthForm from "../../assets/images/authorization/auth-form.png";
 
-export default function AuthHeader({isLoginForm}) {
+export default function AuthHeader({isLoginForm, isOTP, isPswdForm}) {
   return (
     <>
           <div className="font-mono flex items-center justify-center mb-6">
@@ -18,9 +18,11 @@ export default function AuthHeader({isLoginForm}) {
             </span>
           </div>
 
+        {!isOTP && (
           <h3 className="py-4 text-2xl text-center text-black">
             {!isLoginForm ? "Create an Account!" : "Welcome Back!"}
           </h3>
+        )}
         
     </>
   );

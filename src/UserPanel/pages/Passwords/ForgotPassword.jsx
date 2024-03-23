@@ -1,7 +1,7 @@
 import AuthFormImage from "../AuthorizationForms/AuthFormImage";
 import PasswordForm from "./PasswordForm";
 
-export default function ForgetPassword() {
+export default function ForgotPassword() {
   return (
     <>
       <div className="h-full bg-Purple">

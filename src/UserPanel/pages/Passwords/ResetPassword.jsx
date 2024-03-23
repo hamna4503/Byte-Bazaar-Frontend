@@ -9,7 +9,7 @@ export default function ResetPassword() {
           <div className="w-full xl:w-3/4 lg:w-11/12 flex shadow-lg">
             <AuthFormImage />
             <div className="w-full lg:w-7/12 p-6 bg-white">
-              <PasswordForm isForgetPswd={false} />
+              <PasswordForm isForgetPswd={false}/>
             </div>
           </div>
         </div>
