@@ -36,7 +36,7 @@ export default function AuthFormFields({ isLoginForm }) {
     try {
       const url = "http://localhost:6005/api/signup";
       const { data: res } = await axios.post(url, signupData);
-      navigate("/bytebazaar/login");
+      // navigate("/bytebazaar/login");
       toast.success("Signup successful! Please log in.", {
         position: "top-center",
         autoClose: 5000,
@@ -45,6 +45,9 @@ export default function AuthFormFields({ isLoginForm }) {
         closeOnClick: false,
         theme: "colored",
         transition: toast.flip,
+        onClose:()=>{
+            navigate("/bytebazaar/login");
+        },
       });
       console.log(res.message);
     } catch (err) {
