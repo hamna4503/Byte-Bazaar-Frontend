@@ -21,7 +21,7 @@ export default function App() {
           <Route path="/bytebazaar/signup" element={<SignUp />} />
           <Route path="/bytebazaar/login" element={<Login />} />
           <Route
-            path="/bytebazaar/forget-password"
+            path="/bytebazaar/forgot-password"
             element={<ForgetPassword />}
           />
           <Route
