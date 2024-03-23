@@ -29,8 +29,8 @@ export default function App() {
     {/*<BrowserRouter>
     this would work like this but it has to be checked by maham
       <Routes>
-      <Route path="/"  component={ShopMain} />
-      <Route path="/product/:id" component={SingleProductPage} />
+      <Route path="/"  component={<ShopMain/>} />
+      <Route path="/product/:id" component={<SingleProductPage/>} />
       </Routes>
 
       </BrowserRouter>*/}
