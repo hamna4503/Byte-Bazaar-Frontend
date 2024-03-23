@@ -1,6 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 export default function AuthFormFields({ isLoginForm }) {
   const [signupData, setSignupData] = useState({
@@ -34,6 +37,15 @@ export default function AuthFormFields({ isLoginForm }) {
       const url = "http://localhost:6005/api/signup";
       const { data: res } = await axios.post(url, signupData);
       navigate("/bytebazaar/login");
+      toast.success("Signup successful! Please log in.", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        draggable: false,
+        closeOnClick: false,
+        theme: "colored",
+        transition: toast.flip,
+      });
       console.log(res.message);
     } catch (err) {
       if (
@@ -42,6 +54,15 @@ export default function AuthFormFields({ isLoginForm }) {
         err.response.status <= 500
       ) {
         setError(err.response.data.message);
+        toast.error(err.response.data.message, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          draggable: false,
+          closeOnClick: false,
+          theme: "colored",
+          transition: toast.flip,
+        });
       }
     }
   };
@@ -55,7 +76,15 @@ export default function AuthFormFields({ isLoginForm }) {
       const token = res.data;
       document.cookie = `authToken=${token}; Secure; HttpOnly; SameSite=Strict`;
       navigate("/");
-      // window.location.href = "/";
+      toast.success("Login successful!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        draggable: false,
+        closeOnClick: false,
+        theme: "colored",
+        transition: toast.flip,
+      });
       console.log(res.message);
     } catch (err) {
       if (
@@ -64,6 +93,15 @@ export default function AuthFormFields({ isLoginForm }) {
         err.response.status <= 500
       ) {
         setError(err.response.data.message);
+        toast.error(err.response.data.message, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          draggable: false,
+          closeOnClick: false,
+          theme: "colored",
+          transition: toast.flip,
+        });
       }
     }
   };

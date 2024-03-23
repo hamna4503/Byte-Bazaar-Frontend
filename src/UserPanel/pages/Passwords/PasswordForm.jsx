@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import BLogo from "../../assets/images/navbar/bytelogo.png";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -25,8 +25,8 @@ export default function PasswordForm({ isForgetPswd }) {
     }
   };
 
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
+  // const [error, setError] = useState("");
+  // const navigate = useNavigate();
 
   const handleForgetPswdSubmit = async (e) => {
     e.preventDefault();
@@ -36,17 +36,18 @@ export default function PasswordForm({ isForgetPswd }) {
       const url = "http://localhost:6005/api/forgotPassword";
       const { data: res } = await axios.post(url, forgetPswd);
       console.log(res);
-      if (res.status === "Email sent for OTP verification") {
-        // Accessing the email from the response
-        // console.log("Forgot Frontend Email:", res.email);
-        toast.success("Email for OTP verification sent successfully!", {
-          onClose: () => {
-            window.location.href =
-              window.location.href = `http://localhost:5173/bytebazaar/otp-verification?email=${res.email}`;
-          },
-        });
-
-        //  window.location.href = `http://localhost:5173/bytebazaar/otp-verification?email=${res.email}`;
+      if (res.status==="Email sent for OTP verification") {
+        toast.success(`OTP verification code have been sent on your registered email`, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          draggable: false,
+          closeOnClick: false,
+          theme: "colored",
+          transition: toast.flip,
+            onClose: () => {
+              window.location.href = `http://localhost:5173/bytebazaar/otp-verification?email=${forgetPswd.email}`;
+        }});
       }
     } catch (err) {
       if (
@@ -54,37 +55,76 @@ export default function PasswordForm({ isForgetPswd }) {
         err.response.status >= 400 &&
         err.response.status <= 500
       ) {
-        setError(err.response.data.message);
+        toast.error(`Error in sending Email`, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          draggable: false,
+          closeOnClick: false,
+          theme: "colored",
+          transition: toast.flip,
+        });
       }
     }
   };
 
-  
- const handleResetPswdSubmit = async (e) => {
-   e.preventDefault();
-   try {
-     console.log("Building connection...");
-     const url = "http://localhost:6005/api/resetPassword";
-     const { data: res } = await axios.post(url, resetPswd);
-     console.log(res.message);
-     toast.success("Password reset successfully");
-     navigate("/bytebazaar/login");
-   } catch (err) {
-     console.error("Error resetting password:", err);
-     toast.error("ERROR");
-     if (
-       err.response &&
-       err.response.status >= 400 &&
-       err.response.status <= 500
-     ) {
-       toast.error(`${err.response.status}: ${err.response.data.message}`);
-     } else {
-       toast.error("Failed to reset password");
-     }
-   }
- };
+  const handleResetPswdSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      console.log("Building connection...");
+      const url = "http://localhost:6005/api/resetPassword";
+      const { data: res } = await axios.post(url, resetPswd);
+      console.log(res.message);
+      // toast.success("Password reset successfully");
+      // navigate("/bytebazaar/login");
+      toast.success(
+        `Password have been changed successfully` || `${res.message}`,
+        {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          draggable: false,
+          closeOnClick: false,
+          theme: "colored",
+          transition: toast.flip,
+          onClose: () => {
+            window.location.href = "http://localhost:5173/bytebazaar/login";
+          },
+        }
+      );
 
-   
+    } catch (err) {
+      console.error("Error resetting password:", err);
+      // toast.error("ERROR");
+      if (
+        err.response &&
+        err.response.status >= 400 &&
+        err.response.status <= 500
+      ) {
+        toast.error(`${err.response.status}: ${err.response.data.message}`, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          draggable: false,
+          closeOnClick: false,
+          theme: "colored",
+          transition: toast.flip,
+        });
+        // toast.error(`${err.response.status}: ${err.response.data.message}`);
+      } else {
+        toast.error(`Failed to reset the password`, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          draggable: false,
+          closeOnClick: false,
+          theme: "colored",
+          transition: toast.flip,
+        });
+        // toast.error("Failed to reset password");
+      }
+    }
+  };
 
   return (
     <>
@@ -175,18 +215,15 @@ export default function PasswordForm({ isForgetPswd }) {
           </button>
         </div>
 
-
-          <div className="mt-6 mb-3 text-center">
-            <Link
-              className="inline-block text-sm text-Purple align-baseline hover:text-blue-800"
-              to="/bytebazaar/signup"
-            >
-              Don't have an account? Signup!
-            </Link>
-          </div>
-
+        <div className="mt-6 mb-3 text-center">
+          <Link
+            className="inline-block text-sm text-Purple align-baseline hover:text-blue-800"
+            to="/bytebazaar/signup"
+          >
+            Don't have an account? Signup!
+          </Link>
+        </div>
       </form>
     </>
   );
 }
-
