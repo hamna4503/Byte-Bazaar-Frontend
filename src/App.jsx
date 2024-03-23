@@ -23,17 +23,17 @@ export default function App() {
           <Route path="/bytebazaar/login" element={<Login />} />
           <Route path="/bytebazaar/forget-password" element={<ForgetPassword />} />
           <Route path="/bytebazaar/reset-password" element={<ResetPassword />} />
-          {/* <Route path="/bytebazaar/foot" element={<Footer />} /> */}
+          <Route path="/bytebazaar/foot" element={<Footer />} /> 
 
 
-    {/*<BrowserRouter>
-    this would work like this but it has to be checked by maham
+    {/*      <BrowserRouter>
       <Routes>
-      <Route path="/" exact component={ShopMain} />
-      <Route path="/product/:id" component={SingleProductPage} />
+      <Route path="/" element={<ShopMain/>} />
+      <Route path="/product/:id" element={<SingleProductPage/>} />
       </Routes>
 
-      </BrowserRouter>*/}
+      </BrowserRouter>
+      <Footer />*/}
         </Routes>
       </BrowserRouter>
 

@@ -17,9 +17,11 @@ function ItemCard(props) {
 
           {/* I WILL REPLACE THIS WITH A COMPONENT OF ADD TO CART HAVING THE NECESSARY FUNCTIONALITY THIS IS FOR SHOW RN */}
           <div>
+          <Link to={`/product/${product.id}`} key={product.id}>
             <button className="rounded-md bg-blue-600 hover:bg-blue-800 text-white p-2 w-full mb-2">
               Add to Cart
             </button>
+            </Link>
           </div>
         </div>
       </main>
