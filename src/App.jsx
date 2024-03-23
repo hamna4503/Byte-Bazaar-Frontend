@@ -12,6 +12,7 @@ import ResetPassword from "./UserPanel/pages/Passwords/ResetPassword";
 import SingleProductPage from "./UserPanel/components/Shop/SingleCard";
 import OTPVerification from "./UserPanel/pages/Passwords/OTPVerification";
 import ShopMain from "./UserPanel/components/Shop/Shopmain";
+import ViewCart from "./UserPanel/pages/ViewCart/ViewCart";
 export default function App() {
   return (
     <>
@@ -35,6 +36,15 @@ export default function App() {
           />
           <Route path="/shop" element={<ShopMain />} />
           <Route path="/product/:id" element={<SingleProductPage />} />
+          <Route
+            path="/bytebazaar/cart"
+            element={
+              <>
+                <UserNavbar />
+                <ViewCart />
+              </>
+            }
+          />
 
           {/* <Route path="/bytebazaar/foot" element={<Footer />} /> */}
 

@@ -1,8 +1,9 @@
 import React from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { IoPersonCircle } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
-export default function RightNavbarSection({isAdmin}) {
+export default function RightNavbarSection({ isAdmin }) {
   return (
     <section className="flex items-center gap-6">
       {/* Conditionally render Search bar, Cart icon, and Profile icon */}
@@ -16,7 +17,9 @@ export default function RightNavbarSection({isAdmin}) {
           />
 
           {/* Cart icon */}
-          <AiOutlineShoppingCart className="text-3xl" />
+          <Link to="/bytebazaar/cart">
+            <AiOutlineShoppingCart className="text-3xl" />
+          </Link>
         </>
       )}
 
