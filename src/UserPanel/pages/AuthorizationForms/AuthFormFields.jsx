@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 export default function AuthFormFields({ isLoginForm }) {
   const [signupData, setSignupData] = useState({
     firstName: "",

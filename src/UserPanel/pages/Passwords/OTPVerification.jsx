@@ -148,9 +148,8 @@ export default function OTPVerification() {
       });
     } catch (error) {
       console.error("Error verifying OTP:", error);
-      toast.error( `${
-          error.response.data || "An error occurred in verifying OTP"
-        }`,
+      toast.error(
+        `${error.response.data || "An error occurred in verifying OTP"}`,
         {
           autoClose: 5000,
           hideProgressBar: true,
@@ -183,18 +182,15 @@ export default function OTPVerification() {
       });
     } catch (error) {
       console.error("Error resending OTP:", error);
-      toast.error(
-        `Error resending OTP`,
-        {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: true,
-          draggable: false,
-          closeOnClick: false,
-          theme: "colored",
-          transition: toast.flip,
-        }
-      );
+      toast.error(`Error resending OTP`, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        draggable: false,
+        closeOnClick: false,
+        theme: "colored",
+        transition: toast.flip,
+      });
     }
   };
 
