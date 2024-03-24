@@ -4,7 +4,8 @@ import products from "./Products";
 // import img1 from '../../assets/download.jpeg';
 import bgimg from "../../assets/images/Shop/bg.jpg";
 import StarRating from "./Rating";
-import ItemCard from "../ItemCard/ItemCard";
+import RelatedProdCard from "./relatedprodcard";
+
 
 const SingleProductPage = () => {
   const { id } = useParams();
@@ -24,7 +25,7 @@ const SingleProductPage = () => {
       className="flex flex-col justify-center items-center w-full sm bg-cover bg-center overflow-x-hidden"
       style={{ backgroundImage: `url(${bgimg})` }}
     >
-      <h1 className="text-4xl font-bold mt-5 mb-4 py-4 text-gray-800 bg-yellow-300 w-auto px-5 text-center font-[poppins] ">
+      <h1 className="text-4xl font-bold mt-5 mb-4 py-4 text-gray-800 bg-purple-200 w-auto px-5 text-center font-[poppins] ">
         {product.name}
       </h1>
       <hr style={{ color: "blue", width: "50%" }} />
@@ -36,7 +37,7 @@ const SingleProductPage = () => {
           <img
             src={product.image}
             alt="Product"
-            className="w-full h-auto border border-yellow-300  hover:border-4 hover:shadow-lg duration-100"
+            className="w-full h-auto border border-purple-800  hover:border-4 hover:shadow-lg duration-100"
           />
         </div>
         <div className="w-1/2 px-4">
@@ -61,7 +62,7 @@ const SingleProductPage = () => {
           </div>
           <div className="grid grid-cols-2 gap-9">
             <button
-              className="bg-yellow-400 hover:bg-gray-300  duration-100 px-5 py-3 font-[poppins] 
+              className="bg-purple-800 hover:bg-gray-300  duration-100 px-5 py-3 font-[poppins] 
                 rounded-md text-white md:w-auto w-64"
             >
               Add to cart
@@ -83,24 +84,28 @@ const SingleProductPage = () => {
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 place-items-center px-4">
-          {relatedProductIds.map((relatedProductId) => {
+          {/*{relatedProductIds.map((relatedProductId) => {
+
             const relatedProduct = products.find(
               (product) => product.id === relatedProductId
             );
             return (
-              <ItemCard
-                key={relatedProduct.id}
-                id={relatedProduct.id}
-                itemImg={relatedProduct.image}
-                itemName={relatedProduct.name}
-                itemCategory={relatedProduct.category}
-                itemPrice={relatedProduct.price}
-              />
+              <Link to={`/product/${relatedProductIds[1]}`}>
+                <RelatedProdCard
+                  key={relatedProduct.id}
+                  id={relatedProduct.id}
+                  itemImg={relatedProduct.image}
+                  itemName={relatedProduct.name}
+                  itemCategory={relatedProduct.category}
+                  itemPrice={relatedProduct.price}
+                />
+              </Link>
+
             );
-          })}
+          })}*/}
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

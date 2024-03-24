@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import SearchSort from "./SearchSort";
-import ItemCard from "../ItemCard/ItemCard";
+import ItemCard from "../itemCard/ItemCard";
 import products from "./Products";
 import FilterOptions from "./FilterOptions";
 import ShopHeader from "./ShopHeader";
@@ -71,8 +71,8 @@ const ShopMain = () => {
   };
 
   return (
-    <div className="bg-gray-900 w-full sm overflow-x-hidden">
-      <div className="flex justify-center items-center flex-wrap sm:px-12 px-4 bg-[#ffffff19] py-7 mx-0">
+    <div className="bg-gray-200 w-full sm overflow-x-hidden">
+      <div className="flex justify-center items-center flex-wrap sm:px-12 px-4 bg-[#390a48] py-7 mx-0">
         <SearchSort
           onSearch={handleSearch}
           isLoading={isLoading}
@@ -85,7 +85,7 @@ const ShopMain = () => {
           <FilterOptions onFilter={applyFilters} />
         </div>
         <div className="w-3/4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 place-items-center px-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5 place-items-center px-4">
             {filteredProducts.map((product) => (
               <ItemCard
                 key={product.id}

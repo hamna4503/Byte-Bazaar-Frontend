@@ -9,7 +9,7 @@ const products = [
     image: img1,
     category: "CPU Equipment",
     brand: "HP",
-    rating: 3,
+    rating: 4,
     description:
       "Laser Mouse for Faster ExperienceThe next generation has arrived. Whether you’re lining up a headshot or dodging heavy fire, Hyperion Fury offers the blazing-fast tracking and pinpoint accuracy you need.* Inches-per-second, or IPS speed, is based on internal testing as of June 2014. Fusion Engine high-speed tracking Sophisticated sensor technology for ultra-fast gaming Hyperion Fury combines an optical sensor featuring Logitech Delta Zero™ technology with our exclusive Fusion Engine™ hybrid sensor to enable tracking speeds in excess of 500 IPS.",
     thumbnails: [

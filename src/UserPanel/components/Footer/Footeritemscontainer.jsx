@@ -6,7 +6,7 @@ const FooterItemsContainer = () =>{
     <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:px-8 px-5 py-16 text-center  text-wrap pt-2 
     text-400 text-sm pb-8">
       <Items Links={WEBSTORE} title="PRODUCTS" />
-      <Items Links={PRICING} title="RESOURCES" />
+      <Items Links={PRICING} title="PRICING" />
       <Items Links={RESOURCES} title="RESOURCES" />
       <Items Links={SUPPORT} title="SUPPORT" />
 

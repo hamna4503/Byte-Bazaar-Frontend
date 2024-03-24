@@ -29,7 +29,7 @@ const SearchSort = ({ onSearch, isLoading, products, onSort }) => {
   return (
     <div className="flex justify-center items-center">
       <input
-        className="px-4 py-2 border-2 border-yellow-300 rounded-lg mr-4 w-80 justify-center"
+        className="px-4 py-2 border-3 border-purple-300 rounded-lg mr-4 w-80 justify-center"
         type="text"
         placeholder="What are you looking for? "
         value={searchQuery}
@@ -37,7 +37,7 @@ const SearchSort = ({ onSearch, isLoading, products, onSort }) => {
       />
       <div className="flex items-center">
         <select
-          className="px-4 py-2 border-2 border-yellow-300 rounded-lg mr-4 bg-gray-900 text-yellow-400"
+          className="px-4 py-2 border-2 border-purple-300 rounded-lg mr-4 bg-[#9a999a] text-white"
           value={sortOption}
           onChange={handleSortChange}
         >
@@ -50,7 +50,7 @@ const SearchSort = ({ onSearch, isLoading, products, onSort }) => {
       </div>
       {searchQuery && (
         <button
-          className="px-4 py-2 bg-yellow-300 text-gray-900 rounded-lg"
+          className="px-4 py-2 bg-purple-300 text-gray-900 rounded-lg"
           onClick={handleClear}
           disabled={isLoading}
         >
