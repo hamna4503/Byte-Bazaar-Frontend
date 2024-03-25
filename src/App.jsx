@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import ItemCard from "./UserPanel/components/itemCard/ItemCard";
 import xboxController from "./UserPanel/assets/images/items/controllers/xboxController.png";
 import UserNavbar from "./UserPanel/components/Navbar/UserNavbar";
 import AdminNavbar from "./AdminPanel/components/Navbar/AdminNavbar";
@@ -12,14 +11,23 @@ import ResetPassword from "./UserPanel/pages/Passwords/ResetPassword";
 import SingleProductPage from "./UserPanel/components/Shop/SingleCard";
 import OTPVerification from "./UserPanel/pages/Passwords/OTPVerification";
 import ShopMain from "./UserPanel/components/Shop/Shopmain";
-/*import ViewCart from "./UserPanel/pages/ViewCart/ViewCart";*/
+import RelatedProdCard from "./UserPanel/components/Shop/relatedprodcard";
+import ViewCart from "./UserPanel/pages/ViewCart/ViewCart";
 export default function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
           <Route path="/bytebazaar/admin" element={<AdminNavbar />} />
-          <Route path="/" element={<div><UserNavbar /><ShopMain/></div>} />
+          <Route
+            path="/"
+            element={
+              <div>
+                <UserNavbar />
+                <ShopMain />
+              </div>
+            }
+          />
           <Route path="/bytebazaar/signup" element={<SignUp />} />
           <Route path="/bytebazaar/login" element={<Login />} />
           <Route
@@ -36,7 +44,8 @@ export default function App() {
           />
           <Route path="/shop" element={<ShopMain />} />
           <Route path="/product/:id" element={<SingleProductPage />} />
-         {/*} <Route
+          <Route path="/product/:id" element={<RelatedProdCard />} />
+          <Route
             path="/bytebazaar/cart"
             element={
               <>
@@ -44,9 +53,9 @@ export default function App() {
                 <ViewCart />
               </>
             }
-          />*/}
+          />
 
-           <Route path="/bytebazaar/foot" element={<Footer />} />
+          <Route path="/bytebazaar/foot" element={<Footer />} />
 
           {/*<BrowserRouter>
     this would work like this but it has to be checked by maham
@@ -57,7 +66,6 @@ export default function App() {
         <ToastContainer />
       </BrowserRouter>
       <Footer />
-      
     </>
   );
 }
