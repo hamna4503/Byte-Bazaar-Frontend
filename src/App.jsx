@@ -12,11 +12,7 @@ import ResetPassword from "./UserPanel/pages/Passwords/ResetPassword";
 import SingleProductPage from "./UserPanel/components/Shop/SingleCard";
 import OTPVerification from "./UserPanel/pages/Passwords/OTPVerification";
 import ShopMain from "./UserPanel/components/Shop/Shopmain";
-<<<<<<< HEAD
-import RelatedProdCard from "./UserPanel/components/Shop/relatedprodcard";
-=======
-import ViewCart from "./UserPanel/pages/ViewCart/ViewCart";
->>>>>>> 3c8851d19c991699748afbfee3fe9a37ab2414fa
+/*import ViewCart from "./UserPanel/pages/ViewCart/ViewCart";*/
 export default function App() {
   return (
     <>
@@ -40,10 +36,7 @@ export default function App() {
           />
           <Route path="/shop" element={<ShopMain />} />
           <Route path="/product/:id" element={<SingleProductPage />} />
-<<<<<<< HEAD
-          <Route path="/product/:id" element={<RelatedProdCard/>} />
-=======
-          <Route
+         {/*} <Route
             path="/bytebazaar/cart"
             element={
               <>
@@ -51,8 +44,7 @@ export default function App() {
                 <ViewCart />
               </>
             }
-          />
->>>>>>> 3c8851d19c991699748afbfee3fe9a37ab2414fa
+          />*/}
 
            <Route path="/bytebazaar/foot" element={<Footer />} />
 

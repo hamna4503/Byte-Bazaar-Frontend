@@ -16,11 +16,11 @@ const FilterOptions = ({ products, onFilter }) => {
     };
 
     return (
-        <div className="bg-[#9b9a9b] text-white h-auto p-4 shadow-md mt-2 mb-1 sm:w-1/3 md:w-2/4 lg:w-4/5">
+        <div className="bg-[#9b9a9b] text-white h-auto p-4 shadow-md mt-2 mb-1 sm:w-3/4 md:w-4/5 lg:w-5/6">
             <h2 className="text-lg text-white font-semibold mb-2">Filter Options</h2>
             <hr />
             <div className="mt-2 mb-4 h-auto">
-                <h3 className="font-semibold mb-2 text-purple-900">Filter by Category:</h3>
+                <h3 className="font-semibold mb-2 text-purple-900 sm:text-sm">Filter by Category:</h3>
                 <select
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
@@ -33,6 +33,7 @@ const FilterOptions = ({ products, onFilter }) => {
                     <option value="Mouse and Keyboard">Mouse and Keyboard</option>
                     <option value="Gaming">Gaming</option>
                     <option value="Accessories">Accessories</option>
+                
                 </select>
             </div>
             <div className="mb-4">

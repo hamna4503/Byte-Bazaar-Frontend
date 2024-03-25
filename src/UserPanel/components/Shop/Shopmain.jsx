@@ -4,6 +4,7 @@ import ItemCard from "../itemCard/ItemCard";
 import products from "./Products";
 import FilterOptions from "./FilterOptions";
 import ShopHeader from "./ShopHeader";
+import bgimg from "../../assets/images/Shop/bg.jpg";
 
 const ShopMain = () => {
   const [filteredProducts, setFilteredProducts] = useState(products);
@@ -13,6 +14,23 @@ const ShopMain = () => {
     priceRange: "",
     brand: "",
   });
+  
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      setIsLoading(true);
+      const response = await fetch("http://localhost:6005/api/products");
+      const data = await response.json();
+      setFilteredProducts(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   /*filter ka main function*/
   useEffect(() => {
@@ -71,7 +89,7 @@ const ShopMain = () => {
   };
 
   return (
-    <div className="bg-gray-200 w-full sm overflow-x-hidden">
+    <div className="bg-gray-200 w-full sm overflow-x-hidden "  style={{ backgroundImage: `url(${bgimg})` }}>
       <div className="flex justify-center items-center flex-wrap sm:px-12 px-4 bg-[#390a48] py-7 mx-0">
         <SearchSort
           onSearch={handleSearch}
