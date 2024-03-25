@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import SearchSort from "./SearchSort";
-import ItemCard from "../ItemCard/ItemCard";
+import ItemCard from "../itemCard/ItemCard";
 import products from "./Products";
 import FilterOptions from "./FilterOptions";
 import ShopHeader from "./ShopHeader";

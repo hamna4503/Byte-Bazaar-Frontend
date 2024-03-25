@@ -12,7 +12,7 @@ import SingleProductPage from "./UserPanel/components/Shop/SingleCard";
 import OTPVerification from "./UserPanel/pages/Passwords/OTPVerification";
 import ShopMain from "./UserPanel/components/Shop/Shopmain";
 import RelatedProdCard from "./UserPanel/components/Shop/relatedprodcard";
-import ViewCart from "./UserPanel/pages/ViewCart/ViewCart";
+{/*import ViewCart from "./UserPanel/pages/ViewCart/ViewCart";*/}
 export default function App() {
   return (
     <>
@@ -50,7 +50,7 @@ export default function App() {
             element={
               <>
                 <UserNavbar />
-                <ViewCart />
+                {/*<ViewCart />*/}
               </>
             }
           />
