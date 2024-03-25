@@ -1,4 +1,5 @@
 import React from "react";
+import {useState, useEffect} from "react";
 import { useParams } from "react-router-dom";
 import products from "./Products";
 // import img1 from '../../assets/download.jpeg';
@@ -9,16 +10,41 @@ import RelatedProdCard from "./relatedprodcard";
 
 const SingleProductPage = () => {
   const { id } = useParams();
-  console.log({ id }); // Extract the id parameter from the route
+  const [product, setProduct] = useState(null);
+  const[quantity,setQuantity]=useState(1);
 
-  const productId = parseInt(id, 10);
-  const product = products.find((product) => product.id === productId);
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await fetch(`http://localhost:6005/api/products/${id}`);
+        const data = await response.json();
+        console.log(data);
+        setProduct(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchProduct();
+  }, [id]);
 
   if (!product) {
-    return <div>Product not found</div>;
+    return <div>Loading...</div>;
   }
 
-  const relatedProductIds = [2, 3, 4];
+  const inc_quantity=()=>{
+    setQuantity(quantity+1);
+  }
+
+  const dec_quantity=()=>{
+    if (quantity>1){
+      setQuantity(quantity-1);
+    }
+  }
+
+  const addtocart=()=>{
+    console.log(`Cart: ${quantity}`);
+  }
 
   return (
     <div
@@ -37,7 +63,7 @@ const SingleProductPage = () => {
           <img
             src={product.image}
             alt="Product"
-            className="w-full h-auto border border-purple-800  hover:border-4 hover:shadow-lg duration-100"
+            className="w-full h-auto border border-purple-800  hover:border-4 hover:shadow-lg duration-100 mt-4"
           />
         </div>
         <div className="w-1/2 px-4">
@@ -60,6 +86,31 @@ const SingleProductPage = () => {
               {product.description}
             </p>
           </div>
+
+
+          {/*Quatity For Hamna, for modification contact maham*/}
+          <div className="flex justify-items items-center mt-4">
+          <div className="ml-3 mr-3">Quantity</div>
+            <div className="flex items-center mb-3 border rounded-lg border-purple-900 px-5 py-1">
+           
+              <button
+                onClick={dec_quantity}
+                className="text-lg font-bold"
+              >
+                -
+              </button>
+              <div className="mx-3 text-lg font-bold">{quantity}</div>
+              <button
+                onClick={inc_quantity}
+                className="text-lg font-bold"
+              >
+                +
+              </button>
+            </div>
+        
+          </div>
+
+          {/*Buttons*/}
           <div className="grid grid-cols-2 gap-9">
             <button
               className="bg-purple-800 hover:bg-gray-300  duration-100 px-5 py-3 font-[poppins] 

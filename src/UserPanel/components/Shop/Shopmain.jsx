@@ -106,8 +106,8 @@ const ShopMain = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5 place-items-center px-4">
             {filteredProducts.map((product) => (
               <ItemCard
-                key={product.id}
-                id={product.id}
+                key={product._id}
+                id={product._id}
                 itemImg={product.image}
                 itemName={product.name}
                 itemDescription={product.description}
