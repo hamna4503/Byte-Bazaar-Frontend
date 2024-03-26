@@ -16,11 +16,11 @@ const FilterOptions = ({ products, onFilter }) => {
     };
 
     return (
-        <div className="bg-[#ffffff19] text-white h-auto p-4 shadow-md mt-2 mb-1 sm:w-1/3 md:w-2/4 lg:w-4/5">
-            <h2 className="text-lg text-yellow-500 font-semibold mb-2">Filter Options</h2>
+        <div className="bg-[#9b9a9b] text-white h-auto p-4 shadow-md mt-2 mb-1 sm:w-3/4 md:w-4/5 lg:w-5/6">
+            <h2 className="text-lg text-white font-semibold mb-2">Filter Options</h2>
             <hr />
             <div className="mt-2 mb-4 h-auto">
-                <h3 className="font-semibold mb-2 text-yellow-300">Filter by Category:</h3>
+                <h3 className="font-semibold mb-2 text-purple-900 sm:text-sm">Filter by Category:</h3>
                 <select
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
@@ -33,10 +33,11 @@ const FilterOptions = ({ products, onFilter }) => {
                     <option value="Mouse and Keyboard">Mouse and Keyboard</option>
                     <option value="Gaming">Gaming</option>
                     <option value="Accessories">Accessories</option>
+                
                 </select>
             </div>
             <div className="mb-4">
-                <h3 className="font-semibold mb-2 text-yellow-300">Filter by Price Range:</h3>
+                <h3 className="font-semibold mb-2 text-purple-900">Filter by Price Range:</h3>
                 <input
                     type="number"
                     value={priceRange}
@@ -46,7 +47,7 @@ const FilterOptions = ({ products, onFilter }) => {
                 />
             </div>
             <div>
-                <h3 className="font-semibold mb-2 text-yellow-300">Filter by Brand:</h3>
+                <h3 className="font-semibold mb-2 text-purple-900">Filter by Brand:</h3>
                 <input
                     type="text"
                     placeholder="Enter brand name"
@@ -57,7 +58,7 @@ const FilterOptions = ({ products, onFilter }) => {
             </div>
 
             <div>
-                <button className="w-full mt-2 px-4 py-7 text-black bg-yellow-300" onClick={applyFilters}>Apply Filter</button>
+                <button className="w-full mt-2 px-4 py-7 text-white bg-[#390a48]" onClick={applyFilters}>Apply Filter</button>
             </div>
         </div>
     );

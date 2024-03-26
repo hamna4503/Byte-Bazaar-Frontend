@@ -36,18 +36,22 @@ export default function PasswordForm({ isForgetPswd }) {
       const url = "http://localhost:6005/api/forgotPassword";
       const { data: res } = await axios.post(url, forgetPswd);
       console.log(res);
-      if (res.status==="Email sent for OTP verification") {
-        toast.success(`OTP verification code have been sent on your registered email`, {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: true,
-          draggable: false,
-          closeOnClick: false,
-          theme: "colored",
-          transition: toast.flip,
+      if (res.status === "Email sent for OTP verification") {
+        toast.success(
+          `OTP verification code have been sent on your registered email`,
+          {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: true,
+            draggable: false,
+            closeOnClick: false,
+            theme: "colored",
+            transition: toast.flip,
             onClose: () => {
               window.location.href = `http://localhost:5173/bytebazaar/otp-verification?email=${forgetPswd.email}`;
-        }});
+            },
+          }
+        );
       }
     } catch (err) {
       if (
@@ -92,7 +96,6 @@ export default function PasswordForm({ isForgetPswd }) {
           },
         }
       );
-
     } catch (err) {
       console.error("Error resetting password:", err);
       // toast.error("ERROR");
