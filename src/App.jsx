@@ -58,6 +58,7 @@ export default function App() {
           />
 
           <Route path="/bytebazaar/foot" element={<Footer />} />
+          <Route path="/addToCart" element={<AddToCart />} />
 
           {/*<BrowserRouter>
     this would work like this but it has to be checked by maham
