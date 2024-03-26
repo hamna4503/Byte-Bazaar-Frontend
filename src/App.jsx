@@ -12,7 +12,10 @@ import SingleProductPage from "./UserPanel/components/Shop/SingleCard";
 import OTPVerification from "./UserPanel/pages/Passwords/OTPVerification";
 import ShopMain from "./UserPanel/components/Shop/Shopmain";
 import RelatedProdCard from "./UserPanel/components/Shop/relatedprodcard";
-{/*import ViewCart from "./UserPanel/pages/ViewCart/ViewCart";*/}
+import AddToCart from "./UserPanel/components/Cart/AddToCart/AddToCart";
+{
+  /*import ViewCart from "./UserPanel/pages/ViewCart/ViewCart";*/
+}
 export default function App() {
   return (
     <>
@@ -56,6 +59,7 @@ export default function App() {
           />
 
           <Route path="/bytebazaar/foot" element={<Footer />} />
+          <Route path="/addToCart" element={<AddToCart />} />
 
           {/*<BrowserRouter>
     this would work like this but it has to be checked by maham

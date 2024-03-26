@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Cookies from "js-cookie";
 
 export default function AuthFormFields({ isLoginForm }) {
   const [signupData, setSignupData] = useState({
@@ -72,8 +73,10 @@ export default function AuthFormFields({ isLoginForm }) {
     try {
       const url = "http://localhost:6005/api/login";
       const { data: res } = await axios.post(url, loginData);
-      const token = res.data;
-      document.cookie = `authToken=${token}; Secure; HttpOnly; SameSite=Strict`;
+      const token = await res.data;
+      console.log(token);
+      Cookies.set("authToken", token);
+      // document.cookie = `authToken=${token}; Secure; HttpOnly; SameSite=Strict`;
       navigate("/");
       toast.success("Login successful!", {
         position: "top-center",
