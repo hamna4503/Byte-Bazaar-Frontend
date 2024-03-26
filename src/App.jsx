@@ -38,21 +38,17 @@ export default function App() {
 
           {/* <Route path="/bytebazaar/foot" element={<Footer />} /> */}
 
-
     {/*<BrowserRouter>
     this would work like this but it has to be checked by maham
       <Routes>
       <Route path="/" exact component={ShopMain} />
       <Route path="/product/:id" component={SingleProductPage} />
       </Routes>
-
       </BrowserRouter>*/}
+
         </Routes>
-
         <ToastContainer />
-
       </BrowserRouter>
-
 
       {/* THIS IS JUST FOR CHECKING*/}
       {/* <h1 className="text-center font-semibold text-4xl pb-10">PRODUCTS</h1>
