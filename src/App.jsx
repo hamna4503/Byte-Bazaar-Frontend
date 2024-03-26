@@ -66,6 +66,7 @@ export default function App() {
       <Routes>
       </Routes>
       </BrowserRouter>*/}
+
         </Routes>
         <ToastContainer />
       </BrowserRouter>
