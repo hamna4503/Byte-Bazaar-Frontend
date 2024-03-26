@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function AuthFormFields({ isLoginForm }) {
+export default function AuthFormFields({ isLoginForm, isAdmin}) {
   const [signupData, setSignupData] = useState({
     firstName: "",
     lastName: "",
@@ -77,7 +77,7 @@ export default function AuthFormFields({ isLoginForm }) {
       const { data: res } = await axios.post(url, loginData);
       const token = res.data;
       document.cookie = `authToken=${token}; Secure; HttpOnly; SameSite=Strict`;
-      navigate("/");
+      // navigate("/");
       toast.success("Login successful!", {
         position: "top-center",
         autoClose: 5000,
@@ -103,6 +103,9 @@ export default function AuthFormFields({ isLoginForm }) {
           closeOnClick: false,
           theme: "colored",
           transition: toast.flip,
+          onClose: () => {
+            navigate("/");
+          },
         });
       }
     }
@@ -111,6 +114,51 @@ export default function AuthFormFields({ isLoginForm }) {
   const loginWithGoogle = () => {
     window.open("http://localhost:6005/auth/google/callback", "_self");
   };
+
+
+ const handleadminLogin = async (e) => {
+   e.preventDefault();
+   console.log(loginData);
+   try {
+     const url = "http://localhost:6005/api/admin-login";
+     const { data: res } = await axios.post(url, loginData);
+     const token = res.data;
+     document.cookie = `authToken=${token}; Secure; HttpOnly; SameSite=Strict`;
+     toast.success("Login successful!", {
+       position: "top-center",
+       autoClose: 5000,
+       hideProgressBar: true,
+       draggable: false,
+       closeOnClick: false,
+       theme: "colored",
+       transition: toast.flip,
+       onClose:()=>{
+          navigate("/");
+       },
+     });
+     console.log(res.message);
+   } catch (err) {
+     if (
+       err.response &&
+       err.response.status >= 400 &&
+       err.response.status <= 500
+     ) {
+       setError(err.response.data.message);
+       toast.error(err.response.data.message, {
+         position: "top-center",
+         autoClose: 5000,
+         hideProgressBar: true,
+         draggable: false,
+         closeOnClick: false,
+         theme: "colored",
+         transition: toast.flip,
+       });
+     }
+   }
+ };
+
+
+
 
   return (
     <>
@@ -191,7 +239,6 @@ export default function AuthFormFields({ isLoginForm }) {
             </div>
           </>
         )}
-
         {/* LOGIN FORM  */}
         {isLoginForm && (
           <div className="my-3 md:mr-2 md:mb-4">
@@ -220,45 +267,58 @@ export default function AuthFormFields({ isLoginForm }) {
             />
           </div>
         )}
-
         {/* Buttons */}
-        <div className="flex justify-center gap-8 align-center py-4 flex-wrap mb-0">
-          <button
-            className="w-70 text-sm px-12 py-1.5 font text-white shadow-sm rounded-lg focus:outline-none focus:shadow-outline bg-Purple"
-            type="submit"
-          >
-            {!isLoginForm ? "Sign Up" : "Login"}
-          </button>
+        {!isAdmin && (
+          <div className="flex justify-center gap-8 align-center py-4 flex-wrap mb-0">
+            <button
+              className="w-70 text-sm px-12 py-1.5 font text-white shadow-sm rounded-lg focus:outline-none focus:shadow-outline bg-Purple"
+              type="submit"
+            >
+              {!isLoginForm ? "Sign Up" : "Login"}
+            </button>
 
-          <span className="font-bold text-black">OR</span>
+            <span className="font-bold text-black">OR</span>
 
-          <button
-            className="w-70 max-w-xs text-sm font text-white shadow-sm rounded-lg px-3 py-1.5 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline bg-Purple"
-            onClick={loginWithGoogle}
-          >
-            <svg className="w-4" viewBox="0 0 533.5 544.3">
-              <path
-                d="M533.5 278.4c0-18.5-1.5-37.1-4.7-55.3H272.1v104.8h147c-6.1 33.8-25.7 63.7-54.4 82.7v68h87.7c51.5-47.4 81.1-117.4 81.1-200.2z"
-                fill="#4285f4"
-              />
-              <path
-                d="M272.1 544.3c73.4 0 135.3-24.1 180.4-65.7l-87.7-68c-24.4 16.6-55.9 26-92.6 26-71 0-131.2-47.9-152.8-112.3H28.9v70.1c46.2 91.9 140.3 149.9 243.2 149.9z"
-                fill="#34a853"
-              />
-              <path
-                d="M119.3 324.3c-11.4-33.8-11.4-70.4 0-104.2V150H28.9c-38.6 76.9-38.6 167.5 0 244.4l90.4-70.1z"
-                fill="#fbbc04"
-              />
-              <path
-                d="M272.1 107.7c38.8-.6 76.3 14 104.4 40.8l77.7-77.7C405 24.6 339.7-.8 272.1 0 169.2 0 75.1 58 28.9 150l90.4 70.1c21.5-64.5 81.8-112.4 152.8-112.4z"
-                fill="#ea4335"
-              />
-            </svg>
-            <span className="ml-4">
-              {!isLoginForm ? "Sign Up with Google" : "Login with Google"}
-            </span>
-          </button>
-        </div>
+            <button
+              className="w-70 max-w-xs text-sm font text-white shadow-sm rounded-lg px-3 py-1.5 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline bg-Purple"
+              onClick={loginWithGoogle}
+            >
+              <svg className="w-4" viewBox="0 0 533.5 544.3">
+                <path
+                  d="M533.5 278.4c0-18.5-1.5-37.1-4.7-55.3H272.1v104.8h147c-6.1 33.8-25.7 63.7-54.4 82.7v68h87.7c51.5-47.4 81.1-117.4 81.1-200.2z"
+                  fill="#4285f4"
+                />
+                <path
+                  d="M272.1 544.3c73.4 0 135.3-24.1 180.4-65.7l-87.7-68c-24.4 16.6-55.9 26-92.6 26-71 0-131.2-47.9-152.8-112.3H28.9v70.1c46.2 91.9 140.3 149.9 243.2 149.9z"
+                  fill="#34a853"
+                />
+                <path
+                  d="M119.3 324.3c-11.4-33.8-11.4-70.4 0-104.2V150H28.9c-38.6 76.9-38.6 167.5 0 244.4l90.4-70.1z"
+                  fill="#fbbc04"
+                />
+                <path
+                  d="M272.1 107.7c38.8-.6 76.3 14 104.4 40.8l77.7-77.7C405 24.6 339.7-.8 272.1 0 169.2 0 75.1 58 28.9 150l90.4 70.1c21.5-64.5 81.8-112.4 152.8-112.4z"
+                  fill="#ea4335"
+                />
+              </svg>
+              <span className="ml-4">
+                {!isLoginForm ? "Sign Up with Google" : "Login with Google"}
+              </span>
+            </button>
+          </div>
+        )}
+
+        {isAdmin && (
+          <div className="flex justify-center align-center py-2 flex-wrap mb-0">
+            <button
+              className="w-70 text-sm px-12 py-1.5 font text-white shadow-sm rounded-lg focus:outline-none focus:shadow-outline bg-Purple"
+              type="submit"
+              onClick={handleadminLogin}
+            >
+              Login
+            </button>
+          </div>
+        )}
       </form>
     </>
   );

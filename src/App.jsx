@@ -12,6 +12,7 @@ import SingleProductPage from "./UserPanel/components/Shop/SingleCard";
 import OTPVerification from "./UserPanel/pages/Passwords/OTPVerification";
 import ShopMain from "./UserPanel/components/Shop/Shopmain";
 import RelatedProdCard from "./UserPanel/components/Shop/relatedprodcard";
+import AdminLogin from "./AdminPanel/pages/InventoryManagement/AdminLogin";
 {/*import ViewCart from "./UserPanel/pages/ViewCart/ViewCart";*/}
 export default function App() {
   return (
@@ -30,6 +31,7 @@ export default function App() {
           />
           <Route path="/bytebazaar/signup" element={<SignUp />} />
           <Route path="/bytebazaar/login" element={<Login />} />
+          <Route path="/bytebazaar/admin-login" element={<AdminLogin />} />
           <Route
             path="/bytebazaar/forgot-password"
             element={<ForgotPassword />}
