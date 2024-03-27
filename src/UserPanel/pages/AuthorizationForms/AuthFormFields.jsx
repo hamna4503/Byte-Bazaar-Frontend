@@ -117,7 +117,7 @@ export default function AuthFormFields({ isLoginForm, isAdmin}) {
   };
 
 
- const handleadminLogin = async (e) => {
+ const handleAdminLogin = async (e) => {
    e.preventDefault();
    console.log(loginData);
    try {
@@ -134,7 +134,7 @@ export default function AuthFormFields({ isLoginForm, isAdmin}) {
        theme: "colored",
        transition: toast.flip,
        onClose:()=>{
-          navigate("/");
+          navigate("/admin");
        },
      });
      console.log(res.message);
@@ -314,7 +314,7 @@ export default function AuthFormFields({ isLoginForm, isAdmin}) {
             <button
               className="w-70 text-sm px-12 py-1.5 font text-white shadow-sm rounded-lg focus:outline-none focus:shadow-outline bg-Purple"
               type="submit"
-              onClick={handleadminLogin}
+              onClick={handleAdminLogin}
             >
               Login
             </button>

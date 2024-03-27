@@ -1,4 +1,3 @@
-import AuthFooterLinks from "../../../UserPanel/pages/AuthorizationForms/AuthFooterLinks";
 import AuthFormFields from "../../../UserPanel/pages/AuthorizationForms/AuthFormFields";
 import AuthFormImage from "../../../UserPanel/pages/AuthorizationForms/AuthFormImage";
 import AuthHeader from "../../../UserPanel/pages/AuthorizationForms/AuthHeader";

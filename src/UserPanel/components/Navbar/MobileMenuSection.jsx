@@ -7,7 +7,6 @@ export default function MobileMenuSection({
   setMenu,
   navlinks,
   isMobile,
-  isAdmin,
   isCategoriesOpen,
   setCategoriesOpen,
 }) {
@@ -33,14 +32,12 @@ export default function MobileMenuSection({
         />
 
         {/* Search bar in the sidebar */}
-        {!isAdmin && (
           <input
             type="text"
             placeholder="Search"
             className="px-2 py-1 border border-gray-300 rounded-lg focus:outline-none"
             style={{ width: "94%" }}
           />
-        )}
       </section>
     </div>
   );

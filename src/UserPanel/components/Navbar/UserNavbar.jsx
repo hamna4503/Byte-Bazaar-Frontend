@@ -47,8 +47,8 @@ export default function UserNavbar() {
 
   return (
     <main>
-      <nav className="flex justify-between px-10 items-center py-4">
-        <div className="flex items-center gap-6">
+      <nav className="flex justify-between px-12 items-center py-2">
+        <div className="flex items-center gap-8">
           <BrandSection onMenuToggle={() => setMenu(true)} />
 
           {/* Navigation Links Section */}
@@ -65,13 +65,12 @@ export default function UserNavbar() {
           setMenu={setMenu}
           navlinks={navlinks}
           isMobile={isMobile}
-          isAdmin={false}
           isCategoriesOpen={isCategoriesOpen}
           setCategoriesOpen={setCategoriesOpen}
         />
 
         {/* Right Navbar Section */}
-        <RightNavbarSection isAdmin={false} />
+        <RightNavbarSection/>
       </nav>
     </main>
   );
