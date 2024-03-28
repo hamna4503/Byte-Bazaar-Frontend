@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import xboxController from "./UserPanel/assets/images/items/controllers/xboxController.png";
 import UserNavbar from "./UserPanel/components/Navbar/UserNavbar";
-import AdminNavbar from "./AdminPanel/components/Navbar/AdminNavbar";
+// import AdminNavbar from "./AdminPanel/components/Navbar/AdminNavbar";
 import SignUp from "./UserPanel/pages/AuthorizationForms/SignUp";
 import Login from "./UserPanel/pages/AuthorizationForms/Login";
 import Footer from "./UserPanel/components/Footer/Footer";
@@ -12,28 +12,31 @@ import SingleProductPage from "./UserPanel/components/Shop/SingleCard";
 import OTPVerification from "./UserPanel/pages/Passwords/OTPVerification";
 import ShopMain from "./UserPanel/components/Shop/Shopmain";
 import RelatedProdCard from "./UserPanel/components/Shop/relatedprodcard";
-import AddToCart from "./UserPanel/components/Cart/AddToCart/AddToCart";
-import UserState from "./UserPanel/contexts/UserState";
-
-import ViewCart from "./UserPanel/pages/ViewCart/ViewCart";
-
+import AdminHome from "./AdminPanel/pages/Home/AdminHome";
+import AdminLogin from "./AdminPanel/pages/Authentication/AdminLogin";
+{
+  /*import ViewCart from "./UserPanel/pages/ViewCart/ViewCart";*/
+}
 export default function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/bytebazaar/admin" element={<AdminNavbar />} />
+          <Route path="/bytebazaar/admin-login" element={<AdminLogin />} />
+          <Route path="/bytebazaar/admin" element={<AdminHome />} />
           <Route
             path="/"
             element={
               <div>
                 <UserNavbar />
                 <ShopMain />
+                <Footer />
               </div>
             }
           />
           <Route path="/bytebazaar/signup" element={<SignUp />} />
           <Route path="/bytebazaar/login" element={<Login />} />
+
           <Route
             path="/bytebazaar/forgot-password"
             element={<ForgotPassword />}
@@ -72,7 +75,7 @@ export default function App() {
         </Routes>
         <ToastContainer />
       </BrowserRouter>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
