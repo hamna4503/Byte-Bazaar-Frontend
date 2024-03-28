@@ -13,9 +13,10 @@ import OTPVerification from "./UserPanel/pages/Passwords/OTPVerification";
 import ShopMain from "./UserPanel/components/Shop/Shopmain";
 import RelatedProdCard from "./UserPanel/components/Shop/relatedprodcard";
 import AddToCart from "./UserPanel/components/Cart/AddToCart/AddToCart";
-{
-  /*import ViewCart from "./UserPanel/pages/ViewCart/ViewCart";*/
-}
+import UserState from "./UserPanel/contexts/UserState";
+
+import ViewCart from "./UserPanel/pages/ViewCart/ViewCart";
+
 export default function App() {
   return (
     <>
@@ -53,20 +54,21 @@ export default function App() {
             element={
               <>
                 <UserNavbar />
-                {/*<ViewCart />*/}
+                <ViewCart />
               </>
             }
           />
 
           <Route path="/bytebazaar/foot" element={<Footer />} />
-          <Route path="/addToCart" element={<AddToCart />} />
 
-          {/*<BrowserRouter>
-    this would work like this but it has to be checked by maham
-      <Routes>
-      </Routes>
-      </BrowserRouter>*/}
-
+          <Route
+            path="/addToCart"
+            element={
+              <UserState>
+                <AddToCart />
+              </UserState>
+            }
+          />
         </Routes>
         <ToastContainer />
       </BrowserRouter>
