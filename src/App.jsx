@@ -15,7 +15,12 @@ import RelatedProdCard from "./UserPanel/components/Shop/relatedprodcard";
 import AdminHome from "./AdminPanel/pages/Home/AdminHome";
 import AdminLogin from "./AdminPanel/pages/Authentication/AdminLogin";
 import UserManagement from "./AdminPanel/pages/UserManagement/UserManagement";
-{/*import ViewCart from "./UserPanel/pages/ViewCart/ViewCart";*/}
+import AddToCart from "./UserPanel/components/Cart/AddToCart/AddToCart";
+import UserState from "./UserPanel/contexts/UserState";
+import ViewCart from "./UserPanel/pages/ViewCart/ViewCart";
+{
+  /*import ViewCart from "./UserPanel/pages/ViewCart/ViewCart";*/
+}
 export default function App() {
   return (
     <>
@@ -30,7 +35,7 @@ export default function App() {
               <div>
                 <UserNavbar />
                 <ShopMain />
-                <Footer/> 
+                <Footer />
               </div>
             }
           />
@@ -57,19 +62,21 @@ export default function App() {
             element={
               <>
                 <UserNavbar />
-                {/*<ViewCart />*/}
+                <ViewCart />
               </>
             }
           />
 
-          {/* <Route path="/bytebazaar/foot" element={<Footer />} /> */}
-          {/* <Route path="/addToCart" element={<AddToCart />} /> */}
+          <Route path="/bytebazaar/foot" element={<Footer />} />
 
-          {/*<BrowserRouter>
-    this would work like this but it has to be checked by maham
-      <Routes>
-      </Routes>
-      </BrowserRouter>*/}
+          <Route
+            path="/addToCart"
+            element={
+              <UserState>
+                <AddToCart />
+              </UserState>
+            }
+          />
         </Routes>
         <ToastContainer />
       </BrowserRouter>

@@ -1,18 +1,35 @@
-import React from "react";
+import React, { useContext } from "react";
 import axios from "axios";
-import Cookies from "js-cookie";
-function AddToCart() {
-  const check = async () => {
-    let data = await axios.get("http://localhost:6005/cart", {
-      withCredentials: true,
-    });
-    console.log(data);
+import { UserContext } from "../../../contexts/UserContext";
+
+function AddToCart({ id, quantity }) {
+  const { name } = useContext(UserContext);
+  const AddItemToCart = async () => {
+    console.log(name);
+    try {
+      let data = await axios.delete(
+        "http://localhost:6005/cart/6601ca7b2195544e447c9c05",
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(data);
+    } catch (err) {
+      if (
+        err.response &&
+        err.response.status >= 400 &&
+        err.response.status <= 500
+      ) {
+        // window.location.href = "/bytebazaar/login";
+        console.log(err);
+      }
+    }
   };
   return (
     <div>
       <button
         className="p-2 bg-Purple text-white w-full rounded-sm"
-        onClick={check}
+        onClick={AddItemToCart}
       >
         Add to Cart
       </button>
