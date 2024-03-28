@@ -6,7 +6,7 @@ export default function Sidebar(){
     return (
       <>
         {/* Sidebar */}
-        <div className="fixed flex flex-col top-17 left-0 w-12 hover:w-64 md:w-64 bg-Purple h-full text-white transition-all duration-300 border-none z-10 sidebar">
+        <div className="fixed flex flex-col top-0 left-0 w-12 hover:w-64 md:w-64 bg-Purple h-full text-white transition-all duration-300 border-none z-10 sidebar">
           <div className="overflow-y-auto overflow-x-hidden flex flex-col justify-between flex-grow">
             <ul className="flex flex-col py-4 space-y-1">
               <li className="px-5 py-10 hidden md:block">

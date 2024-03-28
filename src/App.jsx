@@ -14,6 +14,7 @@ import ShopMain from "./UserPanel/components/Shop/Shopmain";
 import RelatedProdCard from "./UserPanel/components/Shop/relatedprodcard";
 import AdminHome from "./AdminPanel/pages/Home/AdminHome";
 import AdminLogin from "./AdminPanel/pages/Authentication/AdminLogin";
+import UserManagement from "./AdminPanel/pages/UserManagement/UserManagement";
 {/*import ViewCart from "./UserPanel/pages/ViewCart/ViewCart";*/}
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
         <Routes>
           <Route path="/bytebazaar/admin-login" element={<AdminLogin />} />
           <Route path="/bytebazaar/admin" element={<AdminHome />} />
+          <Route path="/bytebazaar/admin/user-profiles" element={<UserManagement />} />
           <Route
             path="/"
             element={

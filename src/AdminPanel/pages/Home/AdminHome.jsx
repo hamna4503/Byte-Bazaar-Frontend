@@ -1,5 +1,4 @@
 import React from "react";
-// import AdminNavbar from "../../components/Navbar/AdminNavbar";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import StatsCard from "../../components/StatsCard/StatsCard";
 import Table from "../../components/Table/Table";
