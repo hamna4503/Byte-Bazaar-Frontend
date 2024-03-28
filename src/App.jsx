@@ -14,6 +14,9 @@ import ShopMain from "./UserPanel/components/Shop/Shopmain";
 import RelatedProdCard from "./UserPanel/components/Shop/relatedprodcard";
 import AdminHome from "./AdminPanel/pages/Home/AdminHome";
 import AdminLogin from "./AdminPanel/pages/Authentication/AdminLogin";
+import AddToCart from "./UserPanel/components/Cart/AddToCart/AddToCart";
+import UserState from "./UserPanel/contexts/UserState";
+import ViewCart from "./UserPanel/pages/ViewCart/ViewCart";
 {
   /*import ViewCart from "./UserPanel/pages/ViewCart/ViewCart";*/
 }
