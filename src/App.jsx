@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import xboxController from "./UserPanel/assets/images/items/controllers/xboxController.png";
 import UserNavbar from "./UserPanel/components/Navbar/UserNavbar";
-// import AdminNavbar from "./AdminPanel/components/Navbar/AdminNavbar";
 import SignUp from "./UserPanel/pages/AuthorizationForms/SignUp";
 import Login from "./UserPanel/pages/AuthorizationForms/Login";
 import Footer from "./UserPanel/components/Footer/Footer";
@@ -12,15 +11,17 @@ import SingleProductPage from "./UserPanel/components/Shop/SingleCard";
 import OTPVerification from "./UserPanel/pages/Passwords/OTPVerification";
 import ShopMain from "./UserPanel/components/Shop/Shopmain";
 import RelatedProdCard from "./UserPanel/components/Shop/relatedprodcard";
-import AdminHome from "./AdminPanel/pages/Home/AdminHome";
+import AdminHome from "./AdminPanel/pages/Home/Dashboard";
 import AdminLogin from "./AdminPanel/pages/Authentication/AdminLogin";
 import UserManagement from "./AdminPanel/pages/UserManagement/UserManagement";
 import AddToCart from "./UserPanel/components/Cart/AddToCart/AddToCart";
 import UserState from "./UserPanel/contexts/UserState";
 import ViewCart from "./UserPanel/pages/ViewCart/ViewCart";
-{
-  /*import ViewCart from "./UserPanel/pages/ViewCart/ViewCart";*/
-}
+import InventoryManagement from "./AdminPanel/pages/InventoryManagement/InventoryManagement";
+import OrderManagement from "./AdminPanel/pages/OrderManagement/OrderManagement";
+// {
+//   /*import ViewCart from "./UserPanel/pages/ViewCart/ViewCart";*/
+// }
 export default function App() {
   return (
     <>
@@ -28,7 +29,18 @@ export default function App() {
         <Routes>
           <Route path="/bytebazaar/admin-login" element={<AdminLogin />} />
           <Route path="/bytebazaar/admin" element={<AdminHome />} />
-          <Route path="/bytebazaar/admin/user-profiles" element={<UserManagement />} />
+          <Route
+            path="/bytebazaar/admin/user-profiles"
+            element={<UserManagement />}
+          />
+          <Route
+            path="/bytebazaar/admin/manage-inventory"
+            element={<InventoryManagement />}
+          />
+          <Route
+            path="/bytebazaar/admin/manage-orders"
+            element={<OrderManagement />}
+          />
           <Route
             path="/"
             element={

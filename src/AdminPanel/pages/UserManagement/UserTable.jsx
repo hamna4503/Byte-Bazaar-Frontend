@@ -49,7 +49,8 @@ export default function UserTable() {
             </tr>
           </thead>
           <tbody className="bg-white">
-            {users.map((user) => (
+            {users && users.length > 0 ? (
+            users.map((user) => (
               <tr key={user._id}>
                 <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
                   <div className="flex items-center">
@@ -72,11 +73,11 @@ export default function UserTable() {
                   </div>
                 </td>
                 <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
-                  <span className="inline-flex px-2.5 py-1 text-sm font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
+                  <span className="inline-flex px-2.5 py-1.5 text-sm font-semibold leading-5 text-white bg-Purple rounded-full">
                     {user.isActiveUser ? "Active" : "Inactive"}
                   </span>
                 </td>
-                <td className="px-4 py-4 text-md leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
+                <td className="px-4 py-4 text-md leading-5 text-black whitespace-no-wrap border-b border-gray-200">
                   Buyer
                 </td>
                 <td className="px-4 py-4 text-md font-medium leading-5 whitespace-no-wrap border-b border-gray-200">
@@ -93,7 +94,11 @@ export default function UserTable() {
                   </button>
                 </td>
               </tr>
-            ))}
+            )) ) : (
+              <tr>
+                <td className="text-red-600 p-3 bold">No Users Found.</td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

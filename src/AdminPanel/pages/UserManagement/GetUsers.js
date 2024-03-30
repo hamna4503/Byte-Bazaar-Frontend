@@ -1,6 +1,6 @@
 export const GetUsers = async () => {
   try {
-    const response = await fetch(`http://localhost:6005/api/select-users`);
+    const response = await fetch(`http://localhost:6005/api/get-users`);
     if (!response.ok) {
       throw new Error("Failed to fetch users");
     }

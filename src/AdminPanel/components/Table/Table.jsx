@@ -96,8 +96,8 @@
 //                       </td>
 //                       <td className="px-4 py-4 text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200">
 //                         <button
-//                           className="text-indigo-600 hover:text-indigo-900" 
-//                         > 
+//                           className="text-indigo-600 hover:text-indigo-900"
+//                         >
 //                           Edit
 //                         </button>
 //                       </td>
@@ -113,38 +113,44 @@
 //   );
 // }
 
-
 import React from "react";
+import { AiFillEdit } from "react-icons/ai";
+import { RiDeleteBin6Fill } from "react-icons/ri";
 
-export default function Table() {
-    const columns = ["Name", "Title", "Status", "Role"];
+export default function Table({ toggleSidebar }) {
+  const columns = ["Name", "Title", "Status", "Role"];
 
-    const data = [
-      {
-        id: 1,
-        name: "John Doe",
-        email: "john@example.com",
-        title: "Software Engineer",
-        role: "Owner",
-        status: "Active",
-      },
-      {
-        id: 2,
-        name: "John Doe",
-        email: "john@example.com",
-        title: "Software Engineer",
-        role: "Owner",
-        status: "Active",
-      },
-      {
-        id: 3,
-        name: "John Doe",
-        email: "john@example.com",
-        title: "Software Engineer",
-        role: "Owner",
-        status: "Active",
-      },
-    ];
+  // const EditForm= ()=>{
+  //   toggleSidebar;
+  //   IsEditForm;
+  // }
+
+  const data = [
+    {
+      id: 1,
+      name: "John Doe",
+      email: "john@example.com",
+      title: "Software Engineer",
+      role: "Owner",
+      status: "Active",
+    },
+    {
+      id: 2,
+      name: "John Doe",
+      email: "john@example.com",
+      title: "Software Engineer",
+      role: "Owner",
+      status: "Active",
+    },
+    {
+      id: 3,
+      name: "John Doe",
+      email: "john@example.com",
+      title: "Software Engineer",
+      role: "Owner",
+      status: "Active",
+    },
+  ];
   return (
     <>
       <div className="h-full mb-10 md:ml-64 sm:ml-12 xs:ml-14 p-5 overflow-hidden">
@@ -176,12 +182,29 @@ export default function Table() {
                           {item[columnName.toLowerCase()]}
                         </td>
                       ))}
-                      <td className="px-4 py-4 text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200">
+                      <td className="py-4 text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200">
                         <button
-                          className="text-indigo-600 hover:text-indigo-900"
-                          onClick={() => handleEditClick(item.id)}
+                          className="text-Purple dark:hover:text-gray-700 mr-5"
+                          onClick={() => toggleSidebar(1)}
                         >
-                          Edit
+                          <AiFillEdit
+                            style={{
+                              width: "24px",
+                              height: "24px",
+                            }}
+                          />
+                        </button>
+
+                        <button
+                          className="text-Purple dark:hover:text-gray-700 ml-5"
+                          onClick={() => toggleSidebar(1)}
+                        >
+                          <RiDeleteBin6Fill
+                            style={{
+                              width: "20px",
+                              height: "20px",
+                            }}
+                          />
                         </button>
                       </td>
                     </tr>
