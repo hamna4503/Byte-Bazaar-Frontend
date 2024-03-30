@@ -20,6 +20,7 @@ import ViewCart from "./UserPanel/pages/ViewCart/ViewCart";
 import InventoryManagement from "./AdminPanel/pages/InventoryManagement/InventoryManagement";
 import OrderManagement from "./AdminPanel/pages/OrderManagement/OrderManagement";
 import CustomerSupport from "./AdminPanel/pages/CustomerSupport/CustomerSupport";
+import Checkout from "./UserPanel/pages/Checkout/Checkout";
 // {
 //   /*import ViewCart from "./UserPanel/pages/ViewCart/ViewCart";*/
 // }
@@ -84,6 +85,7 @@ export default function App() {
             }
           />
 
+          <Route path="/bytebazaar/checkout" element={<Checkout />} />
           <Route path="/bytebazaar/foot" element={<Footer />} />
 
           <Route
