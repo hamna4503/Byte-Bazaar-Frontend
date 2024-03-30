@@ -19,6 +19,8 @@ import CartState from "./UserPanel/contexts/CartState";
 import ViewCart from "./UserPanel/pages/ViewCart/ViewCart";
 import InventoryManagement from "./AdminPanel/pages/InventoryManagement/InventoryManagement";
 import OrderManagement from "./AdminPanel/pages/OrderManagement/OrderManagement";
+import CustomerSupport from "./AdminPanel/pages/CustomerSupport/CustomerSupport";
+import Checkout from "./UserPanel/pages/Checkout/Checkout";
 // {
 //   /*import ViewCart from "./UserPanel/pages/ViewCart/ViewCart";*/
 // }
@@ -40,6 +42,10 @@ export default function App() {
           <Route
             path="/bytebazaar/admin/manage-orders"
             element={<OrderManagement />}
+          />
+          <Route
+            path="/bytebazaar/admin/customer-support"
+            element={<CustomerSupport />}
           />
           <Route
             path="/"
@@ -86,6 +92,7 @@ export default function App() {
             }
           />
 
+          <Route path="/bytebazaar/checkout" element={<Checkout />} />
           <Route path="/bytebazaar/foot" element={<Footer />} />
 
           <Route
