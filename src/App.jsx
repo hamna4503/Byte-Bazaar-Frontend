@@ -15,7 +15,7 @@ import AdminHome from "./AdminPanel/pages/Home/Dashboard";
 import AdminLogin from "./AdminPanel/pages/Authentication/AdminLogin";
 import UserManagement from "./AdminPanel/pages/UserManagement/UserManagement";
 import AddToCart from "./UserPanel/components/Cart/AddToCart/AddToCart";
-import UserState from "./UserPanel/contexts/UserState";
+import CartState from "./UserPanel/contexts/CartState";
 import ViewCart from "./UserPanel/pages/ViewCart/ViewCart";
 import InventoryManagement from "./AdminPanel/pages/InventoryManagement/InventoryManagement";
 import OrderManagement from "./AdminPanel/pages/OrderManagement/OrderManagement";
@@ -67,15 +67,22 @@ export default function App() {
             element={<OTPVerification />}
           />
           <Route path="/shop" element={<ShopMain />} />
-          <Route path="/product/:id" element={<SingleProductPage />} />
+          <Route
+            path="/product/:id"
+            element={
+              <CartState>
+                <SingleProductPage />
+              </CartState>
+            }
+          />
           <Route path="/product/:id" element={<RelatedProdCard />} />
           <Route
             path="/bytebazaar/cart"
             element={
-              <>
+              <CartState>
                 <UserNavbar />
                 <ViewCart />
-              </>
+              </CartState>
             }
           />
 
@@ -84,9 +91,9 @@ export default function App() {
           <Route
             path="/addToCart"
             element={
-              <UserState>
+              <CartState>
                 <AddToCart />
-              </UserState>
+              </CartState>
             }
           />
         </Routes>
