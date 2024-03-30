@@ -19,6 +19,7 @@ import UserState from "./UserPanel/contexts/UserState";
 import ViewCart from "./UserPanel/pages/ViewCart/ViewCart";
 import InventoryManagement from "./AdminPanel/pages/InventoryManagement/InventoryManagement";
 import OrderManagement from "./AdminPanel/pages/OrderManagement/OrderManagement";
+import CustomerSupport from "./AdminPanel/pages/CustomerSupport/CustomerSupport";
 // {
 //   /*import ViewCart from "./UserPanel/pages/ViewCart/ViewCart";*/
 // }
@@ -40,6 +41,10 @@ export default function App() {
           <Route
             path="/bytebazaar/admin/manage-orders"
             element={<OrderManagement />}
+          />
+          <Route
+            path="/bytebazaar/admin/customer-support"
+            element={<CustomerSupport />}
           />
           <Route
             path="/"

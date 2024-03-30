@@ -1,22 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { FaRegUserCircle } from "react-icons/fa";
-import { GetOrders } from "./GetOrders";
-import {DispatchOrder} from "./DispatchOrder";
+import { FaUserCircle } from "react-icons/fa";
 import { toast } from "react-toastify";
-import { IoMdPricetag } from "react-icons/io";
+import { GetConcerns } from "./GetConcerns";
+import { CloseConcerns } from "./CloseConcerns";
 
-export default function OrderTable() {
-  const [orders, setOrders] = useState([]);
+export default function UserTable() {
+  const [users, setUsers] = useState([]);
 
-  const columns = ["Buyer Information", "Order Status", "Address", "Total Amount", "Payment Method",];
+  const columns = ["User Information", "Type", "Message", "Status"];
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const orderData = await GetOrders();
-        setOrders(orderData);
+        const userData = await GetConcerns();
+        setUsers(userData);
       } catch (error) {
-        toast.error(`Error fetching users ${error}`, {
+        toast.error(`Error fetching customer concers ${error}`, {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: true,
@@ -25,12 +24,17 @@ export default function OrderTable() {
           theme: "colored",
           transition: toast.flip,
         });
-        console.error("Error fetching users:", error);
+        console.error("Error fetching customer concers:", error);
       }
     };
 
     fetchUsers();
   }, []);
+
+  const composeEmail = (email, subject) => {
+    const emailLink = `mailto:${email}?subject=${encodeURIComponent(subject)}`;
+    window.location.href = emailLink;
+  };
 
   return (
     <div className="h-full mb-10 md:ml-64 sm:ml-12 xs:ml-14 p-5 overflow-hidden">
@@ -47,17 +51,17 @@ export default function OrderTable() {
                 </th>
               ))}
               <th className="px-4 py-3 border-b border-gray-200 bg-Purple text-white" />
+              <th className="px-4 py-3 border-b border-gray-200 bg-Purple text-white" />
             </tr>
           </thead>
-
           <tbody className="bg-white">
-            {orders && orders.length > 0 ? (
-              orders.map((order) => (
-                <tr key={order._id}>
+            {users && users.length > 0 ? (
+              users.map((user) => (
+                <tr key={user._id}>
                   <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
                     <div className="flex items-center">
                       <div className="flex-shrink-0 w-10 h-10">
-                        <FaRegUserCircle
+                        <FaUserCircle
                           style={{
                             width: "30px",
                             height: "30px",
@@ -66,57 +70,63 @@ export default function OrderTable() {
                       </div>
                       <div className="ml-2">
                         <div className="text-md font-medium leading-5 text-gray-900">
-                          {order.name}
+                          {user.name}
                         </div>
                         <div className="text-sm leading-6 text-gray-500">
-                          {order.email}
-                        </div>
-                        <div className="text-sm leading-6 text-gray-500">
-                          {order.phone}
+                          {user.email}
                         </div>
                       </div>
                     </div>
                   </td>
+                  <td className="px-4 py-4 text-md leading-5 text-black whitespace-no-wrap border-b border-gray-200">
+                    {user.type}
+                  </td>
+                  <td className="px-4 py-4 text-md leading-5 text-black whitespace-no-wrap border-b border-gray-200">
+                    <div className="h-16 overflow-hidden line-clamp-2">
+                      {user.message}
+                    </div>
+                  </td>
+
                   <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
-                    <span className="inline-flex px-2.5 py-1.5 text-sm text-center font-semibold leading-5 text-white bg-Purple rounded-full">
-                      {order.isDispatched ? "Dispatched" : "Not Dispatched"}
+                    <span className="inline-flex px-2.5 py-1.5 text-sm font-semibold leading-5 text-white bg-Purple rounded-full">
+                      {user.status ? "Pending" : "Closed"}
                     </span>
                   </td>
-                  <td className="px-4 py-4 text-md leading-5 text-black whitespace-no-wrap border-b border-gray-200">
-                    {order.city}, {order.address}, {order.postalCode}
+
+                  <td className="px-4 py-4 text-md font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200">
+                    <button
+                      className={`${
+                        !user.status
+                          ? "text-gray-500 cursor-not-allowed mr-3"
+                          : "text-Purple mr-3"
+                      }`}
+                      onClick={() => composeEmail(user.email, user.type)}
+                      disabled={!user.status}
+                    >
+                      Send Email
+                    </button>
                   </td>
-                  <td className="px-4 py-4 text-md leading-5 text-black whitespace-no-wrap border-b border-gray-200">
-                    <span className="inline-flex">
-                      <IoMdPricetag
-                        className="mr-2 text-Purple"
-                        style={{ width: "22px", height: "22px" }}
-                      />
-                      {order.totalAmount}
-                    </span>
-                  </td>
-                  <td className="px-4 py-4 text-md leading-5 text-black whitespace-no-wrap border-b border-gray-200">
-                    {order.payMethod}
-                  </td>
+
                   <td className="px-4 py-4 text-md font-medium leading-5 whitespace-no-wrap border-b border-gray-200">
                     <button
                       className={`${
-                        order.isDispatched
-                          ? "text-gray-700 cursor-not-allowed"
-                          : "text-Purple hover:text-gray-700"
+                        !user.status
+                          ? "text-gray-500 cursor-not-allowed"
+                          : "text-red-500 hover:text-red-700"
                       }`}
-                      onClick={() =>
-                        DispatchOrder(order.email, orders, setOrders)
-                      }
-                      disabled={order.isDispatched}
+                      onClick={() => CloseConcerns(user._id, users, setUsers)}
+                      disabled={!user.status}
                     >
-                      Dispatch
+                      Close
                     </button>
                   </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td className="text-red-600 p-3 bold">No Orders Found.</td>
+                <td className="text-red-600 p-3 bold">
+                  No Customer Messages Found.
+                </td>
               </tr>
             )}
           </tbody>
