@@ -66,7 +66,10 @@ export default function CheckoutForm() {
         <div className="grid min-h-screen grid-cols-10">
           <div className="col-span-full py-6 px-4 sm:py-12 lg:col-span-6 lg:py-24">
             <div className="mx-auto w-full px-6">
-              <form action="" className="w-full flex flex-col space-y-4">
+              <form
+                action=""
+                className="w-full flex flex-col space-y-4"
+              >
                 <ShippingInfo />
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-12 px-10 py-8">
                   <h2 className="text-Purple font-bold text-2xl">

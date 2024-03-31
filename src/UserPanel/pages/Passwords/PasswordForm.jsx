@@ -28,38 +28,18 @@ export default function PasswordForm({ isForgetPswd }) {
   // const [error, setError] = useState("");
   // const navigate = useNavigate();
 
-  const handleForgetPswdSubmit = async (e) => {
-    e.preventDefault();
-    console.log(forgetPswd);
+const handleForgetPswdSubmit = async (e) => {
+  e.preventDefault();
+  console.log(forgetPswd);
 
-    try {
-      const url = "http://localhost:6005/api/forgotPassword";
-      const { data: res } = await axios.post(url, forgetPswd);
-      console.log(res);
-      if (res.status === "Email sent for OTP verification") {
-        toast.success(
-          `OTP verification code have been sent on your registered email`,
-          {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: true,
-            draggable: false,
-            closeOnClick: false,
-            theme: "colored",
-            transition: toast.flip,
-            onClose: () => {
-              window.location.href = `http://localhost:5173/bytebazaar/otp-verification?email=${forgetPswd.email}`;
-            },
-          }
-        );
-      }
-    } catch (err) {
-      if (
-        err.response &&
-        err.response.status >= 400 &&
-        err.response.status <= 500
-      ) {
-        toast.error(`Error in sending Email`, {
+  try {
+    const url = "http://localhost:6005/api/forgotPassword";
+    const { data: res } = await axios.post(url, forgetPswd);
+    console.log(res);
+    if (res.status === "Email sent for OTP verification") {
+      toast.success(
+        `OTP verification code has been sent to your registered email`,
+        {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: true,
@@ -67,10 +47,38 @@ export default function PasswordForm({ isForgetPswd }) {
           closeOnClick: false,
           theme: "colored",
           transition: toast.flip,
-        });
-      }
+          onClose: () => {
+            window.location.href = `http://localhost:5173/bytebazaar/otp-verification?email=${forgetPswd.email}`;
+          },
+        }
+      );
     }
-  };
+    else{
+      toast.error(`Error ${res.status}`,  {
+        // Adjusted error message for clarity
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        draggable: false,
+        closeOnClick: false,
+        theme: "colored",
+        transition: toast.flip,
+      });
+    }
+  } catch (err) {
+    console.log(err);
+      toast.error(`Error: ${err.response.data.message}`, {
+        // Adjusted error message for clarity
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        draggable: false,
+        closeOnClick: false,
+        theme: "colored",
+        transition: toast.flip,
+      });
+  }
+};
 
   const handleResetPswdSubmit = async (e) => {
     e.preventDefault();
