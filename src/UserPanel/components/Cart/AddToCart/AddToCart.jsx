@@ -1,35 +1,15 @@
 import React, { useContext } from "react";
 import axios from "axios";
-import { UserContext } from "../../../contexts/UserContext";
+import { CartContext } from "../../../contexts/CartContext";
 
 function AddToCart({ id, quantity }) {
-  const { name } = useContext(UserContext);
-  const AddItemToCart = async () => {
-    console.log(name);
-    try {
-      let data = await axios.delete(
-        "http://localhost:6005/cart/6601ca7b2195544e447c9c05",
-        {
-          withCredentials: true,
-        }
-      );
-      console.log(data);
-    } catch (err) {
-      if (
-        err.response &&
-        err.response.status >= 400 &&
-        err.response.status <= 500
-      ) {
-        // window.location.href = "/bytebazaar/login";
-        console.log(err);
-      }
-    }
-  };
+  let { AddItem } = useContext(CartContext);
   return (
     <div>
       <button
-        className="p-2 bg-Purple text-white w-full rounded-sm"
-        onClick={AddItemToCart}
+        className="bg-purple-800 hover:bg-gray-300  duration-100 px-5 py-3 font-[poppins] 
+        rounded-md text-white md:w-auto w-64"
+        onClick={() => AddItem(id, quantity)}
       >
         Add to Cart
       </button>

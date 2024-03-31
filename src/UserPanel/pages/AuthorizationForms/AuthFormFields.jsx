@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Cookies from "js-cookie";
 
-export default function AuthFormFields({ isLoginForm, isAdmin}) {
+export default function AuthFormFields({ isLoginForm, isAdmin }) {
   const [signupData, setSignupData] = useState({
     firstName: "",
     lastName: "",
@@ -45,8 +45,8 @@ export default function AuthFormFields({ isLoginForm, isAdmin}) {
         closeOnClick: false,
         theme: "colored",
         transition: toast.flip,
-        onClose:()=>{
-            navigate("/bytebazaar/login");
+        onClose: () => {
+          navigate("/bytebazaar/login");
         },
       });
       console.log(res.message);
@@ -77,7 +77,8 @@ export default function AuthFormFields({ isLoginForm, isAdmin}) {
       const url = "http://localhost:6005/api/login";
       const { data: res } = await axios.post(url, loginData);
       const token = res.data;
-      document.cookie = `authToken=${token}; Secure; HttpOnly; SameSite=Strict`;
+      // document.cookie = `authToken=${token}; Secure; HttpOnly; SameSite=Strict`;
+      Cookies.set("authToken", token);
       // navigate("/");
       toast.success("Login successful!", {
         position: "top-center",
@@ -116,50 +117,46 @@ export default function AuthFormFields({ isLoginForm, isAdmin}) {
     window.open("http://localhost:6005/auth/google/callback", "_self");
   };
 
-
- const handleAdminLogin = async (e) => {
-   e.preventDefault();
-   console.log(loginData);
-   try {
-     const url = "http://localhost:6005/api/admin-login";
-     const { data: res } = await axios.post(url, loginData);
-     const token = res.data;
-     document.cookie = `authToken=${token}; Secure; HttpOnly; SameSite=Strict`;
-     toast.success("Login successful!", {
-       position: "top-center",
-       autoClose: 5000,
-       hideProgressBar: true,
-       draggable: false,
-       closeOnClick: false,
-       theme: "colored",
-       transition: toast.flip,
-       onClose:()=>{
+  const handleAdminLogin = async (e) => {
+    e.preventDefault();
+    console.log(loginData);
+    try {
+      const url = "http://localhost:6005/api/admin-login";
+      const { data: res } = await axios.post(url, loginData);
+      const token = res.data;
+      document.cookie = `authToken=${token}; Secure; HttpOnly; SameSite=Strict`;
+      toast.success("Login successful!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        draggable: false,
+        closeOnClick: false,
+        theme: "colored",
+        transition: toast.flip,
+        onClose: () => {
           navigate("/admin");
-       },
-     });
-     console.log(res.message);
-   } catch (err) {
-     if (
-       err.response &&
-       err.response.status >= 400 &&
-       err.response.status <= 500
-     ) {
-       setError(err.response.data.message);
-       toast.error(err.response.data.message, {
-         position: "top-center",
-         autoClose: 5000,
-         hideProgressBar: true,
-         draggable: false,
-         closeOnClick: false,
-         theme: "colored",
-         transition: toast.flip,
-       });
-     }
-   }
- };
-
-
-
+        },
+      });
+      console.log(res.message);
+    } catch (err) {
+      if (
+        err.response &&
+        err.response.status >= 400 &&
+        err.response.status <= 500
+      ) {
+        setError(err.response.data.message);
+        toast.error(err.response.data.message, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          draggable: false,
+          closeOnClick: false,
+          theme: "colored",
+          transition: toast.flip,
+        });
+      }
+    }
+  };
 
   return (
     <>

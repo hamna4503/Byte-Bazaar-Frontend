@@ -1,25 +1,33 @@
-import React from "react";
-import {useState, useEffect} from "react";
+import React, { useContext } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import products from "./Products";
 // import img1 from '../../assets/download.jpeg';
 import bgimg from "../../assets/images/Shop/bg.jpg";
 import StarRating from "./Rating";
 import RelatedProdCard from "./relatedprodcard";
-
+import AddToCart from "../Cart/AddToCart/AddToCart";
+import { CartContext } from "../../contexts/CartContext";
 
 const SingleProductPage = () => {
   const { id } = useParams();
+  const cart = useContext(CartContext);
   const [product, setProduct] = useState(null);
-  const[quantity,setQuantity]=useState(1);
+  const [quantity, setQuantity] = useState(1);
+
+  const addToCart = () => {
+    cart.AddItem(product._id, quantity, product.price);
+  };
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`http://localhost:6005/api/products/${id}`);
+        const response = await fetch(
+          `http://localhost:6005/api/get-prods/${id}`
+        );
         const data = await response.json();
         console.log(data);
-        setProduct(data);
+        setProduct(data.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -32,19 +40,15 @@ const SingleProductPage = () => {
     return <div>Loading...</div>;
   }
 
-  const inc_quantity=()=>{
-    setQuantity(quantity+1);
-  }
+  const inc_quantity = () => {
+    if (quantity < 10) setQuantity(quantity + 1);
+  };
 
-  const dec_quantity=()=>{
-    if (quantity>1){
-      setQuantity(quantity-1);
+  const dec_quantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
     }
-  }
-
-  const addtocart=()=>{
-    console.log(`Cart: ${quantity}`);
-  }
+  };
 
   return (
     <div
@@ -87,27 +91,18 @@ const SingleProductPage = () => {
             </p>
           </div>
 
-
           {/*Quatity For Hamna, for modification contact maham*/}
           <div className="flex justify-items items-center mt-4">
-          <div className="ml-3 mr-3">Quantity</div>
+            <div className="ml-3 mr-3">Quantity</div>
             <div className="flex items-center mb-3 border rounded-lg border-purple-900 px-5 py-1">
-           
-              <button
-                onClick={dec_quantity}
-                className="text-lg font-bold"
-              >
+              <button onClick={dec_quantity} className="text-lg font-bold">
                 -
               </button>
               <div className="mx-3 text-lg font-bold">{quantity}</div>
-              <button
-                onClick={inc_quantity}
-                className="text-lg font-bold"
-              >
+              <button onClick={inc_quantity} className="text-lg font-bold">
                 +
               </button>
             </div>
-        
           </div>
 
           {/*Buttons*/}
@@ -115,9 +110,11 @@ const SingleProductPage = () => {
             <button
               className="bg-purple-800 hover:bg-gray-300  duration-100 px-5 py-3 font-[poppins] 
                 rounded-md text-white md:w-auto w-64"
+              onClick={addToCart}
             >
               Add to cart
             </button>
+            {/* <AddToCart id={product._id} quantity={quantity} price={product.price}/> */}
             <button
               className="bg-red-600 hover:bg-gray-300  duration-100 px-5 py-3  font-[poppins] 
                 rounded-md text-white md:w-auto w-30"
@@ -156,7 +153,7 @@ const SingleProductPage = () => {
           })}*/}
         </div>
       </div>
-    </div >
+    </div>
   );
 };
 
