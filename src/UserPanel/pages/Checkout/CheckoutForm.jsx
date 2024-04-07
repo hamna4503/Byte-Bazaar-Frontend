@@ -15,19 +15,19 @@ export default function CheckoutForm() {
   return (
     <>
       <div className="relative mx-auto w-full bg-white">
-        <div className="grid min-h-screen grid-cols-10">
-          <div className="col-span-full py-6 px-16 sm:py-12 lg:col-span-6 lg:py-24">
+        <div className="grid h-auto grid-cols-10">
+          <div className="col-span-full py-2 px-16 sm:py-12 lg:col-span-6 lg:py-24">
             <div className="mx-auto w-full px-8 py-8 border rounded shadow">
               <form action="" className="w-full flex flex-col space-y-6">
                 <ShippingInfo />
 
                 <div className="flex flex-col gap-6 px-8">
-                  <div className="rounded-lg shadow-md bg-Purple py-5 px-6">
-                    <p className="text-lg font-semibold text-white pb-3">
-                      Please Select a Payment Method
-                    </p>
+                  <div className="py-5 px-6">
+                    <h2 className="text-2xl text-center text-black mb-8">
+                      Payment Method
+                    </h2>
 
-                    <div className="flex flex-col sm:flex-row text-white justify-between pr-10">
+                    <div className="flex flex-col sm:flex-row text-black rounded shadow justify-between py-4 px-10">
                       <label className="inline-flex">
                         <input
                           type="radio"
@@ -57,12 +57,14 @@ export default function CheckoutForm() {
                   <PaymentDetails className="rounded-lg shadow-md bg-gray-100" />
                 )}
 
-                <button
-                  type="submit"
-                  className="w-max inline-flex items-center justify-center rounded bg-Purple py-1 px-3 text-md text-white transition duration-300 hover:bg-gray-800 focus:ring-2 focus:ring-purple-500"
-                >
-                  Place Order
-                </button>
+                <div className="px-10 py-4">
+                  <button
+                    type="submit"
+                    className="w-full inline-flex items-center justify-center rounded bg-Purple py-2 px-3 text-md text-white transition duration-300 hover:bg-gray-800 focus:ring-2 focus:ring-purple-500"
+                  >
+                    Place Order
+                  </button>
+                </div>
               </form>
             </div>
           </div>

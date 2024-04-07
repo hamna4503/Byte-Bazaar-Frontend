@@ -70,10 +70,10 @@ const products = [
 
 export default function OrderSummary() {
   return (
-    <div className="absolute h-[auto] w-full bg-Purple col-span-full flex flex-col py-8 px-8 sm:py-12 lg:col-span-4 lg:py-22 mb-18">
+    <div className="relative h-[auto] w-full bg-Purple col-span-full flex flex-col py-8 px-8 sm:py-12 lg:col-span-4 lg:py-22">
       <div className="relative">
         <h2 className="text-white bold text-2xl mb-8">Order Summary</h2>
-        <div className="overflow-y-auto max-h-[300px]">
+        <div className="overflow-y-auto max-h-[390px]">
           <ul className="space-y-5">
             {products.map((product) => (
               <li key={product.id} className="flex justify-between">
