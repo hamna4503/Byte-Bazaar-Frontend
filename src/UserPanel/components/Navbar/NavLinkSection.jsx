@@ -18,7 +18,7 @@ export default function NavLinkSection({
             {d.label === "Products" || d.label === "Inventory Management" ? (
               <Link
                 to={d.link}
-                className={`text-md text-gray-600 hover:text-black ${
+                className={`text-md text-white hover:text-gray-300 ${
                   isCategoriesOpen ? "font-bold" : ""
                 }`}
                 onClick={() => setCategoriesOpen(!isCategoriesOpen)}
@@ -28,7 +28,7 @@ export default function NavLinkSection({
             ) : (
               <Link
                 to={d.link}
-                className="text-md text-gray-600 hover:text-black"
+                className="text-md text-white hover:text-gray-300"
               >
                 {d.label}
               </Link>
