@@ -23,11 +23,11 @@ export default function UserNavbar() {
 
   const navlinks = [
     {
-      label: "Home",
+      label: "HOME",
       link: "/",
     },
     {
-      label: "Products",
+      label: "PRODUCTS",
       link: "#",
       dropdownOptions: [
         "Computer Gadgets",
@@ -36,18 +36,18 @@ export default function UserNavbar() {
       ],
     },
     {
-      label: "About",
+      label: "ABOUT",
       link: "/",
     },
     {
-      label: "Contact",
+      label: "CONTACT",
       link: "/",
     },
   ];
 
   return (
     <main>
-      <nav className="flex justify-between px-12 items-center py-2">
+      <nav className="flex justify-between px-14 items-center py-3 text-white border shadow-md bg-Purple">
         <div className="flex items-center gap-8">
           <BrandSection onMenuToggle={() => setMenu(true)} />
 
