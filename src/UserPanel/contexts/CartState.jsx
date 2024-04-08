@@ -4,7 +4,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 function CartState({ children }) {
-  const TaxPercentage = 0.2;
+  const TaxPercentage = 0.02;
   const [Cart, setCart] = useState([]);
   const [Total, setTotal] = useState(0);
   const [TaxAmount, setTaxAmount] = useState(0);

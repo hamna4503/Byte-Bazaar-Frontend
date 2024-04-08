@@ -14,7 +14,7 @@ function ViewCart() {
     //CODE LOGIC HERE
     window.location.href = "/bytebazaar/checkout";
   };
-  return (
+  return Cart.length != 0 ? (
     <div className="w-screen flex flex-col justify-center items-center my-6">
       {/* Headers for the Cart */}
       <table className="w-11/12 sm:w-4/5">
@@ -42,6 +42,10 @@ function ViewCart() {
           Proceed to Checkout
         </button>
       </div>
+    </div>
+  ) : (
+    <div className="flex h-screen justify-center items-center">
+      You have no items in your cart
     </div>
   );
 }
