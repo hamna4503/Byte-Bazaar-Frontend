@@ -92,7 +92,14 @@ export default function App() {
             }
           />
 
-          <Route path="/bytebazaar/checkout" element={<Checkout />} />
+          <Route
+            path="/bytebazaar/checkout"
+            element={
+              <CartState>
+                <Checkout />
+              </CartState>
+            }
+          />
           <Route path="/bytebazaar/foot" element={<Footer />} />
 
           <Route

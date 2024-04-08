@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { IoMdPricetag } from "react-icons/io";
+import { CartContext } from "../../contexts/CartContext";
 
 const products = [
   {
@@ -69,39 +70,42 @@ const products = [
 ];
 
 export default function OrderSummary() {
+  let { Cart } = useContext(CartContext);
   return (
     <div className="absolute h-[auto] w-full bg-Purple col-span-full flex flex-col py-8 px-8 sm:py-12 lg:col-span-4 lg:py-22 mb-18">
       <div className="relative">
         <h2 className="text-white bold text-2xl mb-8">Order Summary</h2>
         <div className="overflow-y-auto max-h-[300px]">
           <ul className="space-y-5">
-            {products.map((product) => (
-              <li key={product.id} className="flex justify-between">
-                <div className="inline-flex">
-                  <div className="flex-shrink-0 w-16 h-16 mr-4">
-                    <img
-                      className="w-full h-full object-contain"
-                      src={product.imageUrl}
-                      alt={product.id}
-                    />
+            {Cart &&
+              Cart.length != 0 &&
+              Cart.map((product) => (
+                <li key={product.id} className="flex justify-between">
+                  <div className="inline-flex">
+                    <div className="flex-shrink-0 w-16 h-16 mr-4">
+                      <img
+                        className="w-full h-full object-contain"
+                        src={product.image}
+                        alt={product.id}
+                      />
+                    </div>
+                    <div className="align-left">
+                      <p className="text-base font-semibold text-white">
+                        {product.name}
+                      </p>
+                      <p className="text-sm font-medium text-white text-opacity-80 mt-1">
+                        <span className="inline-flex">
+                          <IoMdPricetag
+                            className="mr-2 text-white"
+                            style={{ width: "22px", height: "22px" }}
+                          />
+                          {product.price}
+                        </span>
+                      </p>
+                    </div>
                   </div>
-                  <div className="align-left">
-                    <p className="text-base font-semibold text-white">
-                      {product.name}
-                    </p>
-                    <p className="text-sm font-medium text-white text-opacity-80 mt-1">
-                      <span className="inline-flex">
-                        <IoMdPricetag
-                          className="mr-2 text-white"
-                          style={{ width: "22px", height: "22px" }}
-                        />
-                        {product.price}
-                      </span>
-                    </p>
-                  </div>
-                </div>
-              </li>
-            ))}
+                </li>
+              ))}
           </ul>
         </div>
         <div className="my-5 h-0.5 w-full bg-white bg-opacity-30" />

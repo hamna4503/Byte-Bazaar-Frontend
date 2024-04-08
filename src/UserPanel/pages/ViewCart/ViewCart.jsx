@@ -19,7 +19,7 @@ function ViewCart() {
           <th className="text-right w-1/5 px-2">Subtotal</th>
         </tr>
         {/* Cart Items Display  */}
-        {Cart && Cart.length > 0 ? <CartItems /> : <>hehe</>}
+        {Cart && Cart.length > 0 ? <CartItems /> : <>No Items added</>}
       </table>
 
       {/* Cart Total Display */}
