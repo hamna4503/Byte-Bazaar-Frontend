@@ -28,26 +28,22 @@ export default function UserNavbar() {
     },
     {
       label: "PRODUCTS",
-      link: "#",
-      dropdownOptions: [
-        "Computer Gadgets",
-        "Electronic Items",
-        "Gaming Items",
-      ],
+      link: "/bytebazaar/shop",
+      dropdownOptions: ["Computer Gadgets", "Electronic Items", "Gaming Items"],
     },
     {
       label: "ABOUT",
-      link: "/",
+      link: "/bytebazaar/about",
     },
     {
       label: "CONTACT",
-      link: "/",
+      link: "/bytebazaar/contact",
     },
   ];
 
   return (
     <main>
-      <nav className="flex justify-between px-14 items-center py-3 text-white border shadow-md bg-Purple">
+      <nav className="flex justify-between px-14 items-center py-3 text-white shadow-md bg-Purple">
         <div className="flex items-center gap-8">
           <BrandSection onMenuToggle={() => setMenu(true)} />
 
@@ -70,13 +66,8 @@ export default function UserNavbar() {
         />
 
         {/* Right Navbar Section */}
-        <RightNavbarSection/>
+        <RightNavbarSection />
       </nav>
     </main>
   );
 }
-
-
-
-
-

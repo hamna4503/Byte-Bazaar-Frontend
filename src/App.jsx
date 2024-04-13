@@ -21,9 +21,8 @@ import InventoryManagement from "./AdminPanel/pages/InventoryManagement/Inventor
 import OrderManagement from "./AdminPanel/pages/OrderManagement/OrderManagement";
 import CustomerSupport from "./AdminPanel/pages/CustomerSupport/CustomerSupport";
 import Checkout from "./UserPanel/pages/Checkout/Checkout";
-// {
-//   /*import ViewCart from "./UserPanel/pages/ViewCart/ViewCart";*/
-// }
+import Home from "./UserPanel/pages/Home/Home";
+
 export default function App() {
   return (
     <>
@@ -48,7 +47,7 @@ export default function App() {
             element={<CustomerSupport />}
           />
           <Route
-            path="/"
+            path="/bytebazaar/shop"
             element={
               <div>
                 <UserNavbar />
@@ -57,6 +56,7 @@ export default function App() {
               </div>
             }
           />
+          <Route path="/" element={<Home />} />
           <Route path="/bytebazaar/signup" element={<SignUp />} />
           <Route path="/bytebazaar/login" element={<Login />} />
 
@@ -106,7 +106,6 @@ export default function App() {
         </Routes>
         <ToastContainer />
       </BrowserRouter>
-      {/* <Footer /> */}
     </>
   );
 }

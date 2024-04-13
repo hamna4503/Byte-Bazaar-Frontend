@@ -11,7 +11,7 @@ export default function RightNavbarSection() {
       <input
         type="text"
         placeholder="Search "
-        className="hidden lg:block px-2 py-1 border border-gray-300 rounded-lg focus:outline-none text-black text-sm"
+        className="hidden lg:block px-2 py-1 border border-gray-300 rounded-md focus:outline-none text-black text-sm"
       />
 
       {/* Cart icon */}
