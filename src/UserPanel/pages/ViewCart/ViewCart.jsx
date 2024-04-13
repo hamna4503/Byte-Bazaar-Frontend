@@ -6,10 +6,15 @@ import img from "../../assets/images/items/controllers/xboxController.png";
 import { CartContext } from "../../contexts/CartContext";
 
 function ViewCart() {
-  const { Cart, Total } = useContext(CartContext);
-  const Tax = Total * 0.02;
-  const finalTotal = Total + Tax;
-  return (
+  const { Cart, Total, Tax, OrderTotal } = useContext(CartContext);
+  // const Tax = Total * 0.02;
+  // const finalTotal = Total + Tax;
+
+  const checkout = () => {
+    //CODE LOGIC HERE
+    window.location.href = "/bytebazaar/checkout";
+  };
+  return Cart.length != 0 ? (
     <div className="w-screen flex flex-col justify-center items-center my-6">
       {/* Headers for the Cart */}
       <table className="w-11/12 sm:w-4/5">
@@ -19,7 +24,7 @@ function ViewCart() {
           <th className="text-right w-1/5 px-2">Subtotal</th>
         </tr>
         {/* Cart Items Display  */}
-        {Cart && Cart.length > 0 ? <CartItems /> : <>hehe</>}
+        {Cart && Cart.length > 0 ? <CartItems /> : <>No Items added</>}
       </table>
 
       {/* Cart Total Display */}
@@ -27,13 +32,20 @@ function ViewCart() {
         <div className="w-full sm:w-2/3 md:w-2/5 lg:w-1/3 border-t-2 border-t-Purple text-base font-medium py-2">
           <CartTotal title="Subtotal" price={Total} />
           <CartTotal title="Tax(2%)" price={Tax} />
-          <CartTotal title="Total" price={finalTotal} />
+          <CartTotal title="Total" price={OrderTotal} />
         </div>
 
-        <button className="bg-Purple text-white px-3 py-1 sm:px-10 rounded-xl sm:mt-2 sm:font-semibold">
+        <button
+          className="bg-Purple text-white px-3 py-1 sm:px-10 rounded-xl sm:mt-2 sm:font-semibold"
+          onClick={checkout}
+        >
           Proceed to Checkout
         </button>
       </div>
+    </div>
+  ) : (
+    <div className="flex h-screen justify-center items-center">
+      You have no items in your cart
     </div>
   );
 }

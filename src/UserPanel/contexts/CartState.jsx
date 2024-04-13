@@ -4,18 +4,23 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 function CartState({ children }) {
+  const TaxPercentage = 0.02;
   const [Cart, setCart] = useState([]);
   const [Total, setTotal] = useState(0);
+  const [TaxAmount, setTaxAmount] = useState(0);
+  const [OrderTotal, setOrderTotal] = useState(0);
 
   const getCart = async () => {
     let cartData = await axios.get(`http://localhost:6005/cart/`, {
       withCredentials: true,
     });
+    let currentTotal = cartData.data.cart.total;
+    let taxedAmount = currentTotal * TaxPercentage;
+    let currentOrderTotal = taxedAmount + currentTotal;
     setCart(cartData.data.cart.items);
-    console.log(cartData.data.cart.items);
-    setTotal(cartData.data.cart.total);
-    console.log(Total);
-    console.log(cartData);
+    setTotal(currentTotal);
+    setTaxAmount(taxedAmount);
+    setOrderTotal(currentOrderTotal);
   };
 
   useEffect(() => {
@@ -44,7 +49,10 @@ function CartState({ children }) {
       window.location.href = "/";
       // console.log(data);
     } catch (err) {
-      console.log(err);
+      console.log(err.response.status);
+      if (err.response.status == "401") {
+        window.location.href = "/byteBazaar/login";
+      }
       toast.error(err.response.data.message, {
         position: "top-center",
         autoClose: 5000,
@@ -92,6 +100,8 @@ function CartState({ children }) {
       value={{
         Cart: Cart,
         Total: Total,
+        Tax: TaxAmount,
+        OrderTotal: OrderTotal,
         getCart,
         AddItem,
         RemoveItem,
