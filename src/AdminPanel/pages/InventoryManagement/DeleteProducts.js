@@ -1,6 +1,7 @@
 import { toast } from "react-toastify";
 
-export const DeleteProducts = async (_id) => {
+export const DeleteProducts = async (_id, id) => {
+  console.log(id);
   try {
     const confirmed = window.confirm(
       "Are you sure you want to delete this product?"
@@ -14,7 +15,7 @@ export const DeleteProducts = async (_id) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ _id }),
+      body: JSON.stringify({ _id, id }),
     });
 
     if (response.status !== 200) {
@@ -24,7 +25,7 @@ export const DeleteProducts = async (_id) => {
     window.location.reload();
     toast.success("Product deleted successfully", {
       position: "top-center",
-      autoClose: 5000,
+      autoClose: 3000,
       hideProgressBar: true,
       draggable: false,
       closeOnClick: false,
@@ -32,9 +33,9 @@ export const DeleteProducts = async (_id) => {
       transition: toast.flip,
     });
   } catch (error) {
-    toast.error(`Error deleting product: ${error}`, {
+    toast.error(`Error deleting product:  ${error.response.data.message}`, {
       position: "top-center",
-      autoClose: 5000,
+      autoClose: 3000,
       hideProgressBar: true,
       draggable: false,
       closeOnClick: false,

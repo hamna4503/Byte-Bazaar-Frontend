@@ -1,11 +1,13 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-export const EditProducts = async (productData, _id) => {
-    console.log("In Edit", _id);
+export const EditProducts = async (_id, prodId, productData) => {
+  console.log("In Edit _id", _id);
+  console.log("ID", prodId);
   try {
     const response = await axios.put(`http://localhost:6005/api/edit-prods`, {
       _id,
+      prodId,
       ...productData,
     });
 
@@ -26,7 +28,8 @@ export const EditProducts = async (productData, _id) => {
       throw new Error("Failed to edit product.");
     }
   } catch (error) {
-    toast.error(`Error editing product: ${error.message}`, {
+    console.error("Error editing product:", error);
+    toast.error(`Error editing product:  ${error.response.data.message}`, {
       position: "top-center",
       autoClose: 5000,
       hideProgressBar: true,
@@ -35,7 +38,6 @@ export const EditProducts = async (productData, _id) => {
       theme: "colored",
       transition: toast.flip,
     });
-    console.error("Error editing product:", error);
     throw error;
   }
 };

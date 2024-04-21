@@ -6,7 +6,7 @@ function ItemCard(props) {
     <div className="flex items-center  justify-center mt-5 mb-2 rounded-md border-2 border-slate-200 shadow-xl shadow-slate-400 
      bg-slate-100 mx-2  transition transform hover:scale-105 p-3 w-full sm:w-3/4 md:w-5/6 h-5/6 ">
       <main className="flex flex-col items-center justify-around w-full align-center">
-        <div className=" bg-slate-100 flex justify-center">
+        <div className="bg-slate-100 flex justify-center">
           {/* IF U WANT TO CHANGE THE SIZE OF THE IMAGE OF CARD CHANGE IN THE FOLLOWING <CLASSNAMES></CLASSNAMES> */}
           <img src={props.itemImg} className="w-5/6 h-5/6 object-center" />
         </div>

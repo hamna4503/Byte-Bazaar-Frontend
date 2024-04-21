@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { AiFillEdit } from "react-icons/ai";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { IoMdPricetags } from "react-icons/io";
-import { toast } from "react-toastify";
 import { GetProducts } from "./GetProducts";
 import { DeleteProducts } from "./DeleteProducts";
 
@@ -23,16 +22,7 @@ export default function ProductsTable({ toggleSidebar }) {
         const prodsData = await GetProducts();
         setProds(prodsData);
       } catch (error) {
-        toast.error(`Error fetching users ${error}`, {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: true,
-          draggable: false,
-          closeOnClick: false,
-          theme: "colored",
-          transition: toast.flip,
-        });
-        console.error("Error fetching users:", error);
+        throw new Error("Error Fetching the Products.");
       }
     };
 
@@ -40,48 +30,16 @@ export default function ProductsTable({ toggleSidebar }) {
   }, []);
 
   // Delete Products
-  const handleDeleteProduct = async (productId) => {
+  const handleDeleteProduct = async (prodId, id) => {
     try {
-      await DeleteProducts(productId); 
-      const response = await fetch(
-        `http://localhost:6005/api/delete-prods`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      if (response.status === 200) {
-        setProds(prods.filter((prod) => prod._id !== productId));
-        toast.success("Product deleted successfully", {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: true,
-          draggable: false,
-          closeOnClick: false,
-          theme: "colored",
-          transition: toast.flip,
-        });
-      } else {
-        throw new Error("Error Deleting the Product.");
-      }
+      const response = await DeleteProducts(prodId, id);
     } catch (error) {
-      toast.error(`Error deleting product: ${error}`, {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: true,
-        draggable: false,
-        closeOnClick: false,
-        theme: "colored",
-        transition: toast.flip,
-      });
-      console.error("Error deleting product:", error);
+      throw new Error("Error Deleting the Product.");
     }
   };
 
   return (
-    <div className="h-full mb-10 md:ml-64 sm:ml-12 xs:ml-14 p-5 overflow-hidden">
+    <div className="h-full p-5 mb-10 overflow-hidden md:ml-64 sm:ml-12 xs:ml-14">
       <div className="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
         <table className="min-w-full">
           <thead>
@@ -89,13 +47,13 @@ export default function ProductsTable({ toggleSidebar }) {
               {columns.map((columnName) => (
                 <th
                   key={columnName}
-                  className="px-4 py-3 text-md font-medium leading-4 tracking-wider text-left uppercase border-b border-gray-200 bg-Purple text-white"
+                  className="px-4 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 text-md bg-Purple"
                 >
                   {columnName}
                 </th>
               ))}
-              <th className="px-4 py-3 border-b border-gray-200 bg-Purple text-white" />
-              <th className="px-4 py-3 border-b border-gray-200 bg-Purple text-white" />
+              <th className="px-4 py-3 text-white border-b border-gray-200 bg-Purple" />
+              <th className="px-4 py-3 text-white border-b border-gray-200 bg-Purple" />
             </tr>
           </thead>
 
@@ -105,16 +63,15 @@ export default function ProductsTable({ toggleSidebar }) {
                 <tr key={prod._id}>
                   <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
                     <div className="flex items-left">
-                      <div className="flex-shrink-0 w-14 h-14 mr-1">
+                      <div className="flex-shrink-0 mr-1 w-14 h-14">
                         <img
-                          className="w-full h-full object-contain"
-                          src={prod.image}
-                          alt={prod.id}
+                          className="object-contain w-full h-full"
+                          src={"http://localhost:6005" + prod.image}
+                          alt="image"
                         />
                       </div>
-
                       <div className="ml-2">
-                        <div className="text-md font-medium leading-5 text-gray-900">
+                        <div className="font-medium leading-5 text-gray-900 text-md">
                           {prod.name}
                         </div>
                         <div className="text-sm leading-6 text-gray-500">
@@ -123,13 +80,13 @@ export default function ProductsTable({ toggleSidebar }) {
                       </div>
                     </div>
                   </td>
-                  <td className="px-4 py-4 text-md leading-5 text-black whitespace-no-wrap border-b border-gray-200">
+                  <td className="px-4 py-4 leading-5 text-black whitespace-no-wrap border-b border-gray-200 text-md">
                     <div className="h-16 overflow-hidden line-clamp-2">
                       {prod.description}
                     </div>
                   </td>
 
-                  <td className="px-4 py-4 text-md leading-5 text-black whitespace-no-wrap border-b border-gray-200">
+                  <td className="px-4 py-4 leading-5 text-black whitespace-no-wrap border-b border-gray-200 text-md">
                     <span className="inline-flex">
                       <IoMdPricetags
                         className="mr-2 text-Purple"
@@ -138,10 +95,10 @@ export default function ProductsTable({ toggleSidebar }) {
                       {prod.price}
                     </span>
                   </td>
-                  <td className="px-4 py-4 text-md leading-5 text-black whitespace-no-wrap border-b border-gray-200">
+                  <td className="px-4 py-4 leading-5 text-black whitespace-no-wrap border-b border-gray-200 text-md">
                     {prod.brand}
                   </td>
-                  <td className="py-4 whitespace-no-wrap border-b border-gray-200 text-center">
+                  <td className="py-4 text-center whitespace-no-wrap border-b border-gray-200">
                     <span className="inline-flex px-2.5 py-1 text-sm font-semibold leading-5 text-white bg-Purple rounded-full">
                       {prod.rating}
                     </span>
@@ -149,8 +106,8 @@ export default function ProductsTable({ toggleSidebar }) {
 
                   <td className="px-4 py-4 text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200">
                     <button
-                      className="text-Purple dark:hover:text-gray-700 mr-3"
-                      onClick={() => toggleSidebar(prod._id)}
+                      className="mr-3 text-Purple dark:hover:text-gray-700"
+                      onClick={() => toggleSidebar(prod._id, prod.id)}
                     >
                       <AiFillEdit
                         style={{
@@ -163,8 +120,8 @@ export default function ProductsTable({ toggleSidebar }) {
 
                   <td className="px-4 py-4 text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200">
                     <button
-                      className="text-Purple dark:hover:text-gray-700 mx-3"
-                      onClick={() => handleDeleteProduct(prod._id)}
+                      className="mx-3 text-Purple dark:hover:text-gray-700"
+                      onClick={() => handleDeleteProduct(prod._id, prod.id)}
                     >
                       <RiDeleteBin6Fill
                         style={{
@@ -178,7 +135,7 @@ export default function ProductsTable({ toggleSidebar }) {
               ))
             ) : (
               <tr>
-                <td className="text-red-600 p-3 bold">No Products Found.</td>
+                <td className="p-3 text-red-600 bold">No Products Found.</td>
               </tr>
             )}
           </tbody>

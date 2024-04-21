@@ -16,15 +16,15 @@ export default function BrandSection({ onMenuToggle, isAdmin }) {
       )}
 
       {/* logo */}
-      <Link to="/" className="text-8xl font-mono flex items-center">
+      <Link to="/" className="flex items-center font-mono text-8xl">
         <img
           width={60}
           height={80}
-          className="rounded-full mr-1 lg:block hidden"
+          className="hidden mr-1 rounded-full md:block"
           src={BLogo}
           alt="avatar-img"
         />
-        <span className="text-xl font-bold lg:block hidden">ByteBazaar</span>
+        <span className="hidden text-xl font-bold md:block">ByteBazaar</span>
       </Link>
     </section>
   );

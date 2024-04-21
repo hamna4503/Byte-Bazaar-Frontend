@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import BrandSection from "./BrandSection";
 import RightNavbarSection from "./RightNavbarSection";
 import MobileMenuSection from "./MobileMenuSection";
-import NavLinksSection from "./NavLinkSection";
+import NavLinksSection from "./NavLinksSection";
 
 export default function UserNavbar() {
   const [isSideMenuOpen, setMenu] = useState(false);

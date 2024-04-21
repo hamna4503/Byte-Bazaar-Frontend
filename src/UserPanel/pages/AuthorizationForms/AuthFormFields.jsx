@@ -37,9 +37,9 @@ export default function AuthFormFields({ isLoginForm, isAdmin }) {
       const url = "http://localhost:6005/api/signup";
       const { data: res } = await axios.post(url, signupData);
       // navigate("/bytebazaar/login");
-      toast.success("Signup successful! Please log in.", {
+      toast.success("Signup successful! Please Log In.", {
         position: "top-center",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: true,
         draggable: false,
         closeOnClick: false,
@@ -59,7 +59,7 @@ export default function AuthFormFields({ isLoginForm, isAdmin }) {
         setError(err.response.data.message);
         toast.error(err.response.data.message, {
           position: "top-center",
-          autoClose: 5000,
+          autoClose: 3000,
           hideProgressBar: true,
           draggable: false,
           closeOnClick: false,
@@ -82,12 +82,15 @@ export default function AuthFormFields({ isLoginForm, isAdmin }) {
       // navigate("/");
       toast.success("Login successful!", {
         position: "top-center",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: true,
         draggable: false,
         closeOnClick: false,
         theme: "colored",
         transition: toast.flip,
+        onClose: () => {
+          navigate("/");
+        },
       });
       console.log(res.message);
     } catch (err) {
@@ -99,15 +102,12 @@ export default function AuthFormFields({ isLoginForm, isAdmin }) {
         setError(err.response.data.message);
         toast.error(err.response.data.message, {
           position: "top-center",
-          autoClose: 5000,
+          autoClose: 3000,
           hideProgressBar: true,
           draggable: false,
           closeOnClick: false,
           theme: "colored",
           transition: toast.flip,
-          onClose: () => {
-            navigate("/");
-          },
         });
       }
     }
@@ -127,7 +127,7 @@ export default function AuthFormFields({ isLoginForm, isAdmin }) {
       document.cookie = `authToken=${token}; Secure; HttpOnly; SameSite=Strict`;
       toast.success("Login successful!", {
         position: "top-center",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: true,
         draggable: false,
         closeOnClick: false,
@@ -147,7 +147,7 @@ export default function AuthFormFields({ isLoginForm, isAdmin }) {
         setError(err.response.data.message);
         toast.error(err.response.data.message, {
           position: "top-center",
-          autoClose: 5000,
+          autoClose: 3000,
           hideProgressBar: true,
           draggable: false,
           closeOnClick: false,
@@ -171,7 +171,7 @@ export default function AuthFormFields({ isLoginForm, isAdmin }) {
             <div className="mb-4 md:flex md:justify-between">
               <div className="mb-4 md:mr-2 md:mb-0">
                 <input
-                  className="mb-4 w-full px-3 py-2 text-sm leading-tight text-black border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                  className="w-full px-3 py-2 mb-4 text-sm leading-tight text-black border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                   name="firstName"
                   type="text"
                   placeholder="First Name"
@@ -183,7 +183,7 @@ export default function AuthFormFields({ isLoginForm, isAdmin }) {
               </div>
               <div className="md:ml-2">
                 <input
-                  className="w-full px-3 py-2 text-sm leading-tight text-gray-700 dark:text-black border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                  className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none dark:text-black focus:outline-none focus:shadow-outline"
                   name="lastName"
                   type="text"
                   placeholder="Last Name"
@@ -197,7 +197,7 @@ export default function AuthFormFields({ isLoginForm, isAdmin }) {
 
             <div className="mb-4">
               <input
-                className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 dark:text-black border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none dark:text-black focus:outline-none focus:shadow-outline"
                 name="email"
                 type="email"
                 placeholder="Email"
@@ -211,7 +211,7 @@ export default function AuthFormFields({ isLoginForm, isAdmin }) {
             <div className="mb-4 md:flex md:justify-between">
               <div className="mb-4 md:mr-2 md:mb-0">
                 <input
-                  className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 dark:text-black border border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                  className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none dark:text-black focus:outline-none focus:shadow-outline"
                   name="password"
                   type="password"
                   placeholder="Password"
@@ -224,7 +224,7 @@ export default function AuthFormFields({ isLoginForm, isAdmin }) {
 
               <div className="md:ml-2">
                 <input
-                  className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 dark:text-black border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                  className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none dark:text-black focus:outline-none focus:shadow-outline"
                   name="confirmPassword"
                   type="password"
                   placeholder="Confirm Password"
@@ -242,7 +242,7 @@ export default function AuthFormFields({ isLoginForm, isAdmin }) {
           <div className="my-3 md:mr-2 md:mb-4">
             <div className="mb-6">
               <input
-                className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 dark:text-black border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none dark:text-black focus:outline-none focus:shadow-outline"
                 name="email"
                 type="email"
                 placeholder="Email"
@@ -254,7 +254,7 @@ export default function AuthFormFields({ isLoginForm, isAdmin }) {
             </div>
 
             <input
-              className="w-full px-3 py-2 mb-6 text-sm leading-tight text-gray-700 dark:text-black border border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+              className="w-full px-3 py-2 mb-6 text-sm leading-tight text-gray-700 border rounded shadow appearance-none dark:text-black focus:outline-none focus:shadow-outline"
               name="password"
               type="password"
               placeholder="Password"
@@ -267,7 +267,7 @@ export default function AuthFormFields({ isLoginForm, isAdmin }) {
         )}
         {/* Buttons */}
         {!isAdmin && (
-          <div className="flex justify-center gap-8 align-center py-4 flex-wrap mb-0">
+          <div className="flex flex-wrap justify-center gap-8 py-4 mb-0 align-center">
             <button
               className="w-70 text-sm px-12 py-1.5 font text-white shadow-sm rounded-lg focus:outline-none focus:shadow-outline bg-Purple"
               type="submit"
@@ -307,7 +307,7 @@ export default function AuthFormFields({ isLoginForm, isAdmin }) {
         )}
 
         {isAdmin && (
-          <div className="flex justify-center align-center py-2 flex-wrap mb-0">
+          <div className="flex flex-wrap justify-center py-2 mb-0 align-center">
             <button
               className="w-70 text-sm px-12 py-1.5 font text-white shadow-sm rounded-lg focus:outline-none focus:shadow-outline bg-Purple"
               type="submit"

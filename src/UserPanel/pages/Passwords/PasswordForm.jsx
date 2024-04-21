@@ -28,18 +28,33 @@ export default function PasswordForm({ isForgetPswd }) {
   // const [error, setError] = useState("");
   // const navigate = useNavigate();
 
-const handleForgetPswdSubmit = async (e) => {
-  e.preventDefault();
-  console.log(forgetPswd);
+  const handleForgetPswdSubmit = async (e) => {
+    e.preventDefault();
+    console.log(forgetPswd);
 
-  try {
-    const url = "http://localhost:6005/api/forgotPassword";
-    const { data: res } = await axios.post(url, forgetPswd);
-    console.log(res);
-    if (res.status === "Email sent for OTP verification") {
-      toast.success(
-        `OTP verification code has been sent to your registered email`,
-        {
+    try {
+      const url = "http://localhost:6005/api/forgotPassword";
+      const { data: res } = await axios.post(url, forgetPswd);
+      console.log(res);
+      if (res.status === "Email sent for OTP verification") {
+        toast.success(
+          `OTP verification code has been sent to your registered email`,
+          {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: true,
+            draggable: false,
+            closeOnClick: false,
+            theme: "colored",
+            transition: toast.flip,
+            onClose: () => {
+              window.location.href = `http://localhost:5173/bytebazaar/otp-verification?email=${forgetPswd.email}`;
+            },
+          }
+        );
+      } else {
+        toast.error(`Error ${res.status}`, {
+          // Adjusted error message for clarity
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: true,
@@ -47,26 +62,10 @@ const handleForgetPswdSubmit = async (e) => {
           closeOnClick: false,
           theme: "colored",
           transition: toast.flip,
-          onClose: () => {
-            window.location.href = `http://localhost:5173/bytebazaar/otp-verification?email=${forgetPswd.email}`;
-          },
-        }
-      );
-    }
-    else{
-      toast.error(`Error ${res.status}`,  {
-        // Adjusted error message for clarity
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: true,
-        draggable: false,
-        closeOnClick: false,
-        theme: "colored",
-        transition: toast.flip,
-      });
-    }
-  } catch (err) {
-    console.log(err);
+        });
+      }
+    } catch (err) {
+      console.log(err);
       toast.error(`Error: ${err.response.data.message}`, {
         // Adjusted error message for clarity
         position: "top-center",
@@ -77,8 +76,8 @@ const handleForgetPswdSubmit = async (e) => {
         theme: "colored",
         transition: toast.flip,
       });
-  }
-};
+    }
+  };
 
   const handleResetPswdSubmit = async (e) => {
     e.preventDefault();
@@ -143,20 +142,20 @@ const handleForgetPswdSubmit = async (e) => {
         className="px-8 pt-6 pb-2 mb-4 rounded"
         onSubmit={isForgetPswd ? handleForgetPswdSubmit : handleResetPswdSubmit}
       >
-        <div className="font-mono flex items-center justify-center mb-9">
+        <div className="flex items-center justify-center font-mono mb-9">
           <img
             width={40}
             height={40}
-            className="rounded-full mr-1 lg:block hidden"
+            className="hidden mr-1 rounded-full lg:block"
             src={BLogo}
             alt="avatar-img"
           />
-          <span className="text-sm font-bold text-Purple lg:block hidden">
+          <span className="hidden text-sm font-bold text-Purple lg:block">
             ByteBazaar
           </span>
         </div>
 
-        <div className="pb-9 text-2xl text-center text-black">
+        <div className="text-2xl text-center text-black pb-9">
           {isForgetPswd ? (
             <h3 className="pt-16"> Forgot Password? </h3>
           ) : (
@@ -167,7 +166,7 @@ const handleForgetPswdSubmit = async (e) => {
         {isForgetPswd && (
           <div className="mb-4">
             <input
-              className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 dark:text-black border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+              className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none dark:text-black focus:outline-none focus:shadow-outline"
               name="email"
               type="email"
               placeholder="Email"
@@ -182,7 +181,7 @@ const handleForgetPswdSubmit = async (e) => {
         {!isForgetPswd && (
           <div className="md:mr-2 md:mb-4">
             <input
-              className="w-full px-3 py-2 mb-8 text-sm leading-tight text-gray-700 dark:text-black border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+              className="w-full px-3 py-2 mb-8 text-sm leading-tight text-gray-700 border rounded shadow appearance-none dark:text-black focus:outline-none focus:shadow-outline"
               name="email"
               type="email"
               placeholder="Email"
@@ -193,7 +192,7 @@ const handleForgetPswdSubmit = async (e) => {
             />
 
             <input
-              className="w-full px-3 py-2 mb-8 text-sm leading-tight text-gray-700 dark:text-black border border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+              className="w-full px-3 py-2 mb-8 text-sm leading-tight text-gray-700 border rounded shadow appearance-none dark:text-black focus:outline-none focus:shadow-outline"
               name="password"
               type="password"
               placeholder="Password"
@@ -204,7 +203,7 @@ const handleForgetPswdSubmit = async (e) => {
             />
 
             <input
-              className="w-full px-3 py-2 mb-5 text-sm leading-tight text-gray-700 dark:text-black border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+              className="w-full px-3 py-2 mb-5 text-sm leading-tight text-gray-700 border rounded shadow appearance-none dark:text-black focus:outline-none focus:shadow-outline"
               name="confirmPassword"
               type="password"
               placeholder="Confirm Password"
@@ -217,7 +216,7 @@ const handleForgetPswdSubmit = async (e) => {
         )}
 
         {/* Buttons */}
-        <div className="flex justify-center gap-8 align-center py-4 flex-wrap mb-0">
+        <div className="flex flex-wrap justify-center gap-8 py-4 mb-0 align-center">
           <button
             className="w-70 text-sm px-12 py-1.5 font text-white shadow-sm rounded-lg focus:outline-none focus:shadow-outline bg-Purple"
             type="submit"
@@ -228,10 +227,10 @@ const handleForgetPswdSubmit = async (e) => {
 
         <div className="mt-6 mb-3 text-center">
           <Link
-            className="inline-block text-sm text-Purple align-baseline hover:text-blue-800"
+            className="inline-block text-sm align-baseline text-Purple hover:text-blue-800"
             to="/bytebazaar/signup"
           >
-            Don't have an account? Signup!
+            Do not have an account? Signup!
           </Link>
         </div>
       </form>

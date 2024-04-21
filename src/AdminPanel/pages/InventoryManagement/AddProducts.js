@@ -9,11 +9,11 @@ export const AddProducts = async (productData) => {
     );
 
     if (response.status === 201) {
-      console.log("Product created successfully:", response.data);
+      console.log("Product created successfully:", response.data.message);
       window.location.reload();
       toast.success("Product added successfully", {
         position: "top-center",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: true,
         draggable: false,
         closeOnClick: false,
@@ -25,9 +25,9 @@ export const AddProducts = async (productData) => {
       throw new Error("Failed to create product.");
     }
   } catch (error) {
-    toast.error(`Error adding product: ${error}`, {
+    toast.error(`Error adding product ${error.response.data.message}`, {
       position: "top-center",
-      autoClose: 5000,
+      autoClose: 3000,
       hideProgressBar: true,
       draggable: false,
       closeOnClick: false,

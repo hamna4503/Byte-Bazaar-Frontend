@@ -7,7 +7,7 @@ export const GetProducts = async () => {
     const data = await response.json();
     return data.data;
   } catch (error) {
-    console.error("Error fetching products:", error);
+    console.error(`Error fetching products: ${error.response.data.message}`);
     throw error;
   }
 };
