@@ -1,5 +1,5 @@
 <p align="center">
-  ![Byte Bazaar Logo](https://github.com/hamna4503/Byte-Bazaar-Frontend/raw/master/src/UserPanel/assets/images/navbar/bytelogo.png)
+  <img src="https://github.com/hamna4503/Byte-Bazaar-Frontend/raw/master/src/UserPanel/assets/images/navbar/bytelogo.png" alt="Byte Bazaar Logo" width="200">
 </p>
 <h1 align="center">ByteBazaar</h3>
 
