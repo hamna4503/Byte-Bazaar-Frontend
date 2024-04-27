@@ -111,7 +111,7 @@ const ShopMain = () => {
               <ItemCard
                 key={product._id}
                 id={product._id}
-                itemImg={product.image}
+                itemImg={"http://localhost:6005" + product.image}
                 itemName={product.name}
                 itemDescription={product.description}
                 itemPrice={product.price}

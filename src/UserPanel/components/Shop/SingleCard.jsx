@@ -22,11 +22,19 @@ const SingleProductPage = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
+        console.log(id);
         const response = await fetch(
-          `http://localhost:6005/api/get-prods/${id}`
+          `http://localhost:6005/api/get-prod-by-id`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ _id: id }),
+          }
         );
         const data = await response.json();
-        console.log(data);
+        console.log(data.data);
         setProduct(data.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -65,7 +73,7 @@ const SingleProductPage = () => {
       >
         <div className="w-1/2 pr-4">
           <img
-            src={product.image}
+            src={"http://localhost:6005" + product.image}
             alt="Product"
             className="w-full h-auto border border-purple-800  hover:border-4 hover:shadow-lg duration-100 mt-4"
           />

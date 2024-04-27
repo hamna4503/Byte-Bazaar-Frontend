@@ -1,12 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { BsDatabaseAdd } from "react-icons/bs";
 import BrandSection from "../../../UserPanel/components/Navbar/BrandSection";
 
 export default function Sidebar({ toggleSidebar }) {
+  const location = useLocation();
+
+  const handleClick = () => {
+    toggleSidebar(0, 0);
+  };
+
+  const isManageInventoryPage =
+    location.pathname === "/bytebazaar/admin/manage-inventory";
+
   return (
     <>
-      <div className="fixed top-0 left-0 z-10 flex flex-col w-12 h-full text-white transition-all duration-300 border-none hover:w-64 md:w-64 bg-Purple sidebar">
+      <div className="fixed top-0 left-0 z-10 flex flex-col w-12 h-full text-white transition-all duration-300 border-none hover:w-64 md:w-64 bg-Purple sidebar mr-[20px]">
         <div className="flex flex-col justify-between flex-grow overflow-x-hidden overflow-y-auto">
           <ul className="flex flex-col py-4 space-y-1">
             <li className="hidden px-5 py-10 md:block">
@@ -14,7 +23,6 @@ export default function Sidebar({ toggleSidebar }) {
                 <BrandSection isAdmin={true} />
               </div>
             </li>
-
             {/* MAIN */}
             <li className="hidden px-5 md:block">
               <div className="flex flex-row items-center h-8">
@@ -75,7 +83,6 @@ export default function Sidebar({ toggleSidebar }) {
                 </span>
               </Link>
             </li>
-
             {/* INVENTORY MANAGEMENT */}
             <li className="hidden px-5 pt-2 md:block">
               <div className="flex flex-row items-center h-8">
@@ -110,22 +117,21 @@ export default function Sidebar({ toggleSidebar }) {
                 </span>
               </Link>
             </li>
-            <li>
-              <div
-                className="relative flex flex-row items-center pr-6 border-l-4 border-transparent cursor-pointer h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 hover:border-blue-500 dark:hover:border-gray-800"
-                onClick={() => toggleSidebar(0, 0)}
-              >
-                <div className="inline-flex items-center justify-center ml-4">
-                  <BsDatabaseAdd />
-                </div>
-                <span
-                  className="ml-2 tracking-wide truncate text-md"
+            {isManageInventoryPage && (
+              <li>
+                <div
+                  className="relative flex flex-row items-center pr-6 border-l-4 border-transparent cursor-pointer h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 hover:border-blue-500 dark:hover:border-gray-800"
+                  onClick={handleClick}
                 >
-                  Add Products
-                </span>
-              </div>
-            </li>
-
+                  <div className="inline-flex items-center justify-center ml-4">
+                    <BsDatabaseAdd />
+                  </div>
+                  <span className="ml-2 tracking-wide truncate text-md add-prods">
+                    Add Products
+                  </span>
+                </div>
+              </li>
+            )}
             {/* USER MANAGEMENT */}
             <li className="hidden px-5 md:block">
               <div className="flex flex-row items-center h-8 mt-2">

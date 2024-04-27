@@ -1,6 +1,7 @@
 import { AddProducts } from "../../pages/InventoryManagement/AddProducts";
 import { EditProducts } from "../../pages/InventoryManagement/EditProducts";
-import { useState } from "react";
+import { GetProductById } from "../../pages/InventoryManagement/GetProductById";
+import { useState, useEffect } from "react";
 
 export default function FormFields({ isEditForm, _id, prodId }) {
   const [file, setFile] = useState(null);

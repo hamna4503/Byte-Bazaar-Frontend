@@ -41,7 +41,7 @@ export default function ProductsTable({ toggleSidebar }) {
   return (
     <div className="h-full p-5 mb-10 overflow-hidden md:ml-64 sm:ml-12 xs:ml-14">
       <div className="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
-        <table className="min-w-full">
+        <table className="min-w-full prods-table">
           <thead>
             <tr>
               {columns.map((columnName) => (
@@ -106,7 +106,7 @@ export default function ProductsTable({ toggleSidebar }) {
 
                   <td className="px-4 py-4 text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200">
                     <button
-                      className="mr-3 text-Purple dark:hover:text-gray-700"
+                      className="mr-3 text-Purple dark:hover:text-gray-700 edit-btn"
                       onClick={() => toggleSidebar(prod._id, prod.id)}
                     >
                       <AiFillEdit
@@ -120,7 +120,7 @@ export default function ProductsTable({ toggleSidebar }) {
 
                   <td className="px-4 py-4 text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200">
                     <button
-                      className="mx-3 text-Purple dark:hover:text-gray-700"
+                      className="mx-3 text-Purple dark:hover:text-gray-700 delete-btn"
                       onClick={() => handleDeleteProduct(prod._id, prod.id)}
                     >
                       <RiDeleteBin6Fill

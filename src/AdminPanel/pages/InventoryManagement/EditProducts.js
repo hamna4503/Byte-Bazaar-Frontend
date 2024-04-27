@@ -12,9 +12,9 @@ export const EditProducts = async (_id, prodId, productData) => {
     });
 
     if (response.status === 200) {
-      console.log("Product edited successfully:", response.data);
+      console.log("Product edited successfully");
       window.location.reload();
-      toast.success("Product edited successfully", {
+      toast.success("Product Edited Successfully.", {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: true,
@@ -29,7 +29,7 @@ export const EditProducts = async (_id, prodId, productData) => {
     }
   } catch (error) {
     console.error("Error editing product:", error);
-    toast.error(`Error editing product:  ${error.response.data.message}`, {
+    toast.error(`${error.response.data.message}`, {
       position: "top-center",
       autoClose: 5000,
       hideProgressBar: true,
