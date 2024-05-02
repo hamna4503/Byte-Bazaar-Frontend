@@ -2,12 +2,29 @@ import { AddProducts } from "../../pages/InventoryManagement/AddProducts";
 import { EditProducts } from "../../pages/InventoryManagement/EditProducts";
 import { GetProductById } from "../../pages/InventoryManagement/GetProductById";
 import { useState, useEffect } from "react";
+import { ErrorResponseToast } from "../Toast/ErrorResponseToast";
 
 export default function FormFields({ isEditForm, _id, prodId }) {
   const [file, setFile] = useState(null);
 
+  useEffect(() => {
+    const fetchProductById = async () => {
+      if (isEditForm && _id) {
+        try {
+          const product = await GetProductById(_id);
+          console.log("Fetched Data: ", product.data);
+          setProductData(product.data);
+        } catch (error) {
+          console.error("Error fetching product by ID:", error);
+        }
+      }
+    };
+
+    fetchProductById();
+  }, [isEditForm, _id]);
+
   const [productData, setProductData] = useState(() => ({
-    ...(isEditForm ? {} : { id: "" }),
+    id: "",
     name: "",
     price: "",
     image: null,
@@ -42,11 +59,11 @@ export default function FormFields({ isEditForm, _id, prodId }) {
     e.preventDefault();
     try {
       await (isEditForm
-        ? EditProducts(_id, prodId, productData)
+        ? EditProducts(_id, { ...productData })
         : AddProducts({ ...productData }));
 
       setProductData({
-        ...(isEditForm ? {} : { id: "" }),
+        id: "",
         name: "",
         price: "",
         image: null,
@@ -66,18 +83,17 @@ export default function FormFields({ isEditForm, _id, prodId }) {
   return (
     <>
       <form className="flex flex-wrap gap-4 p-3" onSubmit={handleSubmit}>
-        {!isEditForm && (
-          <input
-            className="w-full px-3 py-2 mb-2 text-sm text-black shadow appearance-none focus:outline-none focus:shadow-outline"
-            placeholder="Product Id"
-            name="id"
-            type="number"
-            value={productData.id}
-            onChange={handleChange}
-            autoComplete="off"
-            required
-          />
-        )}
+        <input
+          className="w-full px-3 py-2 mb-2 text-sm text-black shadow appearance-none focus:outline-none focus:shadow-outline"
+          placeholder="Product Id"
+          name="id"
+          type="number"
+          value={productData.id}
+          onChange={handleChange}
+          autoComplete="off"
+          required
+          readOnly={isEditForm}
+        />
 
         <input
           className="w-full px-3 py-2 mb-2 text-sm text-black shadow appearance-none focus:outline-none focus:shadow-outline"

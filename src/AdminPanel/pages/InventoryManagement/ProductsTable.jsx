@@ -32,8 +32,9 @@ export default function ProductsTable({ toggleSidebar }) {
   // Delete Products
   const handleDeleteProduct = async (prodId, id) => {
     try {
-      const response = await DeleteProducts(prodId, id);
+      await DeleteProducts(prodId, id);
     } catch (error) {
+      console.error("Error deleting product:", error);
       throw new Error("Error Deleting the Product.");
     }
   };

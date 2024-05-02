@@ -1,43 +1,26 @@
+import { SuccessResponseToast } from "../../components/Toast/SuccessResponseToast";
+import { NoSuccessResponseToast } from "../../components/Toast/NoSuccessResponseToast";
+import { ErrorResponseToast } from "../../components/Toast/ErrorResponseToast";
 import axios from "axios";
-import { toast } from "react-toastify";
 
-export const EditProducts = async (_id, prodId, productData) => {
-  console.log("In Edit _id", _id);
-  console.log("ID", prodId);
+export const EditProducts = async (_id, productData) => {
   try {
+    console.log(productData.id);
     const response = await axios.put(`http://localhost:6005/api/edit-prods`, {
       _id,
-      prodId,
       ...productData,
     });
 
-    if (response.status === 200) {
-      console.log("Product edited successfully");
+    if (response.status == 201 || response.status == 200) {
+      SuccessResponseToast(response.data.message);
       window.location.reload();
-      toast.success("Product Edited Successfully.", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: true,
-        draggable: false,
-        closeOnClick: false,
-        theme: "colored",
-        transition: toast.flip,
-      });
-      return response.data;
+      return;
     } else {
-      throw new Error("Failed to edit product.");
+      NoSuccessResponseToast(response.data.message);
     }
   } catch (error) {
-    console.error("Error editing product:", error);
-    toast.error(`${error.response.data.message}`, {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: true,
-      draggable: false,
-      closeOnClick: false,
-      theme: "colored",
-      transition: toast.flip,
-    });
-    throw error;
+    const errorMessage = error.response?.data?.message || error.message;
+    const er = ErrorResponseToast(errorMessage);
+    throw er;
   }
 };
