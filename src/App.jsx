@@ -23,6 +23,9 @@ import CustomerSupport from "./AdminPanel/pages/CustomerSupport/CustomerSupport"
 import Checkout from "./UserPanel/pages/Checkout/Checkout";
 import Home from "./UserPanel/pages/Home/Home";
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 export default function App() {
   return (
     <>
