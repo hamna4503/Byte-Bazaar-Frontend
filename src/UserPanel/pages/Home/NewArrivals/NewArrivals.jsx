@@ -65,8 +65,8 @@ export default function NewArrivals() {
   };
 
   return (
-    <div className="py-16 slider-container">
-      <div className="flex flex-col gap-6 pb-12 text-center">
+    <div className="pt-8 pb-6 slider-container">
+      <div className="flex flex-col gap-6 pt-8 pb-12 text-center">
         <h1 className="text-5xl font-bold text-black">New Arrivals</h1>
       </div>
 

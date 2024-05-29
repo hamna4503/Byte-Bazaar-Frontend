@@ -6,25 +6,25 @@ import { Link } from "react-router-dom";
 
 export default function RightNavbarSection() {
   return (
-    <section className="flex items-center gap-6">
+    <section className="flex items-center gap-9">
       {/* Search bar */}
-      <input
+      {/* <input
         type="text"
         placeholder="Search "
-        className="hidden lg:block px-2 py-1 border border-gray-300 rounded-md focus:outline-none text-black text-sm"
-      />
+        className="hidden px-2 py-1 text-sm text-black border border-gray-300 rounded-md lg:block focus:outline-none"
+      /> */}
 
       {/* Cart icon */}
       <Link to="/bytebazaar/cart">
-        <AiOutlineShoppingCart className="text-3xl" />
+        <AiOutlineShoppingCart className="text-4xl" />
       </Link>
 
       <Link to="/bytebazaar/wishlist">
-        <MdFavorite className="text-3xl" />
+        <MdFavorite className="text-4xl" />
       </Link>
 
       {/* Profile icon */}
-      <IoPersonCircle className="text-3xl" />
+      <IoPersonCircle className="text-4xl" />
     </section>
   );
 }

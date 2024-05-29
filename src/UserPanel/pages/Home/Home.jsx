@@ -5,17 +5,21 @@ import Video from "../../assets/images/home/home.webp";
 import LandingPage from "./LandingPage";
 import NewArrivals from "./NewArrivals/NewArrivals";
 import ChooseUs from "./ChooseUs/ChooseUs";
-import Sale from "./Sale/Sale";
+import Testimonials from "./Testimonials/Testimonials";
+import AnnouncementSlider from "./Announcement/AnnouncementSlider";
+import ShopPreview from "./ShopPreview/ShopPreview";
 // import video from "../../assets/images/home/homee.mp4"
 
 export default function Home() {
   return (
     <>
       <UserNavbar />
-      <Sale />
+      <AnnouncementSlider />
+      <ShopPreview />
       <ChooseUs />
       <NewArrivals />
       <LandingPage />
+      <Testimonials />
       {/* <img src={Video} alt="Your Animation" className="w-full"/> */}
       {/* <video controls>
         <source src={video} type="video/mp4"/>

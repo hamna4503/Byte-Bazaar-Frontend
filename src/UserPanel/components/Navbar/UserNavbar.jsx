@@ -43,7 +43,7 @@ export default function UserNavbar() {
 
   return (
     <main>
-      <nav className="flex justify-between px-14 items-center py-3 text-white shadow-md bg-Purple">
+      <nav className="flex items-center justify-between px-16 py-3 text-white shadow-md bg-Purple">
         <div className="flex items-center gap-8">
           <BrandSection onMenuToggle={() => setMenu(true)} />
 

@@ -12,7 +12,7 @@ function CartItems() {
               <td className="flex flex-wrap py-4 sm:w-full">
                 <img
                   src={Item.productId.image}
-                  className="w-24 h-20 object-contain"
+                  className="object-contain w-24 h-20"
                 />
                 <div className="flex flex-col items-start">
                   <p className="text-lg font-semibold">{Item.productId.name}</p>
@@ -33,7 +33,7 @@ function CartItems() {
 
               <td>
                 <div className="flex justify-center">
-                  <div className="flex justify-center border rounded-lg border-purple-900 px-2s py-1 w-16">
+                  <div className="flex justify-center w-16 py-1 border border-purple-900 rounded-lg px-2s">
                     <button className="text-lg font-bold">-</button>
                     <div className="px-2 text-lg font-bold">
                       {Item.quantity}
@@ -43,7 +43,7 @@ function CartItems() {
                 </div>
               </td>
 
-              <td className="text-right px-2">
+              <td className="px-2 text-right">
                 Rs {Item.quantity * Item.productId.price}
               </td>
             </tr>

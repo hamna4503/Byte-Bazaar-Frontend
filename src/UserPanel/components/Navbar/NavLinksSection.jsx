@@ -9,10 +9,7 @@ export default function NavLinksSection({
 }) {
   return (
     <div
-      // className={`flex flex-col lg:flex-row gap-6 no-scrollbar ${
-      //   isMobile ? "lg:hidden" : "hidden lg:flex"
-      // }`}
-      className={`flex flex-col lg:flex-row gap-6 no-scrollbar ${
+      className={`flex flex-col lg:flex-row gap-8 no-scrollbar ${
         isMobile ? "lg:hidden" : "hidden lg:flex"
       }`}
     >
@@ -31,15 +28,15 @@ export default function NavLinksSection({
           ) : (
             <Link
               to={d.link}
-              className="text-white text-md hover:text-gray-300"
+              className="text-lg font-semibold text-white hover:text-gray-300"
             >
               {d.label}
             </Link>
           )}
-          {d.dropdownOptions &&
+          {/* {d.dropdownOptions &&
             (d.label === "Products" || d.label === "Inventory Management") &&
             isCategoriesOpen && (
-              <div className="absolute left-0 z-10 w-40 mt-2 bg-white rounded-md shadow-lg top-full">
+              <div className="absolute left-0 w-40 mt-2 bg-white rounded-md shadow-lg top-full">
                 {d.dropdownOptions.map((option, index) => (
                   <Link
                     key={index}
@@ -50,7 +47,7 @@ export default function NavLinksSection({
                   </Link>
                 ))}
               </div>
-            )}
+            )} */}
         </div>
       ))}
     </div>

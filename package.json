@@ -21,11 +21,13 @@
     "react-confirm-toast": "^1.0.7",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
+    "react-id-swiper": "^4.0.0",
     "react-image-file-resizer": "^0.4.8",
     "react-router-dom": "^6.22.3",
     "react-slick": "^0.30.2",
     "react-toastify": "^10.0.5",
     "slick-carousel": "^1.8.1",
+    "swiper": "^11.1.3",
     "toast": "^0.5.4"
   },
   "devDependencies": {
