@@ -1,56 +1,49 @@
 import React from "react";
-import eye from "../../../assets/images/items/controllers/xboxController.png";
-import blog from "../../../assets/images/home/image1.jpg";
-import { Link } from "react-router-dom";
-
-const sections = [
-  {
-    imgSrc: eye,
-    title: "NEW STYLES & ARRIVALS",
-    linkTo: "/shop",
-    buttonText: "SHOP NOW",
-  },
-  {
-    imgSrc: blog,
-    title: "INSIGHTFUL BLOGS",
-    linkTo: "/blogs",
-    buttonText: "READ NOW",
-  },
-];
 
 export default function ShopPreview() {
   return (
-    <div className="flex flex-col md:flex-row justify-between items-center gap-8 p-4">
-      {sections.map((section, index) => (
-        <div
-          key={index}
-          className="flex flex-col md:flex-col items-center gap-4 p-4 bg-white shadow-lg rounded-lg w-full md:w-1/2 aspect-square"
-        >
-          {section.imgSrc === eye ? (
-            <img
-              className="w-full h-1/2 md:h-1/2 object-cover rounded-lg"
-              src={section.imgSrc}
-              alt={section.title}
-            />
-          ) : null}
-          <div className="text-center md:text-left flex-grow">
-            <h2 className="text-xl font-bold mb-2">{section.title}</h2>
-            <Link
-              to={section.linkTo}
-              className="inline-block mt-4 px-6 py-2 bg-indigo-600 text-white font-semibold rounded hover:bg-indigo-500"
-            >
-              {section.buttonText}
-            </Link>
+    <section>
+      <div className="px-4 py-8 mx-auto max-w-screen-2xl sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div className="p-8 bg-blue-600 md:p-12 lg:px-16 lg:py-24">
+            <div className="max-w-xl mx-auto text-center">
+              <h2 className="text-2xl font-bold text-white md:text-3xl">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit
+              </h2>
+
+              <p className="hidden text-white/90 sm:mt-4 sm:block">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et,
+                egestas tempus tellus etiam sed. Quam a scelerisque amet
+                ullamcorper eu enim et fermentum, augue. Aliquet amet volutpat
+                quisque ut interdum tincidunt duis.
+              </p>
+
+              <div className="mt-4 md:mt-8">
+                <a
+                  href="#"
+                  className="inline-block px-12 py-3 text-sm font-medium text-blue-500 transition bg-white border border-white rounded hover:bg-transparent hover:text-white focus:outline-none focus:ring focus:ring-yellow-400"
+                >
+                  Get Started Today
+                </a>
+              </div>
+            </div>
           </div>
-          {section.imgSrc !== eye ? (
+
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-1 lg:grid-cols-2">
             <img
-              className="w-full h-1/2 md:h-1/2 object-cover rounded-lg"
-              src={section.imgSrc}
-              alt={section.title}
+              alt="First image"
+              src="https://images.unsplash.com/photo-1621274790572-7c32596bc67f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=654&q=80"
+              className="object-cover w-full h-40 sm:h-56 md:h-full"
             />
-          ) : null}
+
+            <img
+              alt="Second image"
+              src="https://images.unsplash.com/photo-1567168544813-cc03465b4fa8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
+              className="object-cover w-full h-40 sm:h-56 md:h-full"
+            />
+          </div>
         </div>
-      ))}
-    </div>
+      </div>
+    </section>
   );
 }

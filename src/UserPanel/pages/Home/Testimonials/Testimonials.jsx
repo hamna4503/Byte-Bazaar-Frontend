@@ -1,101 +1,85 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { FaUser } from "react-icons/fa";
 
-export default function Testimonials() {
+const initialTestimonials = [
+  {
+    id: 1,
+    name: "Paul Starr1",
+    content: "Lorem ipsum dolor sit amet...",
+    rating: 3,
+  },
+  {
+    id: 2,
+    name: "Paul Starr2",
+    content: "Lorem ipsum dolor sit amet...",
+    rating: 4,
+  },
+  {
+    id: 3,
+    name: "Paul Starr3",
+    content: "Lorem ipsum dolor sit amet...",
+    rating: 5,
+  },
+  {
+    id: 4,
+    name: "Paul Starr4",
+    content: "Lorem ipsum dolor sit amet...",
+    rating: 4,
+  },
+  {
+    id: 5,
+    name: "Paul 5",
+    content: "Lorem ipsum dolor sit amet...",
+    rating: 3.5,
+  },
+  {
+    id: 6,
+    name: "Paul Starr6",
+    content: "Lorem ipsum dolor sit amet...",
+    rating: 3.5,
+  },
+  {
+    id: 7,
+    name: "Paul Starr7",
+    content: "Lorem ipsum dolor sit amet...",
+    rating: 3.5,
+  },
+  {
+    id: 8,
+    name: "Paul Starrssjjsnjdnsjdjsjdjd",
+    content: "Lorem ipsum dolor sit amet...",
+    rating: 3.5,
+  },
+];
+
+const shuffleArray = (array) => {
+  const shuffled = array.slice();
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+};
+
+const Testimonials = React.memo(() => {
   const [testimonials, setTestimonials] = useState([]);
 
-  // Mock data for initial rendering
-  const initialTestimonials = [
-    {
-      id: 1,
-      name: "Paul Starr1",
-      content:
-        "Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...",
-      rating: 3,
-    },
-    {
-      id: 2,
-      name: "Paul Starr2",
-      content:
-        "Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...",
-      rating: 4,
-    },
-    {
-      id: 3,
-      name: "Paul Starr3",
-      content:
-        "Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...",
-      rating: 5,
-    },
-    {
-      id: 4,
-      name: "Paul Starr4",
-      content:
-        "Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...",
-      rating: 4,
-    },
-    {
-      id: 5,
-      name: "Paul 5",
-      content:
-        "Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...",
-      rating: 3.5,
-    },
-    {
-      id: 6,
-      name: "Paul Starr6",
-      content:
-        "Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...",
-      rating: 3.5,
-    },
-    {
-      id: 7,
-      name: "Paul Starr7",
-      content:
-        "Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...",
-      rating: 3.5,
-    },
-    {
-      id: 8,
-      name: "Paul Starrssjjsnjdnsjdjsjdjd",
-      content:
-        "Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...Lorem ipsum dolor sit amet...",
-      rating: 3.5,
-    },
-  ];
-
   useEffect(() => {
-    // Simulate fetching from database or API initially
     setTimeout(() => {
       setTestimonials(initialTestimonials);
     }, 1000);
 
-    // Automatically refresh testimonials every 30 seconds
     const interval = setInterval(() => {
-      refreshTestimonials();
+      setTestimonials((prev) => shuffleArray(prev));
     }, 30000);
 
-    return () => clearInterval(interval); // Cleanup interval on unmount
+    return () => clearInterval(interval);
   }, []);
 
-  // Function to refresh testimonials
-  const refreshTestimonials = () => {
-    // Logic to shuffle or select new testimonials without fetching
-    const shuffledTestimonials = shuffleArray(testimonials);
-    setTestimonials(shuffledTestimonials);
-  };
-
-  // Function to shuffle array
-  const shuffleArray = (array) => {
-    const shuffled = array.slice();
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-    }
-    return shuffled;
-  };
-
-  const limitedTestimonials = testimonials.slice(0, 6);
+  const limitedTestimonials = useMemo(
+    () => testimonials.slice(0, 6),
+    [testimonials]
+  );
 
   return (
     <section className="bg-Purple px-4 my-16">
@@ -107,17 +91,17 @@ export default function Testimonials() {
           </h3>
         </div>
 
-        <div className="mt-14 mx-4 p-4 grid grid-cols-1 md:grid-cols-3 md:gap-8">
+        <div className="mt-14 mx-4 p-4 grid grid-cols-1 md:grid-cols-3 gap-8">
           {limitedTestimonials.map((testimonial) => (
             <blockquote
               key={testimonial.id}
-              className="bg-Purple p-6 sm:p-8 border border-Purple rounded-lg shadow-2xl transform transition-transform duration-300 hover:scale-110"
+              className="bg-Purple p-6 sm:p-8 border border-Purple rounded-lg shadow-2xl transform transition-transform duration-300 hover:scale-105"
             >
-              <div className="flex items-center gap-6 align-center">
+              <div className="flex items-center gap-6">
                 <FaUser className="text-4xl text-gray-300" />
 
                 <div>
-                  <div className="flex justify-start gap-0.5 text-yellow-400 pb-1">
+                  <div className="flex gap-0.5 text-yellow-400 pb-1">
                     {[...Array(Math.floor(testimonial.rating))].map(
                       (_, index) => (
                         <svg
@@ -148,4 +132,6 @@ export default function Testimonials() {
       </div>
     </section>
   );
-}
+});
+
+export default Testimonials;

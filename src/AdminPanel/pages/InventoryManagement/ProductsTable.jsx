@@ -4,9 +4,13 @@ import { RiDeleteBin6Fill } from "react-icons/ri";
 import { IoMdPricetags } from "react-icons/io";
 import { GetProducts } from "./GetProducts";
 import { DeleteProducts } from "./DeleteProducts";
+import Pagination from "../../components/Pagination/Pagination.jsx";
 
 export default function ProductsTable({ toggleSidebar }) {
   const [prods, setProds] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [prodsPerPage] = useState(4);
+
   const columns = [
     "Product Info",
     "Product Description",
@@ -39,8 +43,16 @@ export default function ProductsTable({ toggleSidebar }) {
     }
   };
 
+  const indexOfLastProd = currentPage * prodsPerPage;
+  const indexOfFirstProd = indexOfLastProd - prodsPerPage;
+  const currentProds = prods.slice(indexOfFirstProd, indexOfLastProd);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
   return (
-    <div className="h-full p-5 mb-10 overflow-hidden md:ml-64 sm:ml-12 xs:ml-14">
+    <div className="h-full px-5 py-2 mb-4 overflow-hidden md:ml-64 sm:ml-12 xs:ml-14">
       <div className="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
         <table className="min-w-full prods-table">
           <thead>
@@ -60,7 +72,7 @@ export default function ProductsTable({ toggleSidebar }) {
 
           <tbody className="bg-white">
             {prods && prods.length > 0 ? (
-              prods.map((prod) => (
+              currentProds.map((prod) => (
                 <tr key={prod._id}>
                   <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
                     <div className="flex items-left">
@@ -82,7 +94,7 @@ export default function ProductsTable({ toggleSidebar }) {
                     </div>
                   </td>
                   <td className="px-4 py-4 leading-5 text-black whitespace-no-wrap border-b border-gray-200 text-md">
-                    <div className="h-16 overflow-hidden line-clamp-2">
+                    <div className="h-10 overflow-hidden line-clamp-2">
                       {prod.description}
                     </div>
                   </td>
@@ -136,12 +148,20 @@ export default function ProductsTable({ toggleSidebar }) {
               ))
             ) : (
               <tr>
-                <td className="p-3 text-red-600 bold">No Products Found.</td>
+                <td className="p-3 text-lg text-red-600 bold">
+                  No Products Found.
+                </td>
               </tr>
             )}
           </tbody>
         </table>
       </div>
+
+      <Pagination
+        currentPage={currentPage}
+        totalPages={Math.ceil(prods.length / prodsPerPage)}
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 }

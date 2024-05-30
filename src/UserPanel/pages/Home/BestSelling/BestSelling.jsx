@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
-import NextArrow from "./NextArrow";
-import PrevArrow from "./PrevArrow";
+import NextArrow from "../NewArrivals/NextArrow";
+import PrevArrow from "../NewArrivals/PrevArrow";
 import { IoMdEye, IoMdHeart } from "react-icons/io";
 import { GetProducts } from "../../../../AdminPanel/pages/InventoryManagement/GetProducts";
 
-export default function NewArrivals() {
+export default function BestSelling() {
   const [products, setProducts] = useState([]);
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [imageDimensions, setImageDimensions] = useState({
@@ -25,8 +25,9 @@ export default function NewArrivals() {
     const fetchProds = async () => {
       try {
         const prodsData = await GetProducts();
-        const lastTenProducts = prodsData.slice(-10);
-        setProducts(lastTenProducts);
+        const sortedProducts = prodsData.sort((a, b) => b.rating - a.rating);
+        const topRatedProducts = sortedProducts.slice(0, 10);
+        setProducts(topRatedProducts);
       } catch (error) {
         throw new Error("Error Fetching the Products.");
       }
@@ -67,9 +68,9 @@ export default function NewArrivals() {
   return (
     <div className="my-14 slider-container">
       <div className="flex flex-col gap-6 mb-6 text-center">
-        <h1 className="text-5xl font-bold text-black">New Arrivals</h1>
+        <h1 className="text-5xl font-bold text-black">Best Sellers</h1>
         <h3 className="mb-6 text-3xl text-black">
-          Discover the latest additions!
+          Explore our Customer's Favorites!
         </h3>
       </div>
 
