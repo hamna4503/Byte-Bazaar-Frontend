@@ -6,6 +6,8 @@ import PrevArrow from "../NewArrivals/PrevArrow";
 import { IoMdEye, IoMdHeart } from "react-icons/io";
 import { GetProducts } from "../../../../AdminPanel/pages/InventoryManagement/GetProducts";
 
+const CACHE_KEY = "bestSellingProducts";
+
 export default function BestSelling() {
   const [products, setProducts] = useState([]);
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -22,19 +24,27 @@ export default function BestSelling() {
   };
 
   useEffect(() => {
-    const fetchProds = async () => {
-      try {
-        const prodsData = await GetProducts();
-        const sortedProducts = prodsData.sort((a, b) => b.rating - a.rating);
-        const topRatedProducts = sortedProducts.slice(0, 10);
-        setProducts(topRatedProducts);
-      } catch (error) {
-        throw new Error("Error Fetching the Products.");
-      }
-    };
-
-    fetchProds();
+    // Check if cached products exist
+    const cachedProducts = localStorage.getItem(CACHE_KEY);
+    if (cachedProducts) {
+      setProducts(JSON.parse(cachedProducts));
+    } else {
+      fetchProducts();
+    }
   }, []);
+
+  const fetchProducts = async () => {
+    try {
+      const prodsData = await GetProducts();
+      const sortedProducts = prodsData.sort((a, b) => b.rating - a.rating);
+      const topRatedProducts = sortedProducts.slice(0, 10);
+      setProducts(topRatedProducts);
+      // Cache products in local storage
+      localStorage.setItem(CACHE_KEY, JSON.stringify(topRatedProducts));
+    } catch (error) {
+      console.error("Error Fetching the Products:", error);
+    }
+  };
 
   const settings = {
     infinite: true,
@@ -66,10 +76,10 @@ export default function BestSelling() {
   };
 
   return (
-    <div className="my-14 slider-container">
-      <div className="flex flex-col gap-6 mb-6 text-center">
-        <h1 className="text-5xl font-bold text-black">Best Sellers</h1>
-        <h3 className="mb-6 text-3xl text-black">
+    <div className="my-4 slider-container">
+      <div className="flex flex-col gap-6 py-10 mb-6 text-center bg-Purple">
+        <h1 className="text-5xl font-bold text-white">Best Sellers</h1>
+        <h3 className="text-3xl text-white">
           Explore our Customer's Favorites!
         </h3>
       </div>
@@ -84,9 +94,10 @@ export default function BestSelling() {
           >
             <div className="w-full p-4 border rounded-lg shadow-lg">
               <img
-                src={"http://localhost:6005" + product.image}
+                src={`http://localhost:6005${product.image}`}
                 alt={product.name}
-                className="w-full mb-2 rounded-lg"
+                className="w-full mb-2 rounded-lg lazyload"
+                loading="lazy"
                 onLoad={handleImageLoad}
               />
               {hoveredIndex === index && (

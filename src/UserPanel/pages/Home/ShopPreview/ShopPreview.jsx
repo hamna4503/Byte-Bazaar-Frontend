@@ -1,47 +1,51 @@
 import React from "react";
+import headphone from "../../../assets/images/home/headphone1.jpg";
+import airpods from "../../../assets/images/home/airpods.jpg";
 
 export default function ShopPreview() {
   return (
     <section>
       <div className="px-4 py-8 mx-auto max-w-screen-2xl sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          <div className="p-8 bg-blue-600 md:p-12 lg:px-16 lg:py-24">
-            <div className="max-w-xl mx-auto text-center">
+        <div className="grid items-center grid-cols-1 gap-4 md:grid-cols-3">
+          <img
+            alt="Airpods"
+            src={airpods}
+            className="object-cover w-full h-40 sm:h-56 md:h-full lazyload"
+            loading="lazy"
+          />
+
+          <div className="h-auto p-2 text-center bg-Purple md:p-12 lg:px-16 lg:py-24">
+            <div className="max-w-xl mx-auto">
               <h2 className="text-2xl font-bold text-white md:text-3xl">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit
+                Explore the Latest in Electronic Gadgets
               </h2>
 
               <p className="hidden text-white/90 sm:mt-4 sm:block">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et,
-                egestas tempus tellus etiam sed. Quam a scelerisque amet
-                ullamcorper eu enim et fermentum, augue. Aliquet amet volutpat
-                quisque ut interdum tincidunt duis.
+                Discover our top-notch collection of headphones, airpods, and
+                electronic gadgets. From high-quality audio equipment to the
+                latest in smart technology, we have everything you need to stay
+                connected and entertained. Browse our selection of hard drives,
+                smartwatches, motherboards, and more to find the perfect gadget
+                for you.
               </p>
 
               <div className="mt-4 md:mt-8">
                 <a
-                  href="#"
-                  className="inline-block px-12 py-3 text-sm font-medium text-blue-500 transition bg-white border border-white rounded hover:bg-transparent hover:text-white focus:outline-none focus:ring focus:ring-yellow-400"
+                  href="/bytebazaar/shop"
+                  className="inline-block px-12 py-3 text-sm font-medium transition bg-white border border-white rounded text-Purple hover:bg-transparent hover:text-white focus:outline-none focus:ring focus:ring-yellow-400"
                 >
-                  Get Started Today
+                  Explore Shop
                 </a>
               </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-1 lg:grid-cols-2">
-            <img
-              alt="First image"
-              src="https://images.unsplash.com/photo-1621274790572-7c32596bc67f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=654&q=80"
-              className="object-cover w-full h-40 sm:h-56 md:h-full"
-            />
-
-            <img
-              alt="Second image"
-              src="https://images.unsplash.com/photo-1567168544813-cc03465b4fa8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
-              className="object-cover w-full h-40 sm:h-56 md:h-full"
-            />
-          </div>
+          <img
+            alt="Headphones"
+            src={headphone}
+            className="object-cover w-full h-40 sm:h-56 md:h-full lazyload"
+            loading="lazy"
+          />
         </div>
       </div>
     </section>
