@@ -6,6 +6,10 @@ import PrevArrow from "./PrevArrow";
 import { IoMdEye, IoMdHeart } from "react-icons/io";
 import { GetProducts } from "../../../../AdminPanel/pages/InventoryManagement/GetProducts";
 
+const CACHE_KEY = "newArrivalsProducts";
+const CACHE_EXPIRATION_KEY = "newArrivalsProductsExpiration";
+const CACHE_DURATION = 24 * 60 * 60 * 1000; // 24 hours
+
 export default function NewArrivals() {
   const [products, setProducts] = useState([]);
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -24,11 +28,28 @@ export default function NewArrivals() {
   useEffect(() => {
     const fetchProds = async () => {
       try {
-        const prodsData = await GetProducts();
-        const lastTenProducts = prodsData.slice(-10);
-        setProducts(lastTenProducts);
+        const cachedProducts = localStorage.getItem(CACHE_KEY);
+        const cacheExpiration = localStorage.getItem(CACHE_EXPIRATION_KEY);
+
+        if (
+          cachedProducts &&
+          cacheExpiration &&
+          new Date().getTime() < cacheExpiration
+        ) {
+          setProducts(JSON.parse(cachedProducts));
+        } else {
+          const prodsData = await GetProducts();
+          const lastTenProducts = prodsData.slice(-10);
+          setProducts(lastTenProducts);
+
+          localStorage.setItem(CACHE_KEY, JSON.stringify(lastTenProducts));
+          localStorage.setItem(
+            CACHE_EXPIRATION_KEY,
+            new Date().getTime() + CACHE_DURATION
+          );
+        }
       } catch (error) {
-        throw new Error("Error Fetching the Products.");
+        console.error("Error Fetching the Products:", error);
       }
     };
 
@@ -65,9 +86,10 @@ export default function NewArrivals() {
   };
 
   return (
-    <div className="pt-8 pb-6 slider-container">
-      <div className="flex flex-col gap-6 pt-8 pb-12 text-center">
-        <h1 className="text-5xl font-bold text-black">New Arrivals</h1>
+    <div className="my-4 slider-container">
+      <div className="flex flex-col gap-6 py-10 mb-6 text-center bg-Purple">
+        <h1 className="text-5xl font-bold text-white">New Arrivals</h1>
+        <h3 className="text-3xl text-white">Discover the latest additions!</h3>
       </div>
 
       <Slider {...settings}>
@@ -80,9 +102,11 @@ export default function NewArrivals() {
           >
             <div className="w-full p-4 border rounded-lg shadow-lg">
               <img
-                src={"http://localhost:6005" + product.image}
+                src={`http://localhost:6005${product.image}`}
                 alt={product.name}
-                className="w-full mb-2 rounded-lg"
+                className="w-full mb-2 rounded-lg lazyload"
+                data-src={`http://localhost:6005${product.image}`}
+                loading="lazy"
                 onLoad={handleImageLoad}
               />
               {hoveredIndex === index && (

@@ -3,35 +3,33 @@ import FooterItemsContainer from "./Footeritemscontainer";
 
 const Footer = () => {
   return (
-    <footer className="bg-white text-gray-800 ">
-      <div className="md:flex md:justify-between md:items-center sm:px-12 px-4 bg-[#C8A2c8] py-7">
-        <h1 className="lg:text-4xl text-3xl md:mb-0 lg:leading-normal font-semibold md:w-2/5">
-          Get the <span className="text-purple-900">Best Offers!</span>
+    <footer className="bg-white ">
+      <div className="px-10 py-6 md:flex md:justify-between md:items-center sm:px-12 bg-Purple">
+        {/* <BrandSection /> */}
+        <h1 className="text-3xl font-semibold text-gray-400 lg:text-4xl md:mb-0 lg:leading-normal md:w-2/5">
+          Get the <span className="text-white">Best Offers!</span>
         </h1>
 
         <div>
           <input
             type="text"
-            placeholder="Any Query?"
-            className="text-gray-800 sm:w-72 w-full 
-                sm:mr-5 mr-1 lg:  mb-4 py-2.5 
-                rounded px-2 focus-outline-visible"
+            placeholder="Any Queries?"
+            className="w-full px-4 py-2 text-black rounded sm:w-72 sm:mr-5 lg:focus-outline-visible"
           ></input>
 
           <button
-            className="bg-purple-800 hover:bg-gray-300  duration-100 px-5 py-2 font-[poppins] 
+            className="bg-gray-500 hover:bg-gray-400  duration-100 px-6 py-2 font-[poppins] 
                 rounded-md text-white md:w-auto w-full"
           >
-            Click Me
+            Contact
           </button>
         </div>
       </div>
       <FooterItemsContainer />
       <hr></hr>
 
-      <div className="text-gray-400 text-center text-wrap">
-        2024 . Copyrights Resrved
-        <br></br>Terms & Conditions Apply
+      <div className="p-4 text-center text-gray-800 text-wrap">
+        2024 . Copyrights Resrved . Terms & Conditions Apply
       </div>
     </footer>
   );

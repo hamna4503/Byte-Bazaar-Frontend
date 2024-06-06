@@ -1,14 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { FaRegUserCircle } from "react-icons/fa";
 import { GetOrders } from "./GetOrders";
-import {DispatchOrder} from "./DispatchOrder";
+import { DispatchOrder } from "./DispatchOrder";
 import { toast } from "react-toastify";
 import { IoMdPricetag } from "react-icons/io";
+import Pagination from "../../components/Pagination/Pagination.jsx";
 
 export default function OrderTable() {
   const [orders, setOrders] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [ordersPerPage] = useState(5);
 
-  const columns = ["Buyer Information", "Order Status", "Address", "Total Amount", "Payment Method",];
+  const columns = [
+    "Buyer Information",
+    "Order Status",
+    "Address",
+    "Total Amount",
+    "Payment Method",
+  ];
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -32,8 +41,16 @@ export default function OrderTable() {
     fetchUsers();
   }, []);
 
+  const indexOfLastOrder = currentPage * ordersPerPage;
+  const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
+  const currentOrders = orders.slice(indexOfFirstOrder, indexOfLastOrder);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
   return (
-    <div className="h-full mb-10 md:ml-64 sm:ml-12 xs:ml-14 p-5 overflow-hidden">
+    <div className="h-full p-5 px-5 py-2 mb-6 overflow-hidden md:ml-64 sm:ml-12 xs:ml-14">
       <div className="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
         <table className="min-w-full">
           <thead>
@@ -41,18 +58,18 @@ export default function OrderTable() {
               {columns.map((columnName) => (
                 <th
                   key={columnName}
-                  className="px-4 py-3 text-md font-medium leading-4 tracking-wider text-left uppercase border-b border-gray-200 bg-Purple text-white"
+                  className="px-4 py-3 font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 text-md bg-Purple"
                 >
                   {columnName}
                 </th>
               ))}
-              <th className="px-4 py-3 border-b border-gray-200 bg-Purple text-white" />
+              <th className="px-4 py-3 text-white border-b border-gray-200 bg-Purple" />
             </tr>
           </thead>
 
           <tbody className="bg-white">
             {orders && orders.length > 0 ? (
-              orders.map((order) => (
+              currentOrders.map((order) => (
                 <tr key={order._id}>
                   <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
                     <div className="flex items-center">
@@ -65,7 +82,7 @@ export default function OrderTable() {
                         />
                       </div>
                       <div className="ml-2">
-                        <div className="text-md font-medium leading-5 text-gray-900">
+                        <div className="font-medium leading-5 text-gray-900 text-md">
                           {order.name}
                         </div>
                         <div className="text-sm leading-6 text-gray-500">
@@ -82,10 +99,10 @@ export default function OrderTable() {
                       {order.isDispatched ? "Dispatched" : "Not Dispatched"}
                     </span>
                   </td>
-                  <td className="px-4 py-4 text-md leading-5 text-black whitespace-no-wrap border-b border-gray-200">
+                  <td className="px-4 py-4 leading-5 text-black whitespace-no-wrap border-b border-gray-200 text-md">
                     {order.city}, {order.address}, {order.postalCode}
                   </td>
-                  <td className="px-4 py-4 text-md leading-5 text-black whitespace-no-wrap border-b border-gray-200">
+                  <td className="px-4 py-4 leading-5 text-black whitespace-no-wrap border-b border-gray-200 text-md">
                     <span className="inline-flex">
                       <IoMdPricetag
                         className="mr-2 text-Purple"
@@ -94,10 +111,10 @@ export default function OrderTable() {
                       {order.totalAmount}
                     </span>
                   </td>
-                  <td className="px-4 py-4 text-md leading-5 text-black whitespace-no-wrap border-b border-gray-200">
+                  <td className="px-4 py-4 leading-5 text-black whitespace-no-wrap border-b border-gray-200 text-md">
                     {order.payMethod}
                   </td>
-                  <td className="px-4 py-4 text-md font-medium leading-5 whitespace-no-wrap border-b border-gray-200">
+                  <td className="px-4 py-4 font-medium leading-5 whitespace-no-wrap border-b border-gray-200 text-md">
                     <button
                       className={`${
                         order.isDispatched
@@ -116,12 +133,20 @@ export default function OrderTable() {
               ))
             ) : (
               <tr>
-                <td className="text-red-600 p-3 bold">No Orders Found.</td>
+                <td className="p-3 text-lg text-red-600 bold">
+                  No Orders Found.
+                </td>
               </tr>
             )}
           </tbody>
         </table>
       </div>
+
+      <Pagination
+        currentPage={currentPage}
+        totalPages={Math.ceil(orders.length / ordersPerPage)}
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 }

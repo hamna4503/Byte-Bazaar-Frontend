@@ -1,21 +1,20 @@
 import React from "react";
 
 const Items = ({ Links, title }) => {
-    return (
-      <ul>
-        <h1 className="mb-1 font-semibold">{title}</h1>
-        {Links.map((link) => (
-          <li key={link.name}>
-            <a
-              className="text-gray-400 hover:text-purple-900 duration-300
-            text-sm cursor-pointer leading-6"
-              href={link.link}
-            >
-              {link.name}
-            </a>
-          </li>
-        ))}
-      </ul>
-    );
-  };
+  return (
+    <ul>
+      <h1 className="font-semibold text-md">{title}</h1>
+      {Links.map((link) => (
+        <li key={link.name}>
+          <a
+            className="text-sm leading-6 text-gray-600 duration-300 cursor-pointer hover:text-Purple"
+            href={link.link}
+          >
+            {link.name}
+          </a>
+        </li>
+      ))}
+    </ul>
+  );
+};
 export default Items;
