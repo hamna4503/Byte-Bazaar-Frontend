@@ -10,10 +10,13 @@ function CartItems() {
           return (
             <tr key={Item.productId._id} className="border-t-2 border-t-Purple">
               <td className="flex flex-wrap py-4 sm:w-full">
-                <img
-                  src={Item.productId.image}
-                  className="object-contain w-24 h-20"
-                />
+                {Item.productId.image && (
+                  <img
+                    src={"http://localhost:6005" + Item.productId.image}
+                    alt="img"
+                    className="object-contain w-24 h-20"
+                  />
+                )}
                 <div className="flex flex-col items-start">
                   <p className="text-lg font-semibold">{Item.productId.name}</p>
                   <p>Price: Rs {Item.productId.price}</p>

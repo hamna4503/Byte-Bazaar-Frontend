@@ -2,73 +2,6 @@ import React, { useContext } from "react";
 import { IoMdPricetag } from "react-icons/io";
 import { CartContext } from "../../contexts/CartContext";
 
-const items = [
-  {
-    id: 1,
-    name: "Nano Titanium Hair Dryer",
-    imageUrl:
-      "https://images.unsplash.com/photo-1581318694548-0fb6e47fe59b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-    description: "Pdf, doc Kindle",
-    price: "$260.00",
-  },
-  {
-    id: 2,
-    name: "Luisia H35",
-    imageUrl:
-      "https://images.unsplash.com/photo-1621607512214-68297480165e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjV8fGhhaXIlMjBkcnllcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
-    description: "Hair Dryer",
-    price: "$350.00",
-  },
-  {
-    id: 1,
-    name: "Nano Titanium Hair Dryer",
-    imageUrl:
-      "https://images.unsplash.com/photo-1581318694548-0fb6e47fe59b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-    description: "Pdf, doc Kindle",
-    price: "$260.00",
-  },
-  {
-    id: 2,
-    name: "Luisia H35",
-    imageUrl:
-      "https://images.unsplash.com/photo-1621607512214-68297480165e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjV8fGhhaXIlMjBkcnllcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
-    description: "Hair Dryer",
-    price: "$350.00",
-  },
-  {
-    id: 1,
-    name: "Nano Titanium Hair Dryer",
-    imageUrl:
-      "https://images.unsplash.com/photo-1581318694548-0fb6e47fe59b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-    description: "Pdf, doc Kindle",
-    price: "$260.00",
-  },
-  {
-    id: 2,
-    name: "Luisia H35",
-    imageUrl:
-      "https://images.unsplash.com/photo-1621607512214-68297480165e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjV8fGhhaXIlMjBkcnllcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
-    description: "Hair Dryer",
-    price: "$350.00",
-  },
-  {
-    id: 1,
-    name: "Nano Titanium Hair Dryer",
-    imageUrl:
-      "https://images.unsplash.com/photo-1581318694548-0fb6e47fe59b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-    description: "Pdf, doc Kindle",
-    price: "$260.00",
-  },
-  {
-    id: 2,
-    name: "Luisia H35",
-    imageUrl:
-      "https://images.unsplash.com/photo-1621607512214-68297480165e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjV8fGhhaXIlMjBkcnllcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
-    description: "Hair Dryer",
-    price: "$350.00",
-  },
-];
-
 export default function OrderSummary() {
   let { Total, Cart, Tax, OrderTotal } = useContext(CartContext);
   return (
@@ -86,7 +19,7 @@ export default function OrderSummary() {
                     <div className="flex-shrink-0 w-16 h-16 mr-4">
                       <img
                         className="w-full h-full object-contain"
-                        src={item.productId.image}
+                        src={"http://localhost:6005" + item.productId.image}
                         alt={item.productId.name}
                       />
                     </div>
