@@ -16,6 +16,7 @@ export default function ProductsTable({ toggleSidebar }) {
     "Product Description",
     "Price",
     "Brand",
+    "Quantity",
     "Ratings",
   ];
 
@@ -110,6 +111,9 @@ export default function ProductsTable({ toggleSidebar }) {
                   </td>
                   <td className="px-4 py-4 leading-5 text-black whitespace-no-wrap border-b border-gray-200 text-md">
                     {prod.brand}
+                  </td>
+                  <td className="px-4 py-4 leading-5 text-center text-black whitespace-no-wrap border-b border-gray-200 text-md">
+                    {prod.quantity}
                   </td>
                   <td className="py-4 text-center whitespace-no-wrap border-b border-gray-200">
                     <span className="inline-flex px-2.5 py-1 text-sm font-semibold leading-5 text-white bg-Purple rounded-full">
