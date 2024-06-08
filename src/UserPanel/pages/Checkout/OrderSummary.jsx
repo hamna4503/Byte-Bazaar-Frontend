@@ -33,7 +33,7 @@ export default function OrderSummary() {
                             className="mr-2 text-white"
                             style={{ width: "22px", height: "22px" }}
                           />
-                          {item.productId.price}
+                          {item.productId.price.toFixed(2)}
                         </span>
                       </p>
                     </div>
@@ -46,15 +46,15 @@ export default function OrderSummary() {
         <div className="space-y-2">
           <p className="flex justify-between text-lg font-bold text-white">
             <span>Sub Total:</span>
-            <span>Rs {Total}</span>
+            <span>Rs {Total.toFixed(2)}</span>
           </p>
           <p className="flex justify-between text-sm font-medium text-white">
             <span>VAT: 2%</span>
-            <span>Rs{Tax}</span>
+            <span>Rs {Tax.toFixed(2)}</span>
           </p>
           <p className="flex justify-between text-sm font-medium text-white">
             <span>Total Price</span>
-            <span>Rs{OrderTotal}</span>
+            <span>Rs {OrderTotal.toFixed(2)}</span>
           </p>
         </div>
       </div>

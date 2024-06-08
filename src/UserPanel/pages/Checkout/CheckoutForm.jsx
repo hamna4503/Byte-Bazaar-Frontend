@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import OrderSummary from "./OrderSummary";
 import PaymentDetails from "./PaymentDetails";
 import ShippingInfo from "./ShippingInfo";
+import ProceedToPaymentButton from "../../components/OnlinePayment/ProceedToPaymentButton";
+import PlaceOrderButton from "../../components/PlaceOrder/PlaceOrderButton";
 
 export default function CheckoutForm() {
   const [paymentMethod, setPaymentMethod] = useState("online");
@@ -58,12 +60,11 @@ export default function CheckoutForm() {
                 )}
 
                 <div className="px-10 py-4">
-                  <button
-                    type="submit"
-                    className="w-full inline-flex items-center justify-center rounded bg-Purple py-2 px-3 text-md text-white transition duration-300 hover:bg-gray-800 focus:ring-2 focus:ring-purple-500"
-                  >
-                    Place Order
-                  </button>
+                  {paymentMethod == "online" ? (
+                    <ProceedToPaymentButton />
+                  ) : (
+                    <PlaceOrderButton />
+                  )}
                 </div>
               </form>
             </div>
