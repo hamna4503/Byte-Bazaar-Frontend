@@ -2,7 +2,6 @@ import { AddProducts } from "../../pages/InventoryManagement/AddProducts";
 import { EditProducts } from "../../pages/InventoryManagement/EditProducts";
 import { GetProductById } from "../../pages/InventoryManagement/GetProductById";
 import { useState, useEffect } from "react";
-import { ErrorResponseToast } from "../Toast/ErrorResponseToast";
 
 export default function FormFields({ isEditForm, _id, prodId }) {
   const [file, setFile] = useState(null);
@@ -30,6 +29,7 @@ export default function FormFields({ isEditForm, _id, prodId }) {
     image: null,
     category: "",
     description: "",
+    quantity: "",
     rating: "",
     brand: "",
   }));
@@ -69,6 +69,7 @@ export default function FormFields({ isEditForm, _id, prodId }) {
         image: null,
         category: "",
         description: "",
+        quantity: "",
         rating: "",
         brand: "",
       });
@@ -141,6 +142,16 @@ export default function FormFields({ isEditForm, _id, prodId }) {
           name="brand"
           type="text"
           value={productData.brand}
+          onChange={handleChange}
+          autoComplete="off"
+          required
+        />
+        <input
+          className="w-full px-3 py-2 mb-2 text-sm text-black shadow appearance-none focus:outline-none focus:shadow-outline"
+          placeholder="Product Quantity"
+          name="quantity"
+          type="number"
+          value={productData.quantity}
           onChange={handleChange}
           autoComplete="off"
           required

@@ -90,7 +90,7 @@ const ShopMain = () => {
 
   return (
     <div
-      className="bg-gray-200 w-full sm overflow-x-hidden "
+      className="w-full overflow-x-hidden bg-gray-200 sm "
       style={{ backgroundImage: `url(${bgimg})` }}
     >
       <div className="flex justify-center items-center flex-wrap sm:px-12 px-4 bg-[#390a48] py-7 mx-0">
@@ -101,12 +101,12 @@ const ShopMain = () => {
           onSort={handleSort}
         />
       </div>
-      <div className="container mx-0 flex">
+      <div className="container flex mx-0">
         <div className="w-1/4">
           <FilterOptions onFilter={applyFilters} />
         </div>
         <div className="w-3/4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5 place-items-center px-4">
+          <div className="grid grid-cols-1 gap-5 px-4 sm:grid-cols-2 md:grid-cols-4 place-items-center">
             {filteredProducts.map((product) => (
               <ItemCard
                 key={product._id}
