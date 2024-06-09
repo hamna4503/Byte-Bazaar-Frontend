@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { OrderContext } from "../../contexts/Order/OrderContext";
 export default function ShippingInfo() {
+  let { OrderDetails, setOrderDetails } = useContext(OrderContext);
   const [orderData, setorderData] = useState({
     name: "",
     email: "",
@@ -9,11 +11,19 @@ export default function ShippingInfo() {
   });
   const handleChange = (e) => {
     setorderData({ ...orderData, [e.target.name]: e.target.value });
+    setOrderDetails({
+      ...OrderDetails,
+      shippingInfo: { ...orderData, [e.target.name]: e.target.value },
+    });
+    console.log(OrderDetails);
   };
 
   return (
     <>
-      <form className="w-full mx-auto px-10 py-2">
+      <div
+        className="w-full mx-auto px-10 py-2"
+        // onSubmit={(e) => console.log(e)}
+      >
         <h2 className="text-2xl text-center text-black mb-8">
           Shipping Information
         </h2>
@@ -29,6 +39,8 @@ export default function ShippingInfo() {
               required
               value={orderData.name}
               onChange={handleChange}
+              minLength={3}
+              maxLength={25}
               //   onChange={handleChange}
               // value={orderData.address}
             />
@@ -43,9 +55,8 @@ export default function ShippingInfo() {
               required
               value={orderData.email}
               onChange={handleChange}
-
-              //   onChange={handleChange}
-              // value={orderData.address}
+              minLength={9}
+              maxLength={40}
             />
           </div>
         </div>
@@ -60,8 +71,8 @@ export default function ShippingInfo() {
             required
             value={orderData.address}
             onChange={handleChange}
-            //   onChange={handleChange}
-            // value={orderData.address}
+            minLength={10}
+            max={100}
           />
         </div>
         <div className="grid md:grid-cols-2 md:gap-6">
@@ -70,11 +81,13 @@ export default function ShippingInfo() {
               className="w-full px-3 py-2 text-sm leading-tight text-gray-700 dark:text-black border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
               name="contact"
               type="tel"
-              placeholder="Contact"
+              placeholder="Phone Number (e.g: 03319354435)"
               autoComplete="off"
               value={orderData.contact}
               onChange={handleChange}
               required
+              minLength={11}
+              maxLength={11}
             />
           </div>
           <div className="relative z-0 w-full group">
@@ -82,15 +95,17 @@ export default function ShippingInfo() {
               className="w-full px-3 py-2 text-sm leading-tight text-gray-700 dark:text-black border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
               name="postalCode"
               type="text"
-              placeholder="Postal Code"
+              placeholder="Postal Code (e.g:01101)"
               autoComplete="off"
               required
               value={orderData.postalCode}
               onChange={handleChange}
+              minLength={5}
+              maxLength={5}
             />
           </div>
         </div>
-      </form>
+      </div>
     </>
   );
 }

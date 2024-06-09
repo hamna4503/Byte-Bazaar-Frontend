@@ -6,27 +6,31 @@ import img from "../../assets/images/items/controllers/xboxController.png";
 import { CartContext } from "../../contexts/CartContext";
 
 function ViewCart() {
-  const { Cart, Total, Tax, OrderTotal } = useContext(CartContext);
+  const { Cart, Total, Tax, OrderTotal, EmptyCart } = useContext(CartContext);
   // const Tax = Total * 0.02;
   // const finalTotal = Total + Tax;
 
   const checkout = () => {
     //CODE LOGIC HERE
+
     window.location.href = "/bytebazaar/checkout";
   };
   return Cart.length != 0 ? (
     <div className="w-screen flex flex-col justify-center items-center my-6">
       {/* Headers for the Cart */}
       <table className="w-11/12 sm:w-4/5">
-        <tr className="text-white bg-Purple">
-          <th className="text-left py-2 w-3/5 pl-5">Product</th>
-          <th className="text-center w-1/5">Quantity</th>
-          <th className="text-right w-1/5 px-2">Subtotal</th>
-        </tr>
-        {/* Cart Items Display  */}
-        {Cart && Cart.length > 0 ? <CartItems /> : <>No Items added</>}
+        <thead>
+          <tr className="text-white bg-Purple">
+            <th className="text-left py-2 w-3/5 pl-5">Product</th>
+            <th className="text-center w-1/5">Quantity</th>
+            <th className="text-right w-1/5 px-2">Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          {/* Cart Items Display  */}
+          {Cart && Cart.length > 0 ? <CartItems /> : <>No Items added</>}
+        </tbody>
       </table>
-
       {/* Cart Total Display */}
       <div className="flex flex-col w-11/12 sm:w-4/5 items-end">
         <div className="w-full sm:w-2/3 md:w-2/5 lg:w-1/3 border-t-2 border-t-Purple text-base font-medium py-2">
@@ -42,6 +46,18 @@ function ViewCart() {
           Proceed to Checkout
         </button>
       </div>
+      <p>
+        <span className="font-semibold mx-2">Want to start over?</span>
+        <button
+          className="bg-Purple text-white px-3 py-1 sm:px-4 rounded-xl sm:mt-2 sm:font-semibold"
+          onClick={(e) => {
+            e.preventDefault();
+            EmptyCart();
+          }}
+        >
+          Empty Cart
+        </button>
+      </p>
     </div>
   ) : (
     <div className="flex h-screen justify-center items-center">

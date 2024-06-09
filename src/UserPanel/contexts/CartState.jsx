@@ -14,7 +14,7 @@ function CartState({ children }) {
     let cartData = await axios.get(`http://localhost:6005/cart/`, {
       withCredentials: true,
     });
-    let currentTotal = cartData.data.cart.total;
+    let currentTotal = cartData.data.cart.total ? cartData.data.cart.total : 0;
     let taxedAmount = currentTotal * TaxPercentage;
     let currentOrderTotal = taxedAmount + currentTotal;
     setCart(cartData.data.cart.items);
@@ -46,7 +46,7 @@ function CartState({ children }) {
         theme: "colored",
         transition: toast.flip,
       });
-      window.location.href = "/";
+      window.location.href = "/bytebazaar/shop";
       // console.log(data);
     } catch (err) {
       console.log(err.response.status);
@@ -92,7 +92,10 @@ function CartState({ children }) {
 
   const EmptyCart = async () => {
     await RemoveApiCall("http://localhost:6005/cart/");
-    getCart();
+    setCart([]);
+    setTotal(0);
+    setTaxAmount(0);
+    setOrderTotal(0);
   };
 
   return (

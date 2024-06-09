@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import xboxController from "./UserPanel/assets/images/items/controllers/xboxController.png";
 import UserNavbar from "./UserPanel/components/Navbar/UserNavbar";
 import SignUp from "./UserPanel/pages/AuthorizationForms/SignUp";
 import Login from "./UserPanel/pages/AuthorizationForms/Login";
@@ -22,9 +21,9 @@ import OrderManagement from "./AdminPanel/pages/OrderManagement/OrderManagement"
 import CustomerSupport from "./AdminPanel/pages/CustomerSupport/CustomerSupport";
 import Checkout from "./UserPanel/pages/Checkout/Checkout";
 import Home from "./UserPanel/pages/Home/Home";
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import OrderState from "./UserPanel/contexts/Order/OrderState";
 
 export default function App() {
   return (
@@ -99,7 +98,9 @@ export default function App() {
             path="/bytebazaar/checkout"
             element={
               <CartState>
-                <Checkout />
+                <OrderState>
+                  <Checkout />
+                </OrderState>
               </CartState>
             }
           />
