@@ -6,9 +6,10 @@ import ProceedToPaymentButton from "../../components/OnlinePayment/ProceedToPaym
 import PlaceOrderButton from "../../components/PlaceOrder/PlaceOrderButton";
 import { OrderContext } from "../../contexts/Order/OrderContext";
 import { CartContext } from "../../contexts/CartContext";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 export default function CheckoutForm() {
+  const Navigate = useNavigate();
   let { OrderTotal, EmptyCart } = useContext(CartContext);
   const [paymentMethod, setPaymentMethod] = useState("online");
 
@@ -42,9 +43,11 @@ export default function CheckoutForm() {
             closeOnClick: false,
             theme: "colored",
             transition: toast.flip,
+            onClose: () => {
+              EmptyCart();
+              window.location.href = "/";
+            },
           });
-          EmptyCart();
-          window.location.href = "/";
         }
       } catch (e) {
         toast.error(e.response.data.message, {

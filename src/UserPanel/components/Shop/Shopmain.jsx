@@ -101,23 +101,21 @@ const ShopMain = () => {
           onSort={handleSort}
         />
       </div>
-      <div className="w-full flex flex-wrap mx-0">
-        <div className="w-3/12 mx-0">
+      <div className="flex mx-0 justify-center items-center mb-6">
+        {/* <div className="w-3/12 mx-0">
           <FilterOptions onFilter={applyFilters} />
-        </div>
-        <div className="w-9/12 mb-4 mx-0">
-          <div className="w-full flex flex-wrap justify-around">
-            {filteredProducts.map((product) => (
-              <ItemCard
-                key={product._id}
-                id={product._id}
-                itemImg={"http://localhost:6005" + product.image}
-                itemName={product.name}
-                itemDescription={product.description}
-                itemPrice={product.price}
-              />
-            ))}
-          </div>
+        </div> */}
+        <div className="w-10/12 flex flex-wrap justify-evenly items-center gap-x-5">
+          {filteredProducts.map((product) => (
+            <ItemCard
+              key={product._id}
+              id={product._id}
+              itemImg={"http://localhost:6005" + product.image}
+              itemName={product.name}
+              itemDescription={product.description}
+              itemPrice={product.price}
+            />
+          ))}
         </div>
       </div>
     </div>
