@@ -82,14 +82,24 @@ export default function AuthFormFields({ isLoginForm, isAdmin }) {
       // navigate("/");
       toast.success("Login successful!", {
         position: "top-center",
-        autoClose: 3000,
+        autoClose: 2000,
         hideProgressBar: true,
         draggable: false,
         closeOnClick: false,
         theme: "colored",
         transition: toast.flip,
         onClose: () => {
-          navigate("/");
+          const previousUrl = document.referrer;
+
+          if (previousUrl) {
+            const url = new URL(previousUrl);
+            let path = url.pathname;
+            navigate(path);
+            console.log(path);
+          } else {
+            // Optionally, you can navigate to a default URL if no referrer is available
+            navigate("/");
+          }
         },
       });
       console.log(res.message);

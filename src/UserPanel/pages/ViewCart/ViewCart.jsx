@@ -4,11 +4,11 @@ import CartTotal from "../../components/Cart/CartTotal/CartTotal";
 import CartItems from "../../components/Cart/CartItems/CartItems";
 import img from "../../assets/images/items/controllers/xboxController.png";
 import { CartContext } from "../../contexts/CartContext";
+import { LoadingContext } from "../../contexts/Loading/Loadingcontext";
 
 function ViewCart() {
   const { Cart, Total, Tax, OrderTotal, EmptyCart } = useContext(CartContext);
-  // const Tax = Total * 0.02;
-  // const finalTotal = Total + Tax;
+  let { Loading, setLoading } = useContext(LoadingContext);
 
   const checkout = () => {
     //CODE LOGIC HERE

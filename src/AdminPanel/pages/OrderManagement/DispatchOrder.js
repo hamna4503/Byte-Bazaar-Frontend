@@ -1,11 +1,12 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-export const DispatchOrder = async ( _id) => {
+export const DispatchOrder = async (_id, orderId) => {
   try {
-    const response = await axios.put(`http://localhost:6005/api/dispatch-orders`, {
-      _id,
-    });
+    const response = await axios.put(
+      `http://localhost:6005/api/dispatch-orders`,
+      { userId: _id, orderId: orderId }
+    );
 
     if (response.status === 200) {
       console.log("Order Dispatched Successfully:", response.data);

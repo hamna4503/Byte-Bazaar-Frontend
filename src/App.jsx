@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import UserNavbar from "./UserPanel/components/Navbar/UserNavbar";
 import SignUp from "./UserPanel/pages/AuthorizationForms/SignUp";
@@ -24,97 +24,117 @@ import Home from "./UserPanel/pages/Home/Home";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import OrderState from "./UserPanel/contexts/Order/OrderState";
-
+import Cookies from "js-cookie";
+import LoadingState from "./UserPanel/contexts/Loading/LoadingState";
 export default function App() {
+  const Authenticate = () => {
+    let authToken = Cookies.get("authToken");
+    return authToken ? true : false;
+  };
   return (
     <>
       <BrowserRouter>
-        <Routes>
-          <Route path="/bytebazaar/admin-login" element={<AdminLogin />} />
-          <Route path="/bytebazaar/admin" element={<AdminHome />} />
-          <Route
-            path="/bytebazaar/admin/user-profiles"
-            element={<UserManagement />}
-          />
-          <Route
-            path="/bytebazaar/admin/manage-inventory"
-            element={<InventoryManagement />}
-          />
-          <Route
-            path="/bytebazaar/admin/manage-orders"
-            element={<OrderManagement />}
-          />
-          <Route
-            path="/bytebazaar/admin/customer-support"
-            element={<CustomerSupport />}
-          />
-          <Route
-            path="/bytebazaar/shop"
-            element={
-              <div>
-                <UserNavbar />
-                <ShopMain />
-                <Footer />
-              </div>
-            }
-          />
-          <Route path="/" element={<Home />} />
-          <Route path="/bytebazaar/signup" element={<SignUp />} />
-          <Route path="/bytebazaar/login" element={<Login />} />
+        <LoadingState>
+          <Routes>
+            <Route path="/bytebazaar/admin-login" element={<AdminLogin />} />
+            <Route path="/bytebazaar/admin" element={<AdminHome />} />
+            <Route
+              path="/bytebazaar/admin/user-profiles"
+              element={<UserManagement />}
+            />
+            <Route
+              path="/bytebazaar/admin/manage-inventory"
+              element={<InventoryManagement />}
+            />
+            <Route
+              path="/bytebazaar/admin/manage-orders"
+              element={<OrderManagement />}
+            />
+            <Route
+              path="/bytebazaar/admin/customer-support"
+              element={<CustomerSupport />}
+            />
+            <Route
+              path="/bytebazaar/shop"
+              element={
+                <div>
+                  <UserNavbar />
+                  <ShopMain />
+                  <Footer />
+                </div>
+              }
+            />
+            <Route path="/" element={<Home />} />
+            <Route path="/bytebazaar/signup" element={<SignUp />} />
+            <Route path="/bytebazaar/login" element={<Login />} />
 
-          <Route
-            path="/bytebazaar/forgot-password"
-            element={<ForgotPassword />}
-          />
-          <Route
-            path="/bytebazaar/reset-password/"
-            element={<ResetPassword />}
-          />
-          <Route
-            path="/bytebazaar/otp-verification/"
-            element={<OTPVerification />}
-          />
-          <Route path="/shop" element={<ShopMain />} />
-          <Route
-            path="/product/:id"
-            element={
-              <CartState>
-                <SingleProductPage />
-              </CartState>
-            }
-          />
-          <Route path="/product/:id" element={<RelatedProdCard />} />
-          <Route
-            path="/bytebazaar/cart"
-            element={
-              <CartState>
-                <UserNavbar />
-                <ViewCart />
-              </CartState>
-            }
-          />
+            <Route
+              path="/bytebazaar/forgot-password"
+              element={<ForgotPassword />}
+            />
+            <Route
+              path="/bytebazaar/reset-password/"
+              element={<ResetPassword />}
+            />
+            <Route
+              path="/bytebazaar/otp-verification/"
+              element={<OTPVerification />}
+            />
+            <Route path="/shop" element={<ShopMain />} />
+            <Route
+              path="/product/:id"
+              element={
+                <CartState>
+                  <SingleProductPage />
+                </CartState>
+              }
+            />
+            <Route
+              path="/product/:id"
+              element={
+                <>
+                  <UserNavbar />
+                  <RelatedProdCard />
+                  <Footer />
+                </>
+              }
+            />
+            <Route
+              path="/bytebazaar/cart"
+              element={
+                Authenticate() ? (
+                  <CartState>
+                    <UserNavbar />
+                    <ViewCart />
+                  </CartState>
+                ) : (
+                  <Navigate to="/bytebazaar/login" replace />
+                )
+              }
+            />
 
-          <Route
-            path="/bytebazaar/checkout"
-            element={
-              <CartState>
-                <OrderState>
-                  <Checkout />
-                </OrderState>
-              </CartState>
-            }
-          />
-          <Route path="/bytebazaar/foot" element={<Footer />} />
+            <Route
+              path="/bytebazaar/checkout"
+              element={
+                <CartState>
+                  <OrderState>
+                    <Checkout />
+                  </OrderState>
+                </CartState>
+              }
+            />
+            <Route path="/bytebazaar/foot" element={<Footer />} />
 
-          <Route
-            path="/addToCart"
-            element={
-              <CartState>
-                <AddToCart />
-              </CartState>
-            }
-          />
-        </Routes>
+            <Route
+              path="/addToCart"
+              element={
+                <CartState>
+                  <AddToCart />
+                </CartState>
+              }
+            />
+          </Routes>
+        </LoadingState>
         <ToastContainer />
       </BrowserRouter>
     </>

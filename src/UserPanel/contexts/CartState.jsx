@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { CartContext } from "./CartContext";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { LoadingContext } from "./Loading/Loadingcontext";
 
 function CartState({ children }) {
   const TaxPercentage = 0.02;
@@ -9,8 +10,10 @@ function CartState({ children }) {
   const [Total, setTotal] = useState(0);
   const [TaxAmount, setTaxAmount] = useState(0);
   const [OrderTotal, setOrderTotal] = useState(0);
+  let { Loading, setLoading } = useContext(LoadingContext);
 
   const getCart = async () => {
+    setLoading(true);
     let cartData = await axios.get(`http://localhost:6005/cart/`, {
       withCredentials: true,
     });
@@ -21,13 +24,14 @@ function CartState({ children }) {
     setTotal(currentTotal);
     setTaxAmount(taxedAmount);
     setOrderTotal(currentOrderTotal);
+    setLoading(false);
   };
 
   useEffect(() => {
     getCart();
   }, []);
 
-  const AddItem = async (productId, quantity, price) => {
+  const AddItem = async (productId, quantity, price, type) => {
     try {
       let data = await axios.post(
         `http://localhost:6005/cart/`,
@@ -45,8 +49,15 @@ function CartState({ children }) {
         closeOnClick: false,
         theme: "colored",
         transition: toast.flip,
+        onClose: () => {
+          if (type == "addToCart") {
+            window.location.href = "/bytebazaar/shop";
+          } else {
+            window.location.href = "/bytebazaar/cart";
+          }
+        },
       });
-      window.location.href = "/bytebazaar/shop";
+
       // console.log(data);
     } catch (err) {
       console.log(err.response.status);
