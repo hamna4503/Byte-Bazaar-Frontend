@@ -26,11 +26,16 @@ import "slick-carousel/slick/slick-theme.css";
 import OrderState from "./UserPanel/contexts/Order/OrderState";
 import Cookies from "js-cookie";
 import LoadingState from "./UserPanel/contexts/Loading/LoadingState";
+import { useEffect } from "react";
+
+const Authenticate = () => {
+  let authToken = Cookies.get("authToken");
+  console.log(authToken);
+  return authToken ? true : false;
+};
+//
+
 export default function App() {
-  const Authenticate = () => {
-    let authToken = Cookies.get("authToken");
-    return authToken ? true : false;
-  };
   return (
     <>
       <BrowserRouter>
@@ -102,14 +107,14 @@ export default function App() {
             <Route
               path="/bytebazaar/cart"
               element={
-                Authenticate() ? (
-                  <CartState>
-                    <UserNavbar />
-                    <ViewCart />
-                  </CartState>
-                ) : (
-                  <Navigate to="/bytebazaar/login" replace />
-                )
+                // Authenticate() ? (
+                <CartState>
+                  <UserNavbar />
+                  <ViewCart />
+                </CartState>
+                // ) : (
+                //   <Navigate to="/bytebazaar/login" replace />
+                // )
               }
             />
 
