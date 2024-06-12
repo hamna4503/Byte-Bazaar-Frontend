@@ -3,6 +3,7 @@ import { CartContext } from "./CartContext";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { LoadingContext } from "./Loading/Loadingcontext";
+import { subtract } from "lodash";
 
 function CartState({ children }) {
   const TaxPercentage = 0.02;
@@ -31,34 +32,46 @@ function CartState({ children }) {
     getCart();
   }, []);
 
-  const AddItem = async (productId, quantity, price, type) => {
+  const AddItem = async (
+    productId,
+    quantity,
+    price,
+    type,
+    category = "add"
+  ) => {
     try {
-      let data = await axios.post(
+      let res = await axios.post(
         `http://localhost:6005/cart/`,
         { productId, quantity, price },
         {
           withCredentials: true,
         }
       );
+      console.log(res);
+      if (res.status == 201) {
+        getCart();
 
-      toast.success("Item Added!", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: true,
-        draggable: false,
-        closeOnClick: false,
-        theme: "colored",
-        transition: toast.flip,
-        onClose: () => {
-          if (type == "addToCart") {
-            window.location.href = "/bytebazaar/shop";
-          } else {
-            window.location.href = "/bytebazaar/cart";
-          }
-        },
-      });
+        if (category == "add") {
+          toast.success("Item Added!", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: true,
+            draggable: false,
+            closeOnClick: false,
+            theme: "colored",
+            transition: toast.flip,
+            onClose: () => {
+              if (type == "addToCart") {
+                window.location.href = "/bytebazaar/shop";
+              } else {
+                window.location.href = "/bytebazaar/cart";
+              }
+            },
+          });
+        }
 
-      // console.log(data);
+        // console.log(data);
+      }
     } catch (err) {
       console.log(err.response.status);
       if (err.response.status == "401") {
@@ -101,6 +114,33 @@ function CartState({ children }) {
     getCart();
   };
 
+  const UpdateQuantity = async (productId, subTotal, updateType) => {
+    try {
+      let url = `http://localhost:6005/cart/`;
+      let res = await axios.put(
+        url,
+        { productId, subTotal, updateType },
+        {
+          withCredentials: true,
+        }
+      );
+      getCart();
+    } catch (err) {
+      // console.log(err.message);
+      if (updateType == "increment") {
+        toast.error(err.response.data.message, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          draggable: false,
+          closeOnClick: false,
+          theme: "colored",
+          transition: toast.flip,
+          onClose: () => {},
+        });
+      }
+    }
+  };
   const EmptyCart = async () => {
     await RemoveApiCall("http://localhost:6005/cart/");
     setCart([]);
@@ -120,6 +160,7 @@ function CartState({ children }) {
         AddItem,
         RemoveItem,
         EmptyCart,
+        UpdateQuantity,
       }}
     >
       {children}

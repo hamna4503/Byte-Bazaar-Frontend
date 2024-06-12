@@ -2,7 +2,8 @@ import React, { useContext, useState } from "react";
 import { CartContext } from "../../../contexts/CartContext";
 
 function CartItems() {
-  let { Cart, RemoveItem } = useContext(CartContext);
+  let { Cart, RemoveItem, AddItem, getCart, UpdateQuantity } =
+    useContext(CartContext);
   return (
     <>
       {Cart && Cart.length > 0 ? (
@@ -37,11 +38,37 @@ function CartItems() {
               <td>
                 <div className="flex justify-center">
                   <div className="flex justify-center w-16 py-1 border border-purple-900 rounded-lg px-2s">
-                    <button className="text-lg font-bold">-</button>
+                    <button
+                      className="text-lg font-bold"
+                      disabled={Item.quantity <= 1 ? true : false}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        UpdateQuantity(
+                          Item.productId._id,
+                          Item.productId.price,
+                          "decrement"
+                        );
+                        console.log("works");
+                      }}
+                    >
+                      -
+                    </button>
                     <div className="px-2 text-lg font-bold">
                       {Item.quantity}
                     </div>
-                    <button className="text-lg font-bold">+</button>
+                    <button
+                      className="text-lg font-bold"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        UpdateQuantity(
+                          Item.productId._id,
+                          Item.productId.price,
+                          "increment"
+                        );
+                      }}
+                    >
+                      +
+                    </button>
                   </div>
                 </div>
               </td>

@@ -90,6 +90,7 @@ export default function App() {
               path="/product/:id"
               element={
                 <CartState>
+                  <UserNavbar />
                   <SingleProductPage />
                 </CartState>
               }
