@@ -34,7 +34,7 @@ export default function CheckoutForm() {
     if (paymentMethod == "cashOnDelivery") {
       try {
         let res = await processOrder();
-        if (res.status == 201) {
+        if (res.status == 200) {
           toast.success("Order Successfully placed", {
             position: "top-center",
             autoClose: 5000,
@@ -44,8 +44,8 @@ export default function CheckoutForm() {
             theme: "colored",
             transition: toast.flip,
             onClose: () => {
-              EmptyCart();
-              window.location.href = "/";
+              // EmptyCart();
+              window.location.href = "/bytebazaar/";
             },
           });
         }
@@ -61,8 +61,9 @@ export default function CheckoutForm() {
         });
       }
     } else {
-      window.location.href = "/onlinePayment";
+      window.location.href = "/bytebazaar/cardPayment";
     }
+   
   };
   return (
     <>
@@ -108,9 +109,9 @@ export default function CheckoutForm() {
                   </div>
                 </div>
 
-                {!isCashOnDelivery && (
+                {/* {!isCashOnDelivery && (
                   <PaymentDetails className="rounded-lg shadow-md bg-gray-100" />
-                )}
+                )} */}
 
                 <div className="px-10 py-4">
                   {paymentMethod == "online" ? (

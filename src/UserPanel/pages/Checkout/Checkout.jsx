@@ -8,15 +8,13 @@ export default function Checkout() {
   let { Cart } = useContext(CartContext);
   return (
     <>
-      <UserNavbar />
-      {Cart.length != 0 ? (
+      {Cart && Cart.length != 0 ? (
         <CheckoutForm />
       ) : (
         <div className="flex h-screen justify-center items-center">
           No Items have been added yet.
         </div>
       )}
-      <Footer />
     </>
   );
 }

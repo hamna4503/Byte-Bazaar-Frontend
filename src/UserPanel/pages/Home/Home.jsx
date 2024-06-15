@@ -13,7 +13,6 @@ import Featured from "./Featured/Featured";
 export default function Home() {
   return (
     <>
-      <UserNavbar />
       <AnnouncementSlider />
       <Landing />
       <ShopPreview />
@@ -23,7 +22,6 @@ export default function Home() {
       <Testimonials />
       <Newsletter />
       <LatestTech />
-      <Footer />
     </>
   );
 }

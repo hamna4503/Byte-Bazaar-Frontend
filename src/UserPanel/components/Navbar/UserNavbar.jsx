@@ -24,7 +24,7 @@ export default function UserNavbar() {
   const navlinks = [
     {
       label: "HOME",
-      link: "/",
+      link: "/bytebazaar/",
     },
     {
       label: "PRODUCTS",
