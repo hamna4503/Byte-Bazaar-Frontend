@@ -27,6 +27,7 @@ import OrderState from "./UserPanel/contexts/Order/OrderState";
 import Cookies from "js-cookie";
 import LoadingState from "./UserPanel/contexts/Loading/LoadingState";
 import { useEffect } from "react";
+import CardPayment from "./UserPanel/pages/CardPayment/CardPayment";
 
 const Authenticate = () => {
   let authToken = Cookies.get("authToken");
@@ -136,6 +137,15 @@ export default function App() {
               element={
                 <CartState>
                   <AddToCart />
+                </CartState>
+              }
+            />
+
+            <Route
+              path="/cardPayment"
+              element={
+                <CartState>
+                  <CardPayment />
                 </CartState>
               }
             />

@@ -11,8 +11,11 @@
     "start": "vite"
   },
   "dependencies": {
+    "@stripe/react-stripe-js": "^2.7.1",
+    "@stripe/stripe-js": "^3.5.0",
     "axios": "^1.6.8",
     "clsx": "^2.1.0",
+    "dotenv": "^16.4.5",
     "file-saver": "^2.0.5",
     "fs": "^0.0.1-security",
     "js-cookie": "^3.0.5",
