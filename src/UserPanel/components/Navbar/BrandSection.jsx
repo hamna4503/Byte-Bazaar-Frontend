@@ -15,7 +15,7 @@ export default function BrandSection({ onMenuToggle, isAdmin }) {
       )}
 
       {/* logo */}
-      <Link to="/" className="flex items-center font-mono text-8xl">
+      <Link to="" className="flex items-center font-mono text-8xl">
         <img
           width={70}
           height={90}

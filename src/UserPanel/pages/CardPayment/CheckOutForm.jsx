@@ -5,13 +5,13 @@ import {
   PaymentElement,
 } from "@stripe/react-stripe-js";
 import { toast } from "react-toastify";
-import { CartContext } from '../../contexts/CartContext';
+import { CartContext } from "../../contexts/CartContext";
 import { useContext } from "react";
 import { OrderContext } from "../../contexts/Order/OrderContext";
 export default function CheckoutForm({ clientSecret, orderTotal }) {
   const stripe = useStripe();
   const elements = useElements();
-  let { processOrder } =useContext(OrderContext);
+  let { processOrder } = useContext(OrderContext);
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -42,7 +42,7 @@ export default function CheckoutForm({ clientSecret, orderTotal }) {
             theme: "colored",
             transition: toast.flip,
             onClose: () => {
-            //   EmptyCart();
+              //   EmptyCart();
               window.location.href = "/bytebazaar/";
             },
           });
@@ -57,7 +57,7 @@ export default function CheckoutForm({ clientSecret, orderTotal }) {
           theme: "colored",
           transition: toast.flip,
         });
-    }
+      }
     }
   };
 
@@ -66,12 +66,18 @@ export default function CheckoutForm({ clientSecret, orderTotal }) {
       <div className="w-7/12 h-[60vh] flex justify-items-center items-center shadow-xl shadow-slate-900 rounded-xl bg-slate-100">
         <aside className="w-5/12 h-full bg-gradient-to-br from-Purple to-purple-950  text-white flex flex-col justify-center items-center">
           <p className="font-extrabold text-3xl p-4 r">Payable Amount</p>
-          <p className="font-bold text-xl border px-4 border-white">Rs {orderTotal}</p>
+          <p className="font-bold text-xl border px-4 border-white">
+            Rs {orderTotal}
+          </p>
           <p></p>
         </aside>
         <form onSubmit={handleSubmit} className="w-7/12 p-10">
           <PaymentElement />
-          <button className="mt-6 w-full inline-flex items-center justify-center rounded bg-Purple py-2 px-3 text-md text-white transition duration-300 hover:bg-gray-800 focus:ring-2 focus:ring-purple-500" type="submit" disabled={!stripe}>
+          <button
+            className="mt-6 w-full inline-flex items-center justify-center rounded bg-Purple py-2 px-3 text-md text-white transition duration-300 hover:bg-gray-800 focus:ring-2 focus:ring-purple-500"
+            type="submit"
+            disabled={!stripe}
+          >
             Confirm Payment
           </button>
         </form>

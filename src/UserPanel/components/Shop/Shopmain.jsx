@@ -5,9 +5,10 @@ import products from "./Products";
 import FilterOptions from "./FilterOptions";
 import ShopHeader from "./ShopHeader";
 import bgimg from "../../assets/images/Shop/bg.jpg";
-
+import LoadingScreen from "../../components/Loading/LoadingScreen";
 const ShopMain = () => {
-  const [filteredProducts, setFilteredProducts] = useState(products);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [CompleteData, setCompleteData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [filters, setFilters] = useState({
     category: "",
@@ -24,6 +25,7 @@ const ShopMain = () => {
       setIsLoading(true);
       const response = await fetch("http://localhost:6005/api/products");
       const data = await response.json();
+      setCompleteData(data);
       setFilteredProducts(data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -38,7 +40,7 @@ const ShopMain = () => {
   }, [filters]);
 
   const applyFilters = ({ category, priceRange, brand }) => {
-    let filteredProducts = products.filter((product) => {
+    let filterProducts = CompleteData.filter((product) => {
       const categoryMatch = category === "" || product.category === category;
       const priceMatch =
         priceRange === "" || parseInt(product.price) <= parseInt(priceRange);
@@ -48,14 +50,14 @@ const ShopMain = () => {
       return categoryMatch && priceMatch && brandMatch;
     });
 
-    setFilteredProducts(filteredProducts);
-    console.log(filteredProducts);
+    setFilteredProducts(filterProducts);
+    console.log(filterProducts);
   };
 
   /*Search ki logic*/
   const handleSearch = (query) => {
     setIsLoading(true);
-    const filtered = products.filter(
+    const filtered = CompleteData.filter(
       (product) =>
         product.name.toString().toLowerCase().includes(query.toLowerCase()) ||
         (product.description &&
@@ -105,17 +107,22 @@ const ShopMain = () => {
         {/* <div className="w-3/12 mx-0">
           <FilterOptions onFilter={applyFilters} />
         </div> */}
+
         <div className="w-10/12 flex flex-wrap justify-evenly items-center gap-x-5">
-          {filteredProducts.map((product) => (
-            <ItemCard
-              key={product._id}
-              id={product._id}
-              itemImg={"http://localhost:6005" + product.image}
-              itemName={product.name}
-              itemDescription={product.description}
-              itemPrice={product.price}
-            />
-          ))}
+          {isLoading ? (
+            <LoadingScreen />
+          ) : (
+            filteredProducts?.map((product) => (
+              <ItemCard
+                key={product._id}
+                id={product._id}
+                itemImg={"http://localhost:6005" + product.image}
+                itemName={product.name}
+                itemDescription={product.description}
+                itemPrice={product.price}
+              />
+            ))
+          )}
         </div>
       </div>
     </div>

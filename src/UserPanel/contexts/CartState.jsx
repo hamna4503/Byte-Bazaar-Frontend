@@ -4,6 +4,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { LoadingContext } from "./Loading/Loadingcontext";
 import { subtract } from "lodash";
+import Cookies from "js-cookie";
 
 function CartState({ children }) {
   const TaxPercentage = 0.02;
@@ -14,18 +15,23 @@ function CartState({ children }) {
   let { Loading, setLoading } = useContext(LoadingContext);
 
   const getCart = async () => {
-    setLoading(true);
-    let cartData = await axios.get(`http://localhost:6005/cart/`, {
-      withCredentials: true,
-    });
-    let currentTotal = cartData.data.cart.total ? cartData.data.cart.total : 0;
-    let taxedAmount = currentTotal * TaxPercentage;
-    let currentOrderTotal = taxedAmount + currentTotal;
-    setCart(cartData.data.cart.items);
-    setTotal(currentTotal);
-    setTaxAmount(taxedAmount);
-    setOrderTotal(currentOrderTotal);
-    setLoading(false);
+    let authToken = Cookies.get("authToken");
+    if (authToken) {
+      setLoading(true);
+      let cartData = await axios.get(`http://localhost:6005/cart/`, {
+        withCredentials: true,
+      });
+      let currentTotal = cartData.data.cart.total
+        ? cartData.data.cart.total
+        : 0;
+      let taxedAmount = currentTotal * TaxPercentage;
+      let currentOrderTotal = taxedAmount + currentTotal;
+      setCart(cartData.data.cart.items);
+      setTotal(currentTotal);
+      setTaxAmount(taxedAmount);
+      setOrderTotal(currentOrderTotal);
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
