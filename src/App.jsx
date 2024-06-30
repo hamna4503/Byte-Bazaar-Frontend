@@ -30,6 +30,7 @@ import { useEffect } from "react";
 import CardPayment from "./UserPanel/pages/CardPayment/CardPayment";
 import SuccessPage from "./UserPanel/pages/SuccessPage/SuccessPage";
 import UserLayout from "./UserPanel/layout/UserLayout";
+import Contact from "./UserPanel/pages/Contact/Contact";
 
 const Authenticate = () => {
   let authToken = Cookies.get("authToken");
@@ -122,6 +123,7 @@ export default function App() {
               }
               />
             <Route path="success" element={<SuccessPage/>}/>
+            <Route path="contact" element={<Contact/>}/>
               </Route>
 
             <Route path="*" element={<Navigate to="/bytebazaar/"/>}/>
