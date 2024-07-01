@@ -123,26 +123,34 @@ const SingleProductPage = () => {
               </div>
 
               {/*Buttons*/}
-              <div className="grid grid-cols-2 gap-9">
-                <button
-                  className="bg-purple-800 hover:bg-gray-300  duration-100 px-5 py-3 font-[poppins] 
-              rounded-md text-white md:w-auto w-64"
-                  onClick={() => addToCart("addToCart")}
-                >
-                  Add to cart
-                </button>
-                {/* <AddToCart id={product._id} quantity={quantity} price={product.price}/> */}
-                <button
-                  className="bg-red-600 hover:bg-gray-300  duration-100 px-5 py-3  font-[poppins] 
+              {product.quantity > 0 ? (
+                <div className="grid grid-cols-2 gap-9">
+                  <button
+                    className="bg-purple-800 hover:bg-gray-300  duration-100 px-5 py-3 font-[poppins] 
+                  rounded-md text-white md:w-auto w-64"
+                    onClick={() => addToCart("addToCart")}
+                  >
+                    Add to cart
+                  </button>
+                  {/* <AddToCart id={product._id} quantity={quantity} price={product.price}/> */}
+                  <button
+                    className="bg-red-600 hover:bg-gray-300  duration-100 px-5 py-3  font-[poppins] 
               rounded-md text-white md:w-auto w-30"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    addToCart("buyNow");
-                  }}
-                >
-                  Buy Now
-                </button>
-              </div>
+                    onClick={(e) => {
+                      e.preventDefault();
+                      addToCart("buyNow");
+                    }}
+                  >
+                    Buy Now
+                  </button>
+                </div>
+              ) : (
+                <div className="w-full border rounded text-red-800 border-red-700 hover:border-white hover:text-white hover:bg-red-700">
+                  <p className="text-xl font-bold text-center p-3">
+                    Item Out of Stock
+                  </p>
+                </div>
+              )}
             </div>
           </div>
 

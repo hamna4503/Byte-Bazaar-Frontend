@@ -1,12 +1,13 @@
 import React from "react";
 import Cookies from "js-cookie";
-function LogoutModal({ setModalOpen, ModalOpen }) {
+function LogoutModal({ setModalOpen, ModalOpen, setauthToken }) {
   const onClose = () => {
     setModalOpen(false);
   };
   const onConfirm = () => {
     Cookies.remove("authToken");
     setModalOpen(false);
+    setauthToken(null);
     window.location.replace = "bytebazaar/";
   };
 

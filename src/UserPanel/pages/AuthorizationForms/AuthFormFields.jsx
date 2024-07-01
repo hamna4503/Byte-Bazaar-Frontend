@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Cookies from "js-cookie";
+import AuthContext from "../../contexts/AuthContext/AuthContext";
 
 export default function AuthFormFields({ isLoginForm, isAdmin }) {
   const [signupData, setSignupData] = useState({
@@ -19,6 +20,7 @@ export default function AuthFormFields({ isLoginForm, isAdmin }) {
     password: "",
   });
 
+  let { setauthToken } = useContext(AuthContext);
   const handleChange = ({ currentTarget: input }) => {
     if (isLoginForm) {
       setLoginData({ ...loginData, [input.name]: input.value });
@@ -77,8 +79,10 @@ export default function AuthFormFields({ isLoginForm, isAdmin }) {
       const url = "http://localhost:6005/api/login";
       const { data: res } = await axios.post(url, loginData);
       const token = res.data;
+      console.log(res.data);
       // document.cookie = `authToken=${token}; Secure; HttpOnly; SameSite=Strict`;
       Cookies.set("authToken", token);
+      setauthToken(token);
       // navigate("/");
       toast.success("Login successful!", {
         position: "top-center",
@@ -90,7 +94,6 @@ export default function AuthFormFields({ isLoginForm, isAdmin }) {
         transition: toast.flip,
         onClose: () => {
           const previousUrl = document.referrer;
-
           if (previousUrl) {
             const url = new URL(previousUrl);
             let path = url.pathname;

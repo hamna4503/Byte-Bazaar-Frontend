@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { IoLogIn, IoLogOut, IoPersonCircle } from "react-icons/io5";
 import { MdFavorite } from "react-icons/md";
 import { Link } from "react-router-dom";
@@ -6,8 +6,16 @@ import ShoppingCartIcon from "./ShoppingCartIcon";
 import Cookies from "js-cookie";
 import LogoutModal from "../Logout/LogoutModal";
 import { AiOutlineLogout } from "react-icons/ai";
+import AuthContext from "../../contexts/AuthContext/AuthContext";
 export default function RightNavbarSection() {
-  let authToken = Cookies.get("authToken");
+  let { authToken, setauthToken } = useContext(AuthContext);
+  // const [authToken, setauthToken] = useState(Cookies.get("authToken"));
+
+  // useEffect(() => {
+  //   setauthToken(Cookies.get("authToken"));
+  // });
+
+  // let authToken = Cookies.get("authToken");
   const [ModalOpen, setModalOpen] = useState(false);
   return (
     <section className="flex items-center gap-9">
@@ -31,7 +39,11 @@ export default function RightNavbarSection() {
       </Link> */}
       {/* Profile icon */}
       {ModalOpen && (
-        <LogoutModal ModalOpen={ModalOpen} setModalOpen={setModalOpen} />
+        <LogoutModal
+          ModalOpen={ModalOpen}
+          setModalOpen={setModalOpen}
+          setauthToken={setauthToken}
+        />
       )}
       {authToken ? (
         <>
