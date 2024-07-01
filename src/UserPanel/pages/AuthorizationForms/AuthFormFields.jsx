@@ -126,8 +126,12 @@ export default function AuthFormFields({ isLoginForm, isAdmin }) {
     }
   };
 
-  const loginWithGoogle = () => {
-    window.open("http://localhost:6005/auth/google/callback", "_self");
+  const loginWithGoogle = async () => {
+    let res = await window.open(
+      "http://localhost:6005/auth/google/callback",
+      "_self"
+    );
+    console.log(res);
   };
 
   const handleAdminLogin = async (e) => {

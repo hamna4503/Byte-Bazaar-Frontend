@@ -11,10 +11,6 @@ export default function RightNavbarSection() {
   let { authToken, setauthToken } = useContext(AuthContext);
   // const [authToken, setauthToken] = useState(Cookies.get("authToken"));
 
-  // useEffect(() => {
-  //   setauthToken(Cookies.get("authToken"));
-  // });
-
   // let authToken = Cookies.get("authToken");
   const [ModalOpen, setModalOpen] = useState(false);
   return (

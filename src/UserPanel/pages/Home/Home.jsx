@@ -9,7 +9,9 @@ import LatestTech from "./LatestTech/LatestTech";
 import Newsletter from "./Newsletter/Newsletter";
 import Landing from "./Landing/Landing";
 import Featured from "./Featured/Featured";
-
+import { useContext, useEffect } from "react";
+import AuthContext from "../../contexts/AuthContext/AuthContext";
+import Cookies from "js-cookie";
 export default function Home() {
   return (
     <>
