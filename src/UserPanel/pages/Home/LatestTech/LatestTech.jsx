@@ -20,7 +20,7 @@ export default function LatestTech() {
 
           <div className="mt-4 sm:mt-8">
             <a
-              href="#"
+              href="/bytebazaar/shop"
               className="inline-block px-12 py-3 text-lg font-medium text-white transition bg-gray-600 rounded-lg hover:bg-Purple focus:outline-none focus:ring focus:ring-yellow-400"
             >
               Get Yours Today

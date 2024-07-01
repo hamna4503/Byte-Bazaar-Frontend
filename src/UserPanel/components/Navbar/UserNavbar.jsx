@@ -31,10 +31,10 @@ export default function UserNavbar() {
       link: "/bytebazaar/shop",
       dropdownOptions: ["Computer Gadgets", "Electronic Items", "Gaming Items"],
     },
-    {
-      label: "ABOUT",
-      link: "/bytebazaar/about",
-    },
+    // {
+    //   label: "ABOUT",
+    //   link: "/bytebazaar/about",
+    // },
     {
       label: "CONTACT",
       link: "/bytebazaar/contact",

@@ -9,6 +9,7 @@ const Contact = () => {
     email: "",
     topic: "",
     message: "",
+    status: true,
   });
 
   const handleChange = (e) => {
@@ -43,6 +44,7 @@ const Contact = () => {
           email: "",
           topic: "",
           message: "",
+          status: true,
         });
       } else {
         toast.error(response.data.message, {
@@ -80,18 +82,18 @@ const Contact = () => {
           src={ContactImage}
           className="object-top w-screen h-[60vh] object-cover"
         />
-        <p className="block w-full absolute top-3/4 text-white font-bold text-6xl text-center">
+        <p className="absolute block w-full text-6xl font-bold text-center text-white top-3/4">
           Contact Us
         </p>
       </div>
-      <div className="container w-screen h-full flex flex-row justify-evenly flex-wrap mx-auto my-7 shadow-lg rounded">
-        {/* <header className="bg-white w-full shadow p-4">
+      <div className="container flex flex-row flex-wrap w-screen h-full mx-auto rounded shadow-lg justify-evenly my-7">
+        {/* <header className="w-full p-4 bg-white shadow">
         <h1 className="text-3xl font-bold text-center">Contact Us</h1>
         </header> */}
         <ContactLeftSection />
         <main className="w-[100vw] md:w-1/3 p-6">
           <div className="p-4 mx-auto">
-            <h2 className="text-2xl font-bold mb-4">Get in Touch</h2>
+            <h2 className="mb-4 text-2xl font-bold">Get in Touch</h2>
             <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
                 <label
@@ -106,7 +108,7 @@ const Contact = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md"
                   required
                 />
               </div>
@@ -123,7 +125,7 @@ const Contact = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md"
                   required
                 />
               </div>
@@ -139,7 +141,7 @@ const Contact = () => {
                   name="topic"
                   value={formData.topic}
                   onChange={handleChange}
-                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md"
                   required
                 >
                   <option value="" disabled>
@@ -166,14 +168,14 @@ const Contact = () => {
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md"
                   rows="4"
                   required
                 />
               </div>
               <button
                 type="submit"
-                className="w-full bg-purple-950 text-white p-2 rounded-md hover:bg-purple-900"
+                className="w-full p-2 text-white rounded-md bg-purple-950 hover:bg-purple-900"
               >
                 Submit
               </button>

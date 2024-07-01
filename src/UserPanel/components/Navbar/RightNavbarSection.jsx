@@ -55,16 +55,16 @@ export default function RightNavbarSection() {
         <div className="flex">
           <Link
             to="login"
-            className="border border-white p-2  hover:bg-white hover:text-Purple hover:border-Purple"
+            className="p-2 mr-2 border border-white rounded-full hover:bg-white hover:text-Purple hover:border-Purple"
           >
-            <span className="text-md font-semibold">LOGIN</span>
+            <span className="font-semibold text-md">LOGIN</span>
           </Link>
-          <span className="text-md font-bold p-2">OR</span>
+          <span className="p-2 font-bold text-md">OR</span>
           <Link
             to="signup"
-            className="border border-white p-2  hover:bg-white hover:text-Purple hover:border-Purple"
+            className="p-2 ml-2 border border-white rounded-full hover:bg-white hover:text-Purple hover:border-Purple"
           >
-            <span className="text-md font-semibold ">SIGN UP</span>
+            <span className="font-semibold text-md">SIGN UP</span>
           </Link>
         </div>
       )}

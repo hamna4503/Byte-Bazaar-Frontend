@@ -118,19 +118,24 @@ export default function NewArrivals() {
                   }}
                 >
                   <div className="flex justify-between w-full p-6">
-                    <Link to={`/product/${product._id}`}>
+                    <Link to={`/bytebazaar/product/${product._id}`}>
                       <button className="flex items-center p-2 bg-gray-200 rounded-full">
                         <IoMdEye className="w-6 h-6 text-blue-800" />
                       </button>
                     </Link>
-                    <button className="flex items-center p-2 bg-gray-200 rounded-full">
-                      <IoMdHeart className="w-6 h-6 text-red-600" />
-                    </button>
+
+                    <Link to={`/bytebazaar/product/${product._id}`}>
+                      <button className="flex items-center p-2 bg-gray-200 rounded-full">
+                        <IoMdHeart className="w-6 h-6 text-red-600" />
+                      </button>
+                    </Link>
                   </div>
 
-                  <button className="flex items-center justify-center w-full p-2 text-white rounded-lg bg-Purple align-center">
-                    Add to Cart
-                  </button>
+                  {/* <Link to={`/bytebazaar/product/${product._id}`}>
+                    <button className="flex items-center justify-center w-full p-2 text-white rounded-lg bg-Purple align-center">
+                      Add to Cart
+                    </button>
+                  </Link> */}
                 </div>
               )}
               <div className="px-4 py-2">

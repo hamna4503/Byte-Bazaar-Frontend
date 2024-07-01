@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import SearchSort from "./SearchSort";
 import ItemCard from "../itemCard/ItemCard";
+import Image from "../../assets/images/home/image1.jpg";
 import products from "./Products";
 import FilterOptions from "./FilterOptions";
 import ShopHeader from "./ShopHeader";
@@ -95,7 +96,14 @@ const ShopMain = () => {
       className="w-full overflow-x-hidden bg-gray-200 sm "
       style={{ backgroundImage: `url(${bgimg})` }}
     >
-      <div className="flex justify-center items-center flex-wrap sm:px-12 px-4 bg-[#390a48] py-7 mx-0">
+      <div className="relative">
+        <img
+          src={Image}
+          className="object-center w-screen h-[70vh] object-cover"
+        />
+      </div>
+
+      <div className="flex flex-wrap items-center justify-center px-4 mx-0 sm:px-12 bg-Purple py-7">
         <SearchSort
           onSearch={handleSearch}
           isLoading={isLoading}
@@ -103,12 +111,12 @@ const ShopMain = () => {
           onSort={handleSort}
         />
       </div>
-      <div className="flex mx-0 justify-center items-center mb-6">
+      <div className="flex items-center justify-center mx-0 mb-6">
         {/* <div className="w-3/12 mx-0">
           <FilterOptions onFilter={applyFilters} />
         </div> */}
 
-        <div className="w-10/12 flex flex-wrap justify-evenly items-center gap-x-5">
+        <div className="flex flex-wrap items-center w-10/12 justify-evenly gap-x-5">
           {isLoading ? (
             <LoadingScreen />
           ) : (
