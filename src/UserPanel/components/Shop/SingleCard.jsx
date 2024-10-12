@@ -63,7 +63,7 @@ const SingleProductPage = () => {
           <div className="max-w-6xl px-4 mx-auto sm:px-6 lg:px-8">
             <div className="flex flex-col -mx-4 md:flex-row">
               <div className="px-4 md:flex-1">
-                <div className="h-[460px] rounded-lg bg-gray-300 dark:bg-gray-700 mb-4 rounded-xl">
+                <div className="h-[460px]  bg-gray-300 dark:bg-gray-700 mb-4 rounded-xl">
                   <img
                     className="object-cover w-full h-full rounded-xl lazyload"
                     src={`http://localhost:6005${product.image}`}

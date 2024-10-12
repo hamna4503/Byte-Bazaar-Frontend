@@ -26,8 +26,8 @@ const ShopMain = () => {
       setIsLoading(true);
       const response = await fetch("http://localhost:6005/api/products");
       const data = await response.json();
-      setCompleteData(data);
       setFilteredProducts(data);
+      setCompleteData(data);
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
