@@ -24,10 +24,11 @@ const ShopMain = () => {
   const fetchData = async () => {
     try {
       setIsLoading(true);
-      const response = await fetch("http://localhost:6005/api/products");
+      const response = await fetch("http://localhost:6005/api/get-prods");
       const data = await response.json();
-      setFilteredProducts(data);
-      setCompleteData(data);
+      console.log(data);
+      setFilteredProducts(data.data);
+      setCompleteData(data.data);
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
@@ -92,10 +93,7 @@ const ShopMain = () => {
   };
 
   return (
-    <div
-      className="w-full overflow-x-hidden bg-gray-200 sm "
-      style={{ backgroundImage: `url(${bgimg})` }}
-    >
+    <div className="w-full overflow-x-hidden bg-gray-200 sm ">
       <div className="relative">
         <img
           src={Image}
@@ -112,10 +110,6 @@ const ShopMain = () => {
         />
       </div>
       <div className="flex items-center justify-center mx-0 mb-6">
-        {/* <div className="w-3/12 mx-0">
-          <FilterOptions onFilter={applyFilters} />
-        </div> */}
-
         <div className="flex flex-wrap items-center w-10/12 justify-evenly gap-x-5">
           {isLoading ? (
             <LoadingScreen />
