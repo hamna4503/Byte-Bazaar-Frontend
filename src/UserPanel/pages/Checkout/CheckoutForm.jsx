@@ -8,16 +8,17 @@ import { OrderContext } from "../../contexts/Order/OrderContext";
 import { CartContext } from "../../contexts/CartContext";
 import { Navigate, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import OnlinePaymentOptions from "./OnlinePaymentOptions";
 export default function CheckoutForm() {
   const Navigate = useNavigate();
   let { OrderTotal, EmptyCart } = useContext(CartContext);
   const [paymentMethod, setPaymentMethod] = useState("online");
+  const [onlinePaymentOption, setOnlinePaymentOption] = useState(null);
 
   const handlePaymentMethodChange = (event) => {
     setPaymentMethod(event.target.value);
   };
 
-  const isCashOnDelivery = paymentMethod === "cashOnDelivery";
   let { OrderDetails, setOrderDetails, processOrder } =
     useContext(OrderContext);
 
@@ -61,9 +62,18 @@ export default function CheckoutForm() {
         });
       }
     } else {
-      window.location.href = "/bytebazaar/cardPayment";
+      if (onlinePaymentOption == "PayPal") {
+        console.log("Paypal");
+        window.location.href = "/bytebazaar/payment/paypal";
+      } else if (onlinePaymentOption == "Stripe") {
+        window.location.href = "/bytebazaar/cardpayment";
+      } else {
+        console.log("Some error in setting buttons");
+      }
     }
-   
+    // else {
+    //   window.location.href = "/bytebazaar/payment/options";
+    // }
   };
   return (
     <>
@@ -115,7 +125,8 @@ export default function CheckoutForm() {
 
                 <div className="px-10 py-4">
                   {paymentMethod == "online" ? (
-                    <ProceedToPaymentButton />
+                    // <ProceedToPaymentButton />
+                    <OnlinePaymentOptions setOption={setOnlinePaymentOption} />
                   ) : (
                     <PlaceOrderButton />
                   )}

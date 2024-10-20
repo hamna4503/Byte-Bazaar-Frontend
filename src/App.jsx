@@ -32,6 +32,8 @@ import SuccessPage from "./UserPanel/pages/SuccessPage/SuccessPage";
 import UserLayout from "./UserPanel/layout/UserLayout";
 import Contact from "./UserPanel/pages/Contact/Contact";
 import AuthState from "./UserPanel/contexts/AuthContext/AuthState";
+import PayPalButton from "./UserPanel/components/PayPal Button/PayPalButton";
+import OnlinePayment from "./UserPanel/pages/OnlinePayment/PayPalPayment";
 
 const Authenticate = () => {
   let authToken = Cookies.get("authToken");
@@ -105,6 +107,7 @@ export default function App() {
                     <Route path="cardPayment" element={<CardPayment />} />
                     <Route path="success" element={<SuccessPage />} />
                     <Route path="contact" element={<Contact />} />
+                    <Route path="payment/paypal" element={<OnlinePayment />} />
                   </Route>
 
                   <Route path="*" element={<Navigate to="/bytebazaar/" />} />
