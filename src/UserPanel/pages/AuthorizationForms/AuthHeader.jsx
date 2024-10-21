@@ -14,7 +14,7 @@ export default function AuthHeader({isLoginForm, isOTP, isPswdForm}) {
               alt="avatar-img"
             />
             <span className="text-sm font-bold text-Purple lg:block hidden">
-              ByteBazaar
+              ARIAS- Solution to your hiring needs
             </span>
           </div>
 
