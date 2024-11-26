@@ -5,15 +5,13 @@ export const GetConcerns = async () => {
       throw new Error("Failed to Fetch Messages");
     }
     const data = await response.json();
-    console.log(data.data.password);
     if (data.data.isActiveUser == true) {
       console.log("data.data.isActiveUser");
     }
+    console.log(data);
     return data.data;
   } catch (error) {
     console.error("Error Fetching Messages:", error);
     throw error;
   }
 };
-
-
